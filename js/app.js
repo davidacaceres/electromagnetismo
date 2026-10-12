@@ -1,7 +1,8 @@
 /**
  * app.js
  * Navegación entre módulos, progreso de estudio, tema claro/oscuro y
- * el flujo "pauta bloqueada" de los ejercicios tipo certamen.
+ * el flujo "pauta bloqueada" de los ejercicios y de las preguntas
+ * "Verifica tu comprensión" (cada bloque con data-gate guarda su propio borrador).
  */
 (function () {
   'use strict';
@@ -63,12 +64,12 @@
   });
 
   /* ---------- ejercicios: la pauta se libera solo después del desarrollo ---------- */
-  document.querySelectorAll('.certamen').forEach(box => {
+  document.querySelectorAll('[data-gate]').forEach(box => {
     const chk = box.querySelector('.gate input[type=checkbox]');
     const ta = box.querySelector('.gate textarea');
     const btn = box.querySelector('.gate button');
     const sol = box.querySelector('.pauta');
-    const key = 'draft:' + box.closest('[data-module]').id;
+    const key = 'draft:' + box.dataset.gate;
     if (ta) {
       ta.value = store.get(key, '');
       ta.addEventListener('input', () => store.set(key, ta.value));
@@ -78,7 +79,7 @@
     btn.addEventListener('click', () => {
       sol.hidden = false;
       btn.disabled = true;
-      btn.textContent = 'Pauta abierta';
+      btn.textContent = btn.textContent.startsWith('Ver respuestas') ? 'Respuestas abiertas' : 'Pauta abierta';
       if (window.MathJax?.typesetPromise) MathJax.typesetPromise([sol]);
     });
   });

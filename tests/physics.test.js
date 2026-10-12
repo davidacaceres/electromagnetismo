@@ -4,7 +4,8 @@ const P = require('../js/physics.js');
 const assert = require('assert');
 const near = (a, b, tol = 1e-3) => assert.ok(Math.abs(a - b) <= tol * Math.max(1, Math.abs(b)), `${a} != ${b}`);
 
-near(P.wire({ L: 10, d: 1e-3, sigma: 5.8e7, I: 2 }).R, 0.21952);
+const w = P.wire({ L: 1, S: 1e-6, sigma: 5.8e7, I: 1 });   // ejemplo de la lección 2.1
+near(w.R, 0.017241); near(w.E, 0.017241); near(w.rhoE, -1.3617e10); near(w.Ud, -7.3438e-5); near(w.mu, 4.2594e-3);
 near(P.realSource({ emf: 12, r: 0.5, R: 5.5 }).I, 2);
 near(P.nodeKCL({ Is: 2, R1: 4, R2: 6, emf: 12 }).Va, 9.6);
 near(P.seriesLoop({ e1: 15, e2: 4, R1: 2, R2: 5, R3: 3 }).I, 1.1);

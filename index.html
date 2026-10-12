@@ -122,57 +122,125 @@
 <!-- ======================================================== 2.1 -->
 <section class="module" id="m21" data-module data-title="2.1 Corriente y ley de Ohm" hidden>
   <header class="mod-head">
-    <span class="mod-code">Módulo 2.1 · Cap. 3</span>
+    <span class="mod-code">Módulo 2.1 · Cap. 3, láminas 10 a 18 y 40</span>
     <h2>Corriente y ley de Ohm</h2>
-    <p class="lead">La resistencia de un cable sale de cómo responde el material a un campo eléctrico. V = IR es la versión integrada de J = σE.</p>
-    <div class="chips"><span class="chip">densidad de corriente</span><span class="chip">conductividad</span><span class="chip">efecto Joule</span></div>
+    <p class="lead">De los electrones de conducción a \(V_{ab} = RI\), con los mismos nombres y símbolos de tu Cap. 3.</p>
+    <div class="chips"><span class="chip">velocidad de deriva</span><span class="chip">movilidad</span><span class="chip">ley de Ohm puntual</span><span class="chip">efecto Joule</span></div>
   </header>
 
   <div class="block prose">
-    <h3>La física detrás <span class="tag">campo y portadores</span></h3>
-    <p>En un cable de cobre hay del orden de \(8{,}5\times10^{28}\) electrones libres por metro cúbico. Se mueven todo el tiempo a unos \(10^{6}\) m/s por agitación térmica, pero en direcciones al azar, así que el flujo neto es cero.</p>
-    <p>Cuando aplicas una diferencia de potencial aparece un campo \(\vec E\) dentro del conductor. Cada electrón siente \(\vec F = -e\vec E\) y, entre choque y choque con la red cristalina, gana una pequeña velocidad promedio en contra del campo: la velocidad de deriva \(v_d\). Esa deriva es la corriente.</p>
-    <p>Los choques hacen que la velocidad de deriva sea proporcional al campo. Por eso, en un material óhmico, la densidad de corriente es proporcional a \(\vec E\):</p>
-    $$\vec J = \sigma\,\vec E \qquad [\mathrm{A/m^2}]$$
-    <p>Ahora integra. En un conductor de largo \(L\) y sección \(A\) con campo uniforme, \(V = EL\) y \(I = JA\). Reemplazando:</p>
-    $$I = JA = \sigma \frac{V}{L} A \;\Longrightarrow\; V = I\,\underbrace{\frac{L}{\sigma A}}_{R}$$
-    <p>La resistencia depende de la geometría y del material. Si cambias el circuito, la resistencia del cable no cambia.</p>
-    <div class="note"><p>Conexión con la energía: al atravesar la resistencia, cada coulomb baja \(V\) volts de potencial y entrega esa energía a la red cristalina como calor. La potencia es \(P = VI = I^2R = V^2/R\). Ese es el origen del término \(-IR\) que vas a escribir en cada LVK.</p></div>
+    <h3>La notación de tu curso <span class="tag">antes de empezar</span></h3>
+    <p>Este módulo usa los símbolos del Cap. 3, para que lo que escribas en la prueba coincida con lo que espera tu profesor.</p>
+    <div class="table-wrap"><table class="notation">
+      <thead><tr><th>Símbolo</th><th>Nombre en el curso</th><th>Unidad</th></tr></thead>
+      <tbody>
+        <tr><td>\(\rho_e\)</td><td>densidad de electrones de conducción (es una densidad de carga, de valor negativo)</td><td>C/m³</td></tr>
+        <tr><td>\(\vec U_d\)</td><td>velocidad de deriva</td><td>m/s</td></tr>
+        <tr><td>\(\mu_e\)</td><td>movilidad del electrón</td><td>m²/(V·s)</td></tr>
+        <tr><td>\(\vec J\)</td><td>densidad de corriente</td><td>A/m²</td></tr>
+        <tr><td>\(\sigma\)</td><td>conductividad</td><td>S/m</td></tr>
+        <tr><td>\(\rho_\Omega\)</td><td>resistividad, \(\rho_\Omega = 1/\sigma\)</td><td>Ω·m</td></tr>
+        <tr><td>\(S\)</td><td>sección del conductor</td><td>m²</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note warn">Ojo con las dos letras ρ: \(\rho_e\) es carga por volumen y \(\rho_\Omega\) es resistividad. El curso les pone subíndice justamente para no confundirlas.</p>
+  </div>
+
+  <div class="block prose">
+    <h3>La física detrás <span class="tag">pasos 1 a 3</span></h3>
+    <h4>Qué hay dentro de un cable</h4>
+    <p>Tu Cap. 3 (lámina 10) separa los materiales en dos grupos. Los conductores, como los metales, contienen electrones de conducción, también llamados electrones libres: tienen enlaces débiles con su núcleo y pueden moverse por todo el material. En el cobre, cada átomo aporta más o menos uno. Los aislantes, como el plástico, el papel, la mica o el aire, tienen electrones con un enlace muy fuerte con sus núcleos y no tienen libertad de movimiento.</p>
+    <p>Los electrones de conducción del cobre se mueven todo el tiempo, del orden de \(10^{6}\) m/s, por agitación térmica, pero en direcciones al azar. Por cada electrón que cruza una sección hacia la derecha, otro la cruza hacia la izquierda, y el flujo neto de carga es cero. Que haya cargas moviéndose no significa que haya corriente: hay corriente cuando existe un movimiento neto en una dirección.</p>
+    <figure class="lesson-fig"><img src="img/lecciones/l21_fig1.png" alt="Trayectoria de un electrón de conducción sin campo, al azar, y con campo, con un avance neto en contra del campo" loading="lazy" width="1100"><figcaption>Trayectoria de un electrón de conducción sin campo (izquierda) y con campo (derecha).</figcaption></figure>
+
+    <h4>Qué pasa cuando aplicas un campo eléctrico</h4>
+    <p>Al conectar el cable a una fuente aparece un campo \(\vec E\) dentro del conductor. Por la ley de Coulomb cada electrón siente una fuerza (lámina 13):</p>
+    $$\vec F = -q_e\,\vec E$$
+    <p>El signo menos está porque la carga del electrón es negativa: la fuerza apunta en contra del campo. En el vacío esa fuerza lo aceleraría sin parar. Dentro del metal, el electrón acelera, choca, pierde lo ganado y vuelve a empezar. Encima del movimiento caótico aparece una velocidad promedio pequeña en una dirección, la velocidad de deriva. Tu Cap. 3 dice que es proporcional al campo, y llama movilidad a la constante:</p>
+    $$\vec U_d = -\mu_e\,\vec E \qquad [\mathrm{m/s}]$$
+    <p>La movilidad es propia de cada material: con movilidad alta, el mismo campo produce más deriva. Piensa en una multitud que sale de un estadio por un pasillo. Cada persona camina, se detiene y choca con otra, pero la multitud entera avanza despacio hacia la salida. La deriva es ese avance lento, no la rapidez de cada persona.</p>
+
+    <h4>Corriente de conducción y corriente convencional</h4>
+    <p>Los electrones de conducción van hacia el potencial más alto, en contra del campo. Mover cargas negativas en un sentido produce el mismo efecto eléctrico que mover cargas positivas en el sentido contrario, por eso se usa la corriente convencional: se dibuja como si se movieran cargas positivas, del potencial alto al bajo, en el mismo sentido de \(\vec E\) (lámina 11).</p>
+    <figure class="lesson-fig"><img src="img/lecciones/l21_fig2.png" alt="La corriente convencional de cargas positivas imaginarias va hacia el potencial bajo; los electrones reales van al revés" loading="lazy" width="1100"><figcaption>La corriente convencional y el movimiento real de los electrones.</figcaption></figure>
+    <p>El curso también separa la corriente de conducción, el movimiento de electrones dentro de un conductor (la que estudiamos en circuitos), de la corriente de convección, el movimiento de cargas libres por el espacio, como el haz de electrones de un tubo de rayos catódicos.</p>
+  </div>
+
+  <div class="block prose">
+    <h3>De la carga a la ley de Ohm <span class="tag">pasos 4 a 6</span></h3>
+    <h4>Densidad de corriente</h4>
+    <p>La intensidad de corriente mide cuánta carga cruza una sección por unidad de tiempo, \(I = dQ/dt\). Para hablar de lo que pasa en cada punto se usa la densidad de corriente; si es uniforme sobre la sección \(S\):</p>
+    $$I = \int_S \vec J\cdot d\vec s = J\,S \;\Longrightarrow\; J = \frac{I}{S}\quad[\mathrm{A/m^2}]$$
+    <p>Ahora con los electrones. En un tiempo \(dt\) cruzan la sección los que están a menos de \(U_d\,dt\) de ella, es decir, los que caben en el volumen \(S\,U_d\,dt\):</p>
+    $$dQ = \rho_e\,(S\,U_d\,dt) \;\Rightarrow\; I = \rho_e U_d S \;\Rightarrow\; \vec J = \rho_e\,\vec U_d$$
+    <p>Es la relación de la lámina 14. Piensa en un peaje: los autos que pasan por segundo dependen de cuántos hay por kilómetro (\(\rho_e\)), de qué tan rápido avanzan (\(U_d\)) y de cuántas pistas tiene la carretera (\(S\)). Revisa el signo: \(\rho_e\) es negativa y \(\vec U_d\) apunta contra el campo, así que \(\vec J\) queda en el sentido de \(\vec E\), igual que la corriente convencional.</p>
+
+    <h4>Ley de Ohm puntual</h4>
+    <p>Reemplazando \(\vec U_d = -\mu_e\vec E\) en \(\vec J = \rho_e\vec U_d\):</p>
+    $$\vec J = -\rho_e\mu_e\,\vec E, \qquad \sigma = -\rho_e\,\mu_e\ \ [\mathrm{S/m}] \;\Longrightarrow\; \vec J = \sigma\,\vec E$$
+    <p>El signo menos compensa que \(\rho_e\) es negativa, así que \(\sigma\) es positiva. La conductividad depende de cuántos electrones de conducción hay y de qué tan fácil se mueven. Valores de tu curso (lámina 14): aluminio \(3{,}72\times10^{7}\), cobre \(5{,}8\times10^{7}\) y plata \(6{,}17\times10^{7}\) S/m.</p>
+
+    <h4>De la ley puntual a la de circuitos</h4>
+    <p>Es el paso de la lámina 18. Un trozo de conductor de largo \(L\) y sección uniforme \(S\), con \(V_{ab}\) entre sus extremos y \(\vec E\), \(\vec J\) uniformes:</p>
+    <figure class="lesson-fig"><img src="img/lecciones/l21_fig3.png" alt="Conductor cilíndrico de largo L y sección S con el campo y la densidad de corriente del extremo a al b" loading="lazy" width="1100"><figcaption>El campo y la densidad de corriente van del extremo a, de mayor potencial, al b.</figcaption></figure>
+    $$V_{ab} = \int_a^b \vec E\cdot d\vec l = E\,L = \frac{J}{\sigma}L = \frac{I}{\sigma S}L \;\Longrightarrow\; R = \frac{L}{\sigma S} = \rho_\Omega\frac{L}{S}\quad[\Omega]$$
+    <p>Llegamos a \(V_{ab} = RI\). Tu curso también la escribe \(I = G\,V_{ab}\), con la conductancia \(G = 1/R\) en siemens. \(R\) depende solo de la forma (\(L\) y \(S\)) y del material (\(\sigma\)), no de la corriente ni del voltaje. Más largo, más recorrido con choques; más grueso, más espacio para pasar.</p>
   </div>
 
   <div class="block">
     <h3>Ecuaciones que usarás</h3>
     <div class="law"><dl>
-      <dt>Corriente y densidad de corriente</dt><dd>$$I = \frac{dQ}{dt} = \int_S \vec J\cdot d\vec S, \qquad J = n\,q\,v_d$$</dd>
-      <dt>Ley de Ohm microscópica y macroscópica</dt><dd>$$\vec J = \sigma\vec E, \qquad R = \frac{L}{\sigma A} = \frac{\rho L}{A}, \qquad V = IR$$</dd>
-      <dt>Potencia disipada (efecto Joule)</dt><dd>$$P = VI = I^2 R = \frac{V^2}{R}$$</dd>
+      <dt>Deriva, densidad de corriente y conductividad</dt><dd>$$\vec U_d = -\mu_e\vec E, \qquad \vec J = \rho_e\vec U_d, \qquad \sigma = -\rho_e\mu_e$$</dd>
+      <dt>Ley de Ohm puntual y de circuitos</dt><dd>$$\vec J = \sigma\vec E, \qquad R = \frac{L}{\sigma S} = \rho_\Omega\frac{L}{S}, \qquad V_{ab} = RI, \qquad I = G\,V_{ab}$$</dd>
+      <dt>Semiconductores (lámina 40)</dt><dd>$$\sigma_{sc} = -\rho_e\mu_e + \rho_h\mu_h$$</dd>
+      <dt>Potencia disipada (efecto Joule)</dt><dd>$$P = V_{ab}I = I^2R = \frac{V_{ab}^2}{R}$$</dd>
     </dl></div>
   </div>
 
   <div class="block example">
-    <h3>Ejemplo resuelto <span class="tag">planteamiento antes del álgebra</span></h3>
+    <h3>Ejemplo resuelto <span class="tag">paso 7 de la lección</span></h3>
     <div class="statement">
-      <p>Un cable de cobre (\(\sigma = 5{,}8\times10^{7}\) S/m, \(n = 8{,}5\times10^{28}\) m\(^{-3}\)) de 10 m de largo y 1,0 mm de diámetro lleva una corriente de 2 A. Calcula su resistencia, la caída de tensión, el campo eléctrico dentro del cable, la potencia disipada y la velocidad de deriva.</p>
+      <p>Un alambre de cobre de 1 m de largo y 1 mm² de sección conduce 1 A. Calcula su resistencia, el campo dentro del alambre, la velocidad de deriva de los electrones y su movilidad. Datos: \(\sigma_{Cu} = 5{,}8\times10^{7}\) S/m (lámina 14), \(S = 10^{-6}\) m², y unos \(8{,}5\times10^{28}\) electrones de conducción por m³, cada uno con carga \(-1{,}602\times10^{-19}\) C.</p>
     </div>
     <ol class="steps">
       <li><div><span class="phase">Planteamiento</span>
-        <p>El área es la de un círculo de radio \(d/2\), no de radio \(d\). Ese error aparece en todos los certámenes.</p>
-        $$A = \pi\left(\frac{d}{2}\right)^2, \qquad R = \frac{L}{\sigma A}$$
-      </div></li>
-      <li><div><span class="phase">Planteamiento</span>
-        <p>Con \(R\) conocida, el resto sale de definiciones: \(V = IR\), el campo es uniforme así que \(E = V/L\), y la deriva sale de \(J = I/A = n e v_d\).</p>
+        <p>Primero la densidad de carga de los electrones de conducción, con su signo:</p>
+        $$\rho_e = -8{,}5\times10^{28}\cdot 1{,}602\times10^{-19} \approx -1{,}36\times10^{10}\ \mathrm{C/m^3}$$
+        <p>Con eso, \(R = L/(\sigma S)\), \(J = I/S\), \(E = J/\sigma\), \(U_d = J/\rho_e\) y \(\mu_e = -\sigma/\rho_e\).</p>
       </div></li>
       <li><div><span class="phase">Álgebra</span>
-        $$A = \pi (0{,}5\times10^{-3})^2 = 7{,}854\times10^{-7}\ \mathrm{m^2}$$
-        $$R = \frac{10}{5{,}8\times10^{7}\cdot 7{,}854\times10^{-7}} = 0{,}2195\ \Omega$$
-        $$V = 2\cdot 0{,}2195 = 0{,}439\ \mathrm{V}, \qquad E = \frac{0{,}439}{10} = 0{,}0439\ \mathrm{V/m}$$
-        $$v_d = \frac{I/A}{n e} = \frac{2{,}546\times10^{6}}{8{,}5\times10^{28}\cdot 1{,}602\times10^{-19}} = 1{,}87\times10^{-4}\ \mathrm{m/s}$$
+        $$R = \frac{1}{5{,}8\times10^{7}\cdot 10^{-6}} \approx 0{,}0172\ \Omega$$
+        $$J = \frac{1}{10^{-6}} = 10^{6}\ \mathrm{A/m^2}, \qquad E = \frac{10^{6}}{5{,}8\times10^{7}} \approx 0{,}0172\ \mathrm{V/m}$$
+        $$U_d = \frac{10^{6}}{-1{,}36\times10^{10}} \approx -7{,}3\times10^{-5}\ \mathrm{m/s}, \qquad \mu_e = -\frac{5{,}8\times10^{7}}{-1{,}36\times10^{10}} \approx 4{,}3\times10^{-3}\ \mathrm{m^2/(V\cdot s)}$$
       </div></li>
-      <li><div><span class="phase">Interpretación</span>
-        <p>Los electrones derivan a 0,19 mm/s y aun así la ampolleta se enciende al instante. Lo que viaja rápido es el campo, que se establece en todo el conductor casi a la velocidad de la luz.</p>
+      <li><div><span class="phase">Comprobación e interpretación</span>
+        <p>\(U_d = -\mu_e E = -4{,}3\times10^{-3}\cdot 0{,}0172 \approx -7{,}3\times10^{-5}\) m/s. Coincide, y el signo negativo dice que los electrones avanzan contra el campo. La resistencia es tan pequeña que en circuitos los cables se tratan como ideales.</p>
+        <p>Un electrón tardaría casi 4 horas en recorrer ese metro, y aun así la ampolleta se enciende al instante: lo que viaja rápido es el campo, que se establece en todo el cable casi a la velocidad de la luz. Es como una manguera llena de agua: al abrir la llave sale agua por la punta de inmediato, aunque no sea la que acaba de entrar.</p>
       </div></li>
     </ol>
-    <div class="result">R = 0,220 Ω · V = 0,439 V · E = 0,0439 V/m · P = I²R = 0,878 W · v_d = 1,87·10⁻⁴ m/s</div>
+    <div class="result">R ≈ 0,0172 Ω · E ≈ 0,0172 V/m · U_d ≈ −7,3·10⁻⁵ m/s · μ_e ≈ 4,3·10⁻³ m²/(V·s)</div>
+  </div>
+
+  <div class="block prose">
+    <h3>Temperatura, otros portadores y energía <span class="tag">pasos 8 a 10</span></h3>
+    <h4>Qué pasa con la temperatura</h4>
+    <p>La conductividad es \(\sigma = -\rho_e\mu_e\) y los dos factores cambian con la temperatura en sentidos opuestos (láminas 14 y 15). Al calentar, \(\rho_e\) sube, porque más electrones pasan de la banda de valencia a la de conducción, pero \(\mu_e\) baja, porque la agitación de la red los frena más. En los metales gana la movilidad: la conductividad baja y la resistencia sube. El filamento frío de una ampolleta incandescente tiene una resistencia unas diez veces menor que encendido. A temperaturas muy bajas la movilidad aumenta muchísimo y algunos materiales llegan a la superconductividad.</p>
+    <h4>Otros portadores de corriente</h4>
+    <p>Según la lámina 17, en cada medio la corriente la transportan partículas distintas:</p>
+    <div class="table-wrap"><table class="notation">
+      <thead><tr><th>Medio</th><th>Quién transporta la corriente</th></tr></thead>
+      <tbody>
+        <tr><td>Metales</td><td>electrones de conducción</td></tr>
+        <tr><td>Semiconductores</td><td>electrones y huecos (portadores de corriente, lámina 40)</td></tr>
+        <tr><td>Líquidos ionizados (agua salada, electrolito de una batería)</td><td>iones positivos y negativos</td></tr>
+        <tr><td>Gases ionizados o plasma (relámpago, tubo fluorescente)</td><td>iones y electrones</td></tr>
+      </tbody>
+    </table></div>
+    <p>En un semiconductor los dos portadores se mueven en sentidos opuestos y sus aportes se suman: \(\sigma_{sc} = -\rho_e\mu_e + \rho_h\mu_h\).</p>
+    <h4>La conexión con la energía, que usaremos en Kirchhoff</h4>
+    <p>Dentro de una resistencia la corriente convencional va del potencial alto al bajo. Una carga \(q\) que la atraviesa pierde la energía potencial \(qV_{ab}\) y la entrega a la red cristalina en los choques: la resistencia se calienta (efecto Joule).</p>
+    $$P = \frac{dW}{dt} = \frac{dQ}{dt}V_{ab} = V_{ab}I = I^2R = \frac{V_{ab}^2}{R}$$
+    <p>De aquí sale el término \(-IR\) que usarás en la 2.4 al recorrer una malla en el sentido de la corriente: al cruzar una resistencia se baja de potencial porque la carga entregó energía como calor.</p>
   </div>
 
   <div class="block">
@@ -182,33 +250,57 @@
       <div class="lab-main">
         <canvas class="short" aria-label="Animación de electrones derivando dentro del conductor"></canvas>
         <dl class="sim-readouts"></dl>
-        <p class="lab-hint">Duplica el diámetro y mira R: baja a la cuarta parte, porque el área va con d². La animación exagera la deriva 10⁴ veces.</p>
+        <p class="lab-hint">Parte con cobre, 1 m, S = 1 mm² e I = 1 A: obtienes los números del ejemplo. Duplica la sección y R baja a la mitad. La animación exagera la deriva para que se vea.</p>
       </div>
     </div>
   </div>
 
-  <div class="certamen">
-    <p>Se necesita alimentar un equipo que consume 5 A con una línea de aluminio (\(\sigma = 3{,}5\times10^{7}\) S/m) de 50 m. La caída de tensión en la línea no puede superar 1 V.</p>
+  <div class="certamen verifica" data-gate="v21" data-label="Verifica tu comprensión">
+    <ol class="items">
+      <li>Si duplicas el largo de un cable y también duplicas su diámetro, ¿qué pasa con su resistencia? Cuidado: el diámetro no es la sección.</li>
+      <li>¿Por qué un cable con electrones moviéndose a \(10^{6}\) m/s puede tener corriente cero?</li>
+      <li>En una resistencia, ¿la corriente convencional va del potencial alto al bajo o al revés? ¿Por qué eso implica que la resistencia disipa energía y no la entrega?</li>
+      <li>Si en un metal la cantidad de electrones de conducción aumenta al calentarlo, ¿por qué su conductividad baja?</li>
+    </ol>
+    <div class="gate">
+      <label for="v21">Escribe tus respuestas, en una o dos líneas cada una.</label>
+      <textarea id="v21" placeholder="1) ...  2) ...  3) ..."></textarea>
+      <label><input type="checkbox" id="v21c"> Respondí todas y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver respuestas</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Respuestas del solucionario</h4>
+      <ol class="items">
+        <li>Al duplicar el diámetro, la sección se multiplica por 4. Con el largo duplicado, \(R = \rho_\Omega(2L)/(4S) = R_0/2\). La resistencia queda en la mitad.</li>
+        <li>Porque los electrones de conducción se mueven en direcciones al azar. Por cada uno que cruza una sección hacia un lado, otro la cruza hacia el otro, y el flujo neto de carga es cero. Solo con un campo aparece la velocidad de deriva \(\vec U_d\) y, con ella, la corriente.</li>
+        <li>Del potencial alto al bajo, igual que el campo. Cada carga pierde energía potencial \(qV_{ab}\) y la entrega a la red cristalina en los choques: la resistencia transforma energía eléctrica en calor y no puede entregarla.</li>
+        <li>Porque \(\sigma = -\rho_e\mu_e\) y la movilidad cae más de lo que sube \(\rho_e\). Al calentarse, la agitación térmica de la red frena más a los electrones de conducción, y ese efecto domina en los metales (Cap. 3, lámina 15).</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="certamen" data-gate="x21" data-label="Ejercicio adicional tipo certamen">
+    <p>Se necesita alimentar un equipo que consume 5 A con una línea de aluminio (\(\sigma = 3{,}72\times10^{7}\) S/m, lámina 14) de 50 m. La caída de tensión en la línea no puede superar 1 V.</p>
     <ol class="items" type="a">
-      <li>Determina el diámetro mínimo del conductor. (2 pts)</li>
+      <li>Determina la sección mínima \(S\) y el diámetro del conductor. (2 pts)</li>
       <li>Calcula el campo eléctrico dentro del conductor en esa condición. (1 pt)</li>
       <li>¿Cuánta potencia se pierde como calor en la línea? (1 pt)</li>
-      <li>Si se reemplaza por cobre del mismo diámetro, ¿cuál es la nueva caída de tensión? Justifica sin recalcular el área. (2 pts)</li>
+      <li>Si se reemplaza por cobre de la misma sección, ¿cuál es la nueva caída de tensión? Justifica sin recalcular la sección. (2 pts)</li>
     </ol>
-    <details><summary>Pista</summary><p>Parte desde la condición de diseño: la caída máxima fija la resistencia máxima. Para la parte d piensa qué pasa con \(R\) si solo cambia \(\sigma\).</p></details>
+    <details><summary>Pista</summary><p>La caída máxima fija la resistencia máxima. Para la parte d, piensa qué pasa con \(R\) si solo cambia \(\sigma\).</p></details>
     <div class="gate">
-      <label for="g21">Escribe aquí tu planteamiento (ecuaciones y resultados). Mínimo un par de líneas.</label>
-      <textarea id="g21" placeholder="R_max = ..., A = ..., d = ..."></textarea>
+      <label for="g21">Escribe aquí tu planteamiento (ecuaciones y resultados).</label>
+      <textarea id="g21" placeholder="R_max = ..., S = ..., d = ..."></textarea>
       <label><input type="checkbox" id="g21c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
       <button class="btn primary" type="button">Ver pauta</button>
     </div>
     <div class="pauta" hidden>
       <h4>Pauta</h4>
-      <p>a) La condición \(IR \le 1\) V da \(R_{\max} = 1/5 = 0{,}2\ \Omega\). Despejando el área: \(A = L/(\sigma R) = 50/(3{,}5\times10^{7}\cdot 0{,}2) = 7{,}14\times10^{-6}\ \mathrm{m^2}\), y \(d = 2\sqrt{A/\pi} = 3{,}02\) mm.</p>
-      <p>b) \(E = V/L = 1/50 = 0{,}02\) V/m.</p>
-      <p>c) \(P = VI = 1\cdot 5 = 5\) W.</p>
-      <p>d) Con la misma geometría, \(R \propto 1/\sigma\): \(R_{Cu} = 0{,}2\cdot 3{,}5/5{,}8 = 0{,}121\ \Omega\) y la caída queda en \(5\cdot 0{,}121 = 0{,}603\) V.</p>
-      <p class="muted">Error típico: usar \(A = \pi d^2\). Da un diámetro la mitad del correcto.</p>
+      <p>a) \(V_{ab} = RI \le 1\) V da \(R_{\max} = 0{,}2\ \Omega\). Entonces \(S = L/(\sigma R) = 50/(3{,}72\times10^{7}\cdot 0{,}2) = 6{,}72\times10^{-6}\ \mathrm{m^2}\) y \(d = 2\sqrt{S/\pi} = 2{,}93\) mm.</p>
+      <p>b) \(E = V_{ab}/L = 1/50 = 0{,}02\) V/m.</p>
+      <p>c) \(P = V_{ab}I = 5\) W.</p>
+      <p>d) Con la misma geometría \(R \propto 1/\sigma\): \(R_{Cu} = 0{,}2\cdot 3{,}72/5{,}8 = 0{,}128\ \Omega\) y la caída queda en \(0{,}641\) V.</p>
+      <p class="muted">Error típico: usar \(S = \pi d^2\). El diámetro no es el radio.</p>
     </div>
   </div>
 
@@ -276,7 +368,54 @@
     </div>
   </div>
 
-  <div class="certamen">
+  <div class="certamen verifica" data-gate="v22" data-label="Verifica tu comprensión">
+    <ol class="items">
+      <li>Si el campo electrostático tiene circulación nula, ¿por qué la diferencia de potencial entre los bornes de una batería no es cero?</li>
+      <li>Un voltímetro ideal mide 9,0 V en una batería desconectada y 8,4 V cuando entrega 0,3 A. ¿Cuánto vale \(r\)?</li>
+      <li>¿Por qué un cortocircuito calienta la batería, si fuera de ella no hay resistencia?</li>
+    </ol>
+    <div class="gate">
+      <label for="v22">Escribe tus respuestas, en una o dos líneas cada una.</label>
+      <textarea id="v22" placeholder="1) ...  2) ...  3) ..."></textarea>
+      <label><input type="checkbox" id="v22c"> Respondí todas y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver respuestas</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Respuestas del solucionario</h4>
+      <ol class="items">
+        <li>Porque dentro de la batería actúa una fuerza no electrostática, la química, que mantiene separadas las cargas. La circulación del campo electrostático sigue siendo cero, pero la fem no es un campo electrostático.</li>
+        <li>En circuito abierto se mide la fem: \(\varepsilon = 9{,}0\) V. Con corriente, \(8{,}4 = 9{,}0 - 0{,}3\,r\), de donde \(r = 2\ \Omega\).</li>
+        <li>En cortocircuito, \(I = \varepsilon/r\) y toda la energía se disipa en la resistencia interna, que está dentro de la batería.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="certamen" data-gate="l22" data-label="Ejercicio propuesto de la lección · 20 pts">
+    <p>Una batería de fem \(\varepsilon\) y resistencia interna \(r\) desconocidas se conecta a distintas resistencias. Con \(R_1 = 5{,}8\ \Omega\) el voltaje en bornes es 11,6 V. Con \(R_2 = 2{,}7\ \Omega\) el voltaje en bornes es 10,8 V.</p>
+    <figure class="lesson-fig"><img src="img/lecciones/ej2_2.png" alt="Montaje de la parte e: cargador de 15 V conectado a la batería mediante cables de 0,6 Ω" loading="lazy" width="1100"></figure>
+    <ol class="items" type="a">
+      <li>(4 pts) Determine la corriente en cada caso y plantee, para cada uno, la ecuación que relaciona \(\varepsilon\), \(r\) y la corriente. Justifique de dónde sale esa ecuación.</li>
+      <li>(4 pts) Resuelva el sistema y obtenga \(\varepsilon\) y \(r\).</li>
+      <li>(4 pts) Para el caso con \(R_2\), haga el balance de potencias (fem, resistencia interna y carga) y calcule la eficiencia de la batería.</li>
+      <li>(3 pts) Calcule la corriente de cortocircuito. ¿Dónde se disipa la energía en ese caso?</li>
+      <li>(5 pts) La batería se conecta a un cargador de fem 15 V mediante cables con resistencia total 0,6 Ω, uniendo + con + y − con − (figura). Determine la corriente, indique por cuál borne entra a la batería, calcule el voltaje en sus bornes y la potencia que se almacena como energía química. Use la convención de direcciones de referencia asociadas para justificar si la batería entrega o recibe energía.</li>
+    </ol>
+    <div class="gate">
+      <label for="l22">Tu planteamiento (ecuaciones con signos y resultados).</label>
+      <textarea id="l22" placeholder="ε − 2r = 11,6 ; ε − 4r = 10,8 ..."></textarea>
+      <label><input type="checkbox" id="l22c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta del solucionario</h4>
+      <p>a) Corrientes: \(I_1 = 11{,}6/5{,}8 = 2\) A e \(I_2 = 10{,}8/2{,}7 = 4\) A. En cada caso el voltaje en bornes es la fem menos la caída interna (LVK recorriendo la batería por dentro): \(\varepsilon - 2r = 11{,}6\) y \(\varepsilon - 4r = 10{,}8\).</p>
+      <p>b) Restando: \(2r = 0{,}8\), así que \(r = 0{,}4\ \Omega\) y \(\varepsilon = 12{,}4\) V.</p>
+      <p>c) Con \(R_2\) e \(I = 4\) A: la fem entrega \(12{,}4\cdot 4 = 49{,}6\) W, en \(r\) se disipan \(4^2\cdot 0{,}4 = 6{,}4\) W y en la carga \(4^2\cdot 2{,}7 = 43{,}2\) W. Eficiencia: \(43{,}2/49{,}6 \approx 87{,}1\ \%\).</p>
+      <p>d) \(I_{cc} = 12{,}4/0{,}4 = 31\) A. Toda la energía se disipa dentro de la batería, en \(r\).</p>
+      <p>e) Las dos fems se oponen en el lazo. Recorriendo en el sentido de la corriente que empuja el cargador: \(15 - 0{,}6I - 0{,}4I - 12{,}4 = 0 \Rightarrow I = 2{,}6\) A. La corriente entra a la batería por su borne +. Voltaje en bornes: \(12{,}4 + 2{,}6\cdot 0{,}4 = 13{,}44\) V. Potencia almacenada como energía química: \(12{,}4\cdot 2{,}6 = 32{,}24\) W. Con referencias asociadas la corriente entra por el +, así que \(p = 13{,}44\cdot 2{,}6 > 0\): la batería recibe energía.</p>
+      <p class="muted">Error común: usar \(V = \varepsilon - Ir\) cuando la batería se carga. Si la corriente entra por el +, es \(V = \varepsilon + Ir\).</p>
+    </div>
+  </div>
+  <div class="certamen" data-gate="x22" data-label="Ejercicio adicional tipo certamen">
     <p>Al probar una batería, un voltímetro ideal marca 8,7 V entre sus bornes cuando entrega 1 A, y 8,1 V cuando entrega 3 A.</p>
     <ol class="items" type="a">
       <li>Determina \(\varepsilon\) y \(r\). (2 pts)</li>
@@ -363,7 +502,53 @@
     </div>
   </div>
 
-  <div class="certamen">
+  <div class="certamen verifica" data-gate="v23" data-label="Verifica tu comprensión">
+    <ol class="items">
+      <li>Si encierras con una superficie las placas de un condensador mientras se carga, ¿se cumple la LCK? Piensa en qué pasa con \(dQ_i/dt\).</li>
+      <li>En un nodo entran 2 A y 3 A, y por un tercer cable supones que salen \(I_x\). Al resolver te da \(I_x = -1\) A. ¿Está bien? ¿Qué significa?</li>
+      <li>Un divisor tiene \(R_1 = 10\ \Omega\) y \(R_2 = 40\ \Omega\). ¿Qué fracción de la corriente total pasa por \(R_1\)?</li>
+    </ol>
+    <div class="gate">
+      <label for="v23">Escribe tus respuestas, en una o dos líneas cada una.</label>
+      <textarea id="v23" placeholder="1) ...  2) ...  3) ..."></textarea>
+      <label><input type="checkbox" id="v23c"> Respondí todas y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver respuestas</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Respuestas del solucionario</h4>
+      <ol class="items">
+        <li>Depende de la superficie. Si encierra una sola placa, la carga encerrada cambia (\(dQ_i/dt \neq 0\)) y la LCK de corrientes de conducción no se cumple: entra corriente y no sale. Si encierra las dos placas, la carga total encerrada es siempre cero y la LCK se cumple.</li>
+        <li>No está bien. La LCK obliga a que \(I_x = 2 + 3 = 5\) A. Un resultado negativo puede ser correcto en general (significa que la corriente va al revés), pero aquí contradice la ecuación, así que hay un error de álgebra.</li>
+        <li>\(I_1/I = R_2/(R_1 + R_2) = 40/50 = 0{,}8\). Pasa el 80 % por la resistencia menor.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="certamen" data-gate="l23" data-label="Ejercicio propuesto de la lección · 20 pts">
+    <p>En el circuito de la figura, la fuente de corriente \(I_s = 3\) A entrega corriente al nodo a. La rama central tiene una resistencia \(R_2 = 2\ \Omega\) en serie con una batería ideal de fem \(\varepsilon = 10\) V, con el borne + hacia el nodo a. Además, \(R_1 = 4\ \Omega\) y \(R_3 = 12\ \Omega\).</p>
+    <figure class="lesson-fig"><img src="img/lecciones/ej2_3.png" alt="Nodo a con fuente de corriente de 3 A, R1 de 4 Ω, rama de 2 Ω con batería de 10 V y R3 de 12 Ω" loading="lazy" width="1100"></figure>
+    <ol class="items" type="a">
+      <li>(4 pts) Identifique los nodos del circuito. Indique cuántas ecuaciones independientes de LCK necesita y justifique esa cantidad desde la conservación de la carga.</li>
+      <li>(6 pts) Defina un sentido supuesto para cada corriente de rama, escriba cada una en función de \(V_a\) y plantee la LCK en el nodo a. Resuelva para \(V_a\).</li>
+      <li>(4 pts) Calcule la corriente en cada rama e indique su sentido real. ¿La batería entrega o recibe energía? Justifique con la convención de direcciones de referencia asociadas.</li>
+      <li>(3 pts) Haga el balance de potencias del circuito completo.</li>
+      <li>(3 pts) ¿Qué valor debería tener \(I_s\) para que no circule corriente por la batería? Razónelo primero con el potencial del nodo a y después calcule.</li>
+    </ol>
+    <div class="gate">
+      <label for="l23">Tu planteamiento (ecuaciones con signos y resultados).</label>
+      <textarea id="l23" placeholder="I1 = Va/4 ; I2 = (Va − 10)/2 ; ..."></textarea>
+      <label><input type="checkbox" id="l23c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta del solucionario</h4>
+      <p>a) Dos nodos: a y tierra. Una ecuación de LCK. Sale de la conservación de la carga en régimen estacionario: la carga en el nodo no cambia, así que lo que entra es igual a lo que sale.</p>
+      <p>b) Corrientes bajando por cada rama: \(I_1 = V_a/4\), \(I_2 = (V_a - 10)/2\), \(I_3 = V_a/12\). LCK: \(3 = \dfrac{V_a}{4} + \dfrac{V_a - 10}{2} + \dfrac{V_a}{12} \Rightarrow V_a = 9{,}6\) V.</p>
+      <p>c) \(I_1 = 2{,}4\) A bajando, \(I_3 = 0{,}8\) A bajando, \(I_2 = -0{,}2\) A: en realidad sube 0,2 A por la rama de la batería y entra al nodo a. La corriente sale por el borne + de la batería, así que la batería entrega energía.</p>
+      <p>d) Entregan: la fuente de corriente \(3\cdot 9{,}6 = 28{,}8\) W y la batería \(10\cdot 0{,}2 = 2\) W. Total 30,8 W. Disipan: \(23{,}04 + 0{,}08 + 7{,}68 = 30{,}8\) W.</p>
+      <p>e) Sin corriente en la batería, \(V_a = 10\) V. Entonces \(I_s = \dfrac{10}{4} + \dfrac{10}{12} = \dfrac{10}{3} \approx 3{,}33\) A.</p>
+    </div>
+  </div>
+  <div class="certamen" data-gate="x23" data-label="Ejercicio adicional tipo certamen">
     <p>En el circuito, la fuente de corriente inyecta 6 A al nodo a.</p>
     <figure class="circuit" data-circuit="nodo-prop"></figure>
     <ol class="items" type="a">
@@ -455,7 +640,80 @@
     </div>
   </div>
 
-  <div class="certamen">
+  <div class="certamen verifica" data-gate="v24" data-label="Verifica tu comprensión">
+    <p class="muted">Las preguntas marcadas con (lección) se refieren al ejemplo o a los pasos del PDF de la lección.</p>
+    <ol class="items">
+      <li>(lección) Si en la malla derecha del ejemplo la recorres en sentido antihorario, ¿qué ecuación te queda? ¿Cambia el resultado?</li>
+      <li>(lección) Un estudiante escribe \(-\varepsilon_2\) en la ecuación (3) “porque la corriente baja por la batería”. ¿Dónde está el error?</li>
+      <li>Un circuito plano tiene 6 ramas y 4 nodos. ¿Cuántas ecuaciones de LVK independientes necesitas?</li>
+    </ol>
+    <div class="gate">
+      <label for="v24">Escribe tus respuestas, en una o dos líneas cada una.</label>
+      <textarea id="v24" placeholder="1) ...  2) ...  3) ..."></textarea>
+      <label><input type="checkbox" id="v24c"> Respondí todas y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver respuestas</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Respuestas del solucionario</h4>
+      <ol class="items">
+        <li>Queda \(2I_3 - 3 - 6I_2 = 0\), que es la misma ecuación multiplicada por −1. El resultado no cambia.</li>
+        <li>El signo de una fem no depende de la corriente, sino de la polaridad. Al bajar por \(\varepsilon_2\) se entra por el − y se sale por el +, así que el término es +3.</li>
+        <li>\(b - n + 1 = 6 - 4 + 1 = 3\).</li>
+      </ol>
+    </div>
+  </div>
+  <div class="certamen" data-gate="l24" data-label="Ejercicio propuesto de la lección · 20 pts">
+    <p>El circuito de la figura es un solo lazo con esquinas a, b, c y d. Los datos son \(\varepsilon_1 = 15\) V, \(\varepsilon_2 = 5\) V, \(\varepsilon_3 = 4\) V, \(R_1 = 2\ \Omega\), \(R_2 = 3\ \Omega\) y \(R_3 = 5\ \Omega\). Las polaridades de las fuentes están marcadas con el signo + junto a la placa larga.</p>
+    <figure class="lesson-fig"><img src="img/lecciones/ej2_4.png" alt="Lazo con esquinas a, b, c y d, tres fuentes y tres resistencias" loading="lazy" width="1100"></figure>
+    <ol class="items" type="a">
+      <li>(4 pts) Elija un sentido para la corriente \(I\) y un sentido de recorrido. Escriba la LVK y justifique el signo de cada uno de los seis términos.</li>
+      <li>(4 pts) Calcule \(I\) e indique su sentido real.</li>
+      <li>(5 pts) Calcule \(V_a - V_c\) por dos caminos distintos y muestre que dan lo mismo. Explique, usando \(\oint \vec E\cdot d\vec l = 0\), por qué tienen que coincidir.</li>
+      <li>(4 pts) Indique cuáles fuentes entregan energía y cuáles la reciben, y haga el balance de potencias.</li>
+      <li>(3 pts) Si se invierte la polaridad de \(\varepsilon_2\), ¿cuál es la nueva corriente? ¿Qué cambia en el papel de esa fuente?</li>
+    </ol>
+    <div class="gate">
+      <label for="l24">Tu planteamiento (ecuaciones con signos y resultados).</label>
+      <textarea id="l24" placeholder="+15 − 5I − 2I − 5 − 3I + 4 = 0 ..."></textarea>
+      <label><input type="checkbox" id="l24c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta del solucionario</h4>
+      <p>a) Corriente \(I\) y recorrido, ambos en sentido horario (d → a → b → c → d). \(\varepsilon_1\), subiendo desde d: +15 (de − a +). \(R_3\): \(-5I\). \(R_1\): \(-2I\). \(\varepsilon_2\), bajando de b a c: −5 (de + a −). \(R_2\): \(-3I\). \(\varepsilon_3\), hacia d: +4 (de − a +, el + está junto a d). $$15 - 5I - 2I - 5 - 3I + 4 = 0$$</p>
+      <p>b) \(I = 1{,}4\) A, positiva, en sentido horario.</p>
+      <p>c) Por b: \(V_a - V_b = 2(1{,}4) = 2{,}8\) V y \(V_b - V_c = 5\) V (se baja de + a −), así que \(V_a - V_c = 7{,}8\) V. Por d: bajando de a por \(R_3\) contra la corriente se sube +7; por \(\varepsilon_1\) de + a − se baja 15; por \(\varepsilon_3\) de + a − se baja 4; por \(R_2\) contra la corriente se sube 4,2. \(V_c = V_a + 7 - 15 - 4 + 4{,}2 = V_a - 7{,}8\). Tienen que coincidir porque \(\oint \vec E\cdot d\vec l = 0\): la diferencia de potencial entre dos puntos no depende del camino.</p>
+      <p>d) \(\varepsilon_1\) entrega \(15\cdot 1{,}4 = 21\) W y \(\varepsilon_3\) entrega \(4\cdot 1{,}4 = 5{,}6\) W (la corriente sale por su +). \(\varepsilon_2\) recibe \(5\cdot 1{,}4 = 7\) W (la corriente entra por su +). Las resistencias disipan \(1{,}4^2\cdot 10 = 19{,}6\) W. Balance: \(26{,}6 = 7 + 19{,}6\).</p>
+      <p>e) Con \(\varepsilon_2\) invertida, las tres fems empujan en el mismo sentido: \(I = (15 + 5 + 4)/10 = 2{,}4\) A. Ahora \(\varepsilon_2\) entrega energía en vez de recibirla.</p>
+    </div>
+  </div>
+  <div class="certamen" data-gate="lc1" data-label="Ejercicio de la clase 1 · tipo certamen">
+    <p>Un circuito de dos nodos (a arriba, b abajo) unidos por tres ramas en paralelo. Rama izquierda: batería \(\varepsilon_1 = 18\) V con resistencia interna \(r_1 = 1\ \Omega\), en serie con \(R_1 = 5\ \Omega\), borne + hacia a. Rama central: batería ideal \(\varepsilon_2 = 9\) V en serie con \(R_2 = 3\ \Omega\), borne + hacia a. Rama derecha: solo \(R_3 = 3\ \Omega\).</p>
+    <figure class="circuit" data-circuit="clase1"></figure>
+    <ol class="items" type="a">
+      <li>(Planteamiento, 15 %) Indique cuántas ecuaciones independientes de nodo y de malla necesita y justifique. Defina sus sentidos de corriente y plantee el sistema completo antes de resolver.</li>
+      <li>(25 %) Calcule la corriente en cada rama, con su sentido real.</li>
+      <li>(15 %) Determine \(V_a - V_b\) y el voltaje en los bornes de la batería \(\varepsilon_1\). Explique físicamente por qué difiere de 18 V.</li>
+      <li>(20 %) ¿La batería \(\varepsilon_2\) entrega o absorbe energía? Haga el balance completo de potencias.</li>
+      <li>(25 %) ¿Qué valor debería tener \(R_3\) para que no circule corriente por la batería \(\varepsilon_2\)? Razónelo primero en términos de potencial, sin plantear todo el sistema de nuevo.</li>
+    </ol>
+    <div class="gate">
+      <label for="lc1">Tu planteamiento (ecuaciones con signos y resultados).</label>
+      <textarea id="lc1" placeholder="I1 + I2 = I3 ; 18 − 6 I1 − 3 I3 = 0 ; ..."></textarea>
+      <label><input type="checkbox" id="lc1c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta del solucionario</h4>
+      <p>a) Hay \(n = 2\) nodos y \(b = 3\) ramas: una ecuación de LCK (\(n - 1\)) y dos de LVK (\(b - n + 1\)). Con \(I_1\) subiendo por la izquierda, \(I_2\) subiendo por el centro e \(I_3\) bajando por la derecha: \(I_1 + I_2 = I_3\), \(18 - 6I_1 - 3I_3 = 0\) (malla izquierda + derecha, pasando por \(R_3\)) y \(9 - 3I_2 - 3I_3 = 0\) (malla central + derecha). Más corto, con un nodo: \(\dfrac{V_a - 18}{6} + \dfrac{V_a - 9}{3} + \dfrac{V_a}{3} = 0\).</p>
+      <p>b) De la ecuación de nodo, \(V_a = 7{,}2\) V. Izquierda: \(I_1 = (18 - 7{,}2)/6 = 1{,}8\) A hacia a. Central: \(I_2 = (9 - 7{,}2)/3 = 0{,}6\) A hacia a. Derecha: \(I_3 = 7{,}2/3 = 2{,}4\) A hacia b.</p>
+      <p>c) \(V_a - V_b = 7{,}2\) V. Voltaje en bornes de \(\varepsilon_1\): \(18 - 1{,}8\cdot 1 = 16{,}2\) V. Es menor que 18 V porque la batería entrega corriente y cae \(I_1r_1\) dentro de ella.</p>
+      <p>d) \(\varepsilon_2\) entrega energía: la corriente sale por su borne +. Fuentes: \(18\cdot 1{,}8 + 9\cdot 0{,}6 = 32{,}4 + 5{,}4 = 37{,}8\) W. Resistencias: \(3{,}24 + 16{,}2 + 1{,}08 + 17{,}28 = 37{,}8\) W.</p>
+      <p>e) Para que no circule corriente por \(\varepsilon_2\) hace falta \(V_a = 9\) V (no cae nada en \(R_2\)). Por la rama izquierda pasan \((18 - 9)/6 = 1{,}5\) A, que bajan todos por \(R_3\): \(R_3 = 9/1{,}5 = 6\ \Omega\).</p>
+      <p class="muted">Error común: escribir \(+\varepsilon_2\) o \(-\varepsilon_2\) según hacia dónde va la corriente. El signo de una fem depende solo de si la atraviesas de − a + o al revés.</p>
+    </div>
+  </div>
+  <div class="certamen" data-gate="x24" data-label="Ejercicio adicional tipo certamen">
     <p>Dos baterías reales se conectan como muestra la figura. La batería 1 tiene \(\varepsilon_1 = 20\) V y \(r_1 = 1\ \Omega\); la batería 2 tiene \(\varepsilon_2 = 6\) V y \(r_2 = 0{,}5\ \Omega\).</p>
     <figure class="circuit" data-circuit="lazo-prop"></figure>
     <ol class="items" type="a">
@@ -542,7 +800,55 @@
     </div>
   </div>
 
-  <div class="certamen">
+  <div class="certamen verifica" data-gate="v25" data-label="Verifica tu comprensión">
+    <p class="muted">Las preguntas marcadas con (lección) se refieren al ejemplo o a los pasos del PDF de la lección.</p>
+    <ol class="items">
+      <li>¿Por qué el equivalente en paralelo siempre es menor que la menor de las resistencias? Explícalo con la idea del área del conductor.</li>
+      <li>(lección) En el puente balanceado reemplazas \(R_5\) por un cable ideal en vez de borrarla. ¿Cambia la resistencia equivalente? ¿Por qué?</li>
+      <li>Tres resistencias de 9 Ω forman un triángulo. ¿Cuánto vale cada resistencia de la estrella equivalente?</li>
+    </ol>
+    <div class="gate">
+      <label for="v25">Escribe tus respuestas, en una o dos líneas cada una.</label>
+      <textarea id="v25" placeholder="1) ...  2) ...  3) ..."></textarea>
+      <label><input type="checkbox" id="v25c"> Respondí todas y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver respuestas</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Respuestas del solucionario</h4>
+      <ol class="items">
+        <li>Conectar en paralelo es como ensanchar el conductor: con más área para pasar, la resistencia baja. Por eso el equivalente es menor que cualquiera de las resistencias por separado.</li>
+        <li>No cambia. En el puente balanceado los extremos de \(R_5\) están al mismo potencial: sin la resistencia, con ella o con un cable, por ahí no pasa corriente.</li>
+        <li>Con tres iguales, \(R_Y = R_\Delta/3 = 3\ \Omega\).</li>
+      </ol>
+    </div>
+  </div>
+  <div class="certamen" data-gate="l25" data-label="Ejercicio propuesto de la lección · 20 pts">
+    <p>En el circuito de la figura, el amperímetro A es ideal (resistencia nula). La fuente es de 30 V y las resistencias valen \(R_1 = 2\ \Omega\), \(R_2 = 6\ \Omega\), \(R_3 = 2\ \Omega\), \(R_4 = 2\ \Omega\) y \(R_5 = 6\ \Omega\). Los puntos a y b inicialmente no están conectados entre sí.</p>
+    <figure class="lesson-fig"><img src="img/lecciones/ej2_5.png" alt="Fuente de 30 V con amperímetro, R1 y dos ramas en paralelo con los puntos a y b" loading="lazy" width="1100"></figure>
+    <ol class="items" type="a">
+      <li>(4 pts) Identifique qué resistencias están en serie y cuáles en paralelo, justificando con los nodos. Calcule la resistencia equivalente vista por la fuente y la lectura del amperímetro.</li>
+      <li>(4 pts) Calcule \(V_a - V_b\). Indique cuál de los dos puntos está a mayor potencial y explique por qué, usando la idea de divisor de voltaje.</li>
+      <li>(5 pts) Se unen los puntos a y b con un conductor ideal. Redibuje el circuito, identifique las nuevas combinaciones y calcule la nueva resistencia equivalente y la nueva lectura del amperímetro. ¿En qué porcentaje cambia la lectura?</li>
+      <li>(4 pts) Con a y b unidos, calcule la corriente que circula por el conductor ideal e indique su sentido. Verifique la LCK en el nodo a.</li>
+      <li>(3 pts) ¿Qué valor debería tener \(R_4\) para que la lectura del amperímetro no cambie al unir a y b? Justifique con el potencial de los puntos a y b.</li>
+    </ol>
+    <div class="gate">
+      <label for="l25">Tu planteamiento (ecuaciones con signos y resultados).</label>
+      <textarea id="l25" placeholder="R_eq = R1 + (R2 + R3) ∥ (R4 + R5) ..."></textarea>
+      <label><input type="checkbox" id="l25c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta del solucionario</h4>
+      <p>a) \(R_2\) y \(R_3\) están en serie (comparten el nodo a, al que no llega nada más), y lo mismo \(R_4\) y \(R_5\) (nodo b). Las dos ramas de 8 Ω quedan en paralelo entre el mismo par de nodos, y esa combinación queda en serie con \(R_1\): \(R_{eq} = 2 + 8 \parallel 8 = 6\ \Omega\), \(I = 5\) A.</p>
+      <p>b) Al nodo de arriba llegan \(30 - 5\cdot 2 = 20\) V y cada rama lleva 2,5 A. Midiendo desde abajo, \(V_a = 2{,}5\cdot 2 = 5\) V y \(V_b = 2{,}5\cdot 6 = 15\) V: \(V_a - V_b = -10\) V. b está a mayor potencial: en su rama, la resistencia de abajo es la grande y se lleva la mayor parte del voltaje.</p>
+      <p>c) Con a y b unidos: \(R_2 \parallel R_4 = 6 \parallel 2 = 1{,}5\ \Omega\) (arriba) y \(R_3 \parallel R_5 = 2 \parallel 6 = 1{,}5\ \Omega\) (abajo), en serie entre sí y con \(R_1\): \(R_{eq} = 2 + 1{,}5 + 1{,}5 = 5\ \Omega\), \(I = 6\) A, aumenta 20 %.</p>
+      <p>d) El punto unido queda a \(6\cdot 1{,}5 = 9\) V y el nodo de arriba a \(30 - 12 = 18\) V. Corrientes: \(R_2\): 1,5 A; \(R_4\): 4,5 A; \(R_3\): 4,5 A; \(R_5\): 1,5 A. En el nodo a entran 1,5 A por \(R_2\) y salen 4,5 A por \(R_3\), así que por el conductor llegan 3 A desde b: 3 A de b hacia a.</p>
+      <p>e) La lectura no cambia si a y b ya estaban al mismo potencial (puente balanceado): \(R_2/R_3 = R_4/R_5\), o sea \(R_4 = 6\cdot 6/2 = 18\ \Omega\).</p>
+      <p class="muted">Error común: decir que \(R_2\) y \(R_4\) están en paralelo antes de unir a y b. No lo están: no comparten los dos nodos.</p>
+    </div>
+  </div>
+  <div class="certamen" data-gate="x25" data-label="Ejercicio adicional tipo certamen">
     <p>La red puente de la figura se alimenta con 24 V entre A y B.</p>
     <figure class="circuit" data-circuit="puente-prop"></figure>
     <ol class="items" type="a">
@@ -633,7 +939,55 @@
     </div>
   </div>
 
-  <div class="certamen">
+  <div class="certamen verifica" data-gate="v26" data-label="Verifica tu comprensión">
+    <p class="muted">Las preguntas marcadas con (lección) se refieren al ejemplo o a los pasos del PDF de la lección.</p>
+    <ol class="items">
+      <li>En un circuito plano con 5 ramas y 3 nodos, ¿cuántas corrientes de malla necesitas? ¿Y cuántas ecuaciones necesitarías con corrientes de rama?</li>
+      <li>(lección) En el ejemplo de tres mallas, ¿por qué el término de \(\varepsilon_2\) aparece con signo − en la ecuación de la malla 3, si al final \(\varepsilon_2\) entrega energía?</li>
+      <li>¿Por qué en una supermalla no se puede recorrer la rama de la fuente de corriente sin agregar una incógnita?</li>
+    </ol>
+    <div class="gate">
+      <label for="v26">Escribe tus respuestas, en una o dos líneas cada una.</label>
+      <textarea id="v26" placeholder="1) ...  2) ...  3) ..."></textarea>
+      <label><input type="checkbox" id="v26c"> Respondí todas y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver respuestas</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Respuestas del solucionario</h4>
+      <ol class="items">
+        <li>Por mallas, \(b - n + 1 = 3\) incógnitas. Con corrientes de rama serían 5.</li>
+        <li>El signo del planteamiento solo dice que \(\varepsilon_2\) se opone al sentido horario supuesto. Como \(I_3\) salió negativa, la corriente real va al revés, entra por el − y sale por el +, y la fuente entrega energía.</li>
+        <li>Porque el voltaje de una fuente de corriente es desconocido. Recorrerla agrega esa incógnita a la ecuación.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="certamen" data-gate="l26" data-label="Ejercicio propuesto de la lección · 20 pts">
+    <p>En el circuito de la figura, \(\varepsilon = 12\) V, \(R_1 = 2\ \Omega\), \(R_2 = 3\ \Omega\), \(R_3 = 1\ \Omega\), \(R_4 = 3\ \Omega\) y \(R_5 = 4\ \Omega\). La rama que separa la segunda y la tercera ventana tiene, además de \(R_4\), una fuente de voltaje dependiente de valor \(4i_x\) con el + hacia arriba, donde \(i_x\) es la corriente que baja por \(R_2\). En la rama derecha hay una fuente de corriente \(I_s = 2\) A hacia abajo.</p>
+    <figure class="lesson-fig"><img src="img/lecciones/ej2_6.png" alt="Circuito de tres mallas con fuente dependiente 4 ix y fuente de corriente de 2 A" loading="lazy" width="1100"></figure>
+    <ol class="items" type="a">
+      <li>(3 pts) Defina las corrientes de malla. ¿Cuántas incógnitas tiene el problema? Explique por qué una de las corrientes de malla queda determinada sin escribir ninguna ecuación de LVK.</li>
+      <li>(6 pts) Escriba la LVK de las mallas que corresponda y la ecuación de la variable de control \(i_x\). Justifique el signo de cada término, en especial el de la fuente dependiente.</li>
+      <li>(4 pts) Resuelva el sistema. Entregue las corrientes de malla, \(i_x\) y la corriente real de cada rama con su sentido.</li>
+      <li>(4 pts) Calcule el voltaje en los terminales de la fuente de corriente. Usando la convención de direcciones de referencia asociadas, indique si cada una de las tres fuentes entrega o recibe energía.</li>
+      <li>(3 pts) Haga el balance de potencias del circuito completo.</li>
+    </ol>
+    <details><summary>Pista</summary><p>Los problemas 5, 6, 8 y 9 de tu Guía de Teoría de Circuitos tienen fuentes dependientes y traen la respuesta, así que sirven para seguir practicando.</p></details>
+    <div class="gate">
+      <label for="l26">Tu planteamiento (ecuaciones con signos y resultados).</label>
+      <textarea id="l26" placeholder="I3 = 2 ; 12 − 2 I1 − 3(I1 − I2) = 0 ; ..."></textarea>
+      <label><input type="checkbox" id="l26c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta del solucionario</h4>
+      <p>a) Tres mallas en sentido horario. La fuente de corriente está en la rama exterior de la malla 3 y apunta en su mismo sentido, así que \(I_3 = I_s = 2\) A queda fija. Quedan dos incógnitas, \(I_1\) e \(I_2\), más la variable de control.</p>
+      <p>b) Malla 1: \(12 - 2I_1 - 3(I_1 - I_2) = 0\). Malla 2: \(-I_2 - 3(I_2 - I_3) - 4i_x - 3(I_2 - I_1) = 0\). Control: \(i_x = I_1 - I_2\). El término \(-4i_x\) aparece porque en la malla 2 la rama derecha se recorre hacia abajo, y la fuente dependiente tiene el + arriba: se atraviesa de + a −.</p>
+      <p>c) \(I_1 = 3\) A, \(I_2 = 1\) A, \(I_3 = 2\) A, \(i_x = 2\) A. Corrientes de rama: \(R_1\): 3 A; \(R_2\): 2 A hacia abajo; \(R_3\): 1 A; rama de \(R_4\) y la dependiente: \(I_2 - I_3 = -1\), o sea 1 A hacia arriba; \(R_5\) e \(I_s\): 2 A.</p>
+      <p>d) LVK de la malla 3, con \(V_s\) = voltaje de arriba respecto de abajo en la fuente de corriente: \(-4(2) - V_s + 4i_x - 3(I_3 - I_2) = 0 \Rightarrow -8 - V_s + 8 - 3 = 0 \Rightarrow V_s = -3\) V. El terminal de abajo está 3 V más alto. Los 2 A entran por el terminal de menor potencial y salen por el de mayor, así que la fuente de corriente entrega \(2\cdot 3 = 6\) W. La dependiente vale 8 V y la corriente sale por su +: entrega 8 W. La fuente de 12 V entrega 36 W.</p>
+      <p>e) Entregado: \(36 + 8 + 6 = 50\) W. Disipado: \(R_1\): 18; \(R_2\): 12; \(R_3\): 1; \(R_4\): 3; \(R_5\): 16. Total 50 W.</p>
+    </div>
+  </div>
+  <div class="certamen" data-gate="x26" data-label="Ejercicio adicional tipo certamen">
     <p>En el circuito, la fuente de corriente de 3 A está en la rama compartida por ambas mallas y apunta de x hacia y.</p>
     <figure class="circuit" data-circuit="mallas-prop"></figure>
     <ol class="items" type="a">
@@ -723,7 +1077,54 @@
     </div>
   </div>
 
-  <div class="certamen">
+  <div class="certamen verifica" data-gate="v27" data-label="Verifica tu comprensión">
+    <p class="muted">Las preguntas marcadas con (lección) se refieren al ejemplo o a los pasos del PDF de la lección.</p>
+    <ol class="items">
+      <li>(lección) ¿Qué cambia en los resultados del ejemplo del Paso 6 si eliges el nodo 2 como referencia? ¿Cambian las corrientes?</li>
+      <li>(lección) En la LCK del nodo 2 del Paso 6, ¿por qué el término de \(R_2\) es \((V_2 - V_1)/4\) y no \((V_1 - V_2)/4\)?</li>
+      <li>Un circuito tiene 4 nodos y 6 ramas. ¿Cuántas incógnitas tiene por mallas y cuántas por nodos?</li>
+    </ol>
+    <div class="gate">
+      <label for="v27">Escribe tus respuestas, en una o dos líneas cada una.</label>
+      <textarea id="v27" placeholder="1) ...  2) ...  3) ..."></textarea>
+      <label><input type="checkbox" id="v27c"> Respondí todas y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver respuestas</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Respuestas del solucionario</h4>
+      <ol class="items">
+        <li>Cambian todos los voltajes de nodo en la misma cantidad: \(V_1 = -2\) V, \(V_2 = 0\) y la tierra anterior queda en −9 V. Las corrientes no cambian, porque dependen de diferencias de potencial.</li>
+        <li>Porque al escribir la LCK del nodo 2 se suponen saliendo las corrientes de ese nodo. Su voltaje va primero.</li>
+        <li>Por mallas, \(6 - 4 + 1 = 3\). Por nodos, \(4 - 1 = 3\).</li>
+      </ol>
+    </div>
+  </div>
+  <div class="certamen" data-gate="l27" data-label="Ejercicio propuesto de la lección · 20 pts">
+    <p>En el circuito de la figura, la fuente \(\varepsilon = 20\) V va del nodo A a tierra, con el + en A. Entre los nodos B y C hay una fuente \(V_s = 4\) V con el + en B. Las resistencias son \(R_1 = 4\ \Omega\) (entre A y B), \(R_2 = 8\ \Omega\) (entre B y tierra), \(R_3 = 3\ \Omega\) (entre C y tierra) y \(R_4 = 2\ \Omega\) (entre A y C). La fuente de corriente \(I_s = 1\) A inyecta corriente desde tierra hacia el nodo C.</p>
+    <figure class="lesson-fig"><img src="img/lecciones/ej2_7.png" alt="Circuito con nodos A, B y C, fuente de 4 V entre B y C y fuente de corriente de 1 A" loading="lazy" width="1100"></figure>
+    <ol class="items" type="a">
+      <li>(3 pts) Elija el nodo de referencia y nombre los voltajes de nodo. ¿Cuántas incógnitas quedan? Explique qué hace la fuente \(\varepsilon\) con el voltaje de A y qué hace \(V_s\) con los voltajes de B y C.</li>
+      <li>(6 pts) Plantee la ecuación de restricción del supernodo y la LCK del supernodo. Justifique por qué no se puede escribir la LCK del nodo B por separado.</li>
+      <li>(4 pts) Resuelva para \(V_B\) y \(V_C\) y calcule la corriente de cada resistencia con su sentido.</li>
+      <li>(4 pts) Calcule la corriente que pasa por \(V_s\) y la que entrega \(\varepsilon\). Indique, con la convención de direcciones de referencia asociadas, si cada fuente entrega o recibe energía.</li>
+      <li>(3 pts) Haga el balance de potencias. Luego indique cuántas incógnitas habría tenido este problema por mallas y cuál de los dos métodos conviene.</li>
+    </ol>
+    <div class="gate">
+      <label for="l27">Tu planteamiento (ecuaciones con signos y resultados).</label>
+      <textarea id="l27" placeholder="V_B − V_C = 4 ; (V_B − 20)/4 + V_B/8 + ... = 1"></textarea>
+      <label><input type="checkbox" id="l27c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta del solucionario</h4>
+      <p>a) Referencia en el cable de abajo. \(V_A = 20\) V queda fijo por \(\varepsilon\). \(V_B\) y \(V_C\) están unidos por \(V_s\), así que solo queda una incógnita independiente.</p>
+      <p>b) Restricción: \(V_B - V_C = 4\). LCK del supernodo (B y C juntos), con lo que sale igual a lo que entra por \(I_s\): \(\dfrac{V_B - 20}{4} + \dfrac{V_B}{8} + \dfrac{V_C}{3} + \dfrac{V_C - 20}{2} = 1\). No se puede escribir la LCK de B sola, porque no se conoce la corriente de la fuente \(V_s\).</p>
+      <p>c) Reemplazando \(V_B = V_C + 4\): \(V_C = 12\) V y \(V_B = 16\) V. Corrientes: \(R_1\): 1 A de A hacia B; \(R_4\): 4 A de A hacia C; \(R_2\): 2 A hacia tierra; \(R_3\): 4 A hacia tierra.</p>
+      <p>d) En B entra 1 A por \(R_1\) y salen 2 A por \(R_2\): llega 1 A por \(V_s\) desde C. Atraviesa la fuente de − a +, así que \(V_s\) entrega \(4\cdot 1 = 4\) W. \(\varepsilon\) entrega \(1 + 4 = 5\) A, o sea 100 W. \(I_s\) lleva 1 A de 0 V a 12 V: entrega 12 W.</p>
+      <p>e) Entregado: \(100 + 4 + 12 = 116\) W. Disipado: \(4 + 32 + 48 + 32 = 116\) W. Por mallas habría 4 mallas (7 ramas, 4 nodos) y una supermalla; por nodos queda una sola incógnita. Conviene nodos.</p>
+    </div>
+  </div>
+  <div class="certamen" data-gate="x27" data-label="Ejercicio adicional tipo certamen">
     <p>En el circuito, la fuente de 8 V está conectada entre los nodos 1 y 2, ninguno de los cuales es tierra.</p>
     <figure class="circuit" data-circuit="nodos-prop"></figure>
     <ol class="items" type="a">
@@ -810,7 +1211,54 @@
     </div>
   </div>
 
-  <div class="certamen">
+  <div class="certamen verifica" data-gate="v28" data-label="Verifica tu comprensión">
+    <ol class="items">
+      <li>¿Por qué no se puede usar superposición para calcular directamente la potencia en una resistencia?</li>
+      <li>Una red tiene \(V_{th} = 9\) V e \(I_{cc} = 3\) A. ¿Cuánto vale \(R_{th}\) y cuál es la potencia máxima que puede entregar a una carga?</li>
+      <li>Explica con la batería de la 2.2 qué significa físicamente \(R_{th}\).</li>
+    </ol>
+    <div class="gate">
+      <label for="v28">Escribe tus respuestas, en una o dos líneas cada una.</label>
+      <textarea id="v28" placeholder="1) ...  2) ...  3) ..."></textarea>
+      <label><input type="checkbox" id="v28c"> Respondí todas y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver respuestas</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Respuestas del solucionario</h4>
+      <ol class="items">
+        <li>Porque \(P = I^2R\) es cuadrática: \((I' + I'')^2 \neq I'^2 + I''^2\).</li>
+        <li>\(R_{th} = 9/3 = 3\ \Omega\) y \(P_{\max} = 9^2/(4\cdot 3) = 6{,}75\) W.</li>
+        <li>Es la resistencia interna de la batería equivalente. Indica cuánto baja el voltaje en los terminales cuando la red entrega corriente.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="certamen" data-gate="l28" data-label="Ejercicio propuesto de la lección · 20 pts">
+    <p>En la red de la figura, \(\varepsilon = 24\) V, \(R_1 = 12\ \Omega\), \(R_2 = 6\ \Omega\) y \(R_3 = 4\ \Omega\). La fuente \(I_s = 1{,}5\) A inyecta corriente desde tierra hacia el terminal a.</p>
+    <figure class="lesson-fig"><img src="img/lecciones/ej2_8.png" alt="Red con fuente de 24 V, R1, R2, R3 y fuente de corriente de 1,5 A vista desde a y b" loading="lazy" width="1100"></figure>
+    <ol class="items" type="a">
+      <li>(5 pts) Calcule \(V_{th}\) usando superposición. Dibuje los dos subcircuitos e indique qué hizo con cada fuente apagada y por qué.</li>
+      <li>(3 pts) Calcule \(R_{th}\) apagando las fuentes. Compruebe el resultado calculando la corriente de cortocircuito.</li>
+      <li>(3 pts) Dibuje el equivalente de Norton con sus valores.</li>
+      <li>(4 pts) Determine el valor de \(R_L\) que recibe la máxima potencia y calcule esa potencia.</li>
+      <li>(5 pts) Con esa \(R_L\) conectada, vuelva al circuito original y calcule la potencia que entregan \(\varepsilon\) e \(I_s\). ¿Cuál es la eficiencia real del circuito? Compárela con el 50 % del equivalente y explique la diferencia.</li>
+    </ol>
+    <div class="gate">
+      <label for="l28">Tu planteamiento (ecuaciones con signos y resultados).</label>
+      <textarea id="l28" placeholder="Solo ε: V_a = ... ; solo I_s: V_a = ..."></textarea>
+      <label><input type="checkbox" id="l28c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta del solucionario</h4>
+      <p>a) Solo \(\varepsilon\) (\(I_s\) abierta): por \(R_3\) no pasa corriente y \(V_a = V_x\), un divisor de voltaje: \(24\cdot 6/18 = 8\) V. Solo \(I_s\) (\(\varepsilon\) en corto): los 1,5 A recorren \(R_3\) y después \(12 \parallel 6 = 4\ \Omega\), así que \(V_a = 1{,}5\cdot(4 + 4) = 12\) V. \(V_{th} = 8 + 12 = 20\) V.</p>
+      <p>b) Con las fuentes apagadas: \(R_{th} = R_3 + R_1 \parallel R_2 = 4 + 4 = 8\ \Omega\). Con el cortocircuito, a queda a 0 V y \(R_3\) pasa a estar entre x y tierra; \(I_s\) inyecta sus 1,5 A directo en el corto. LCK en x: \(\dfrac{V_x - 24}{12} + \dfrac{V_x}{6} + \dfrac{V_x}{4} = 0 \Rightarrow V_x = 4\) V. Por \(R_3\) llegan al corto 1 A, que se suman a los 1,5 A: \(I_{cc} = 2{,}5\) A y \(V_{th}/I_{cc} = 8\ \Omega\).</p>
+      <p>c) Norton: \(I_N = 2{,}5\) A en paralelo con \(R_N = 8\ \Omega\).</p>
+      <p>d) \(R_L = R_{th} = 8\ \Omega\). \(P_{\max} = 20^2/(4\cdot 8) = 12{,}5\) W.</p>
+      <p>e) Con \(R_L = 8\ \Omega\): \(I_L = 20/16 = 1{,}25\) A y \(V_a = 10\) V. Por \(R_3\) pasan \(1{,}5 - 1{,}25 = 0{,}25\) A de a hacia x, así que \(V_x = 10 - 1 = 9\) V. La fuente \(\varepsilon\) entrega \((24 - 9)/12 = 1{,}25\) A, o sea 30 W, e \(I_s\) entrega \(1{,}5\cdot 10 = 15\) W. Total 45 W para 12,5 W en la carga: \(\eta = 12{,}5/45 \approx 27{,}8\ \%\). El 50 % vale para el equivalente de Thévenin, que solo reproduce lo que pasa en los terminales. Las pérdidas internas reales (32,5 W) son distintas de las de \(R_{th}\).</p>
+      <p class="muted">Error común: en el cortocircuito, olvidar que \(R_3\) queda en paralelo con \(R_2\) al escribir la LCK en x.</p>
+    </div>
+  </div>
+  <div class="certamen" data-gate="x28" data-label="Ejercicio adicional tipo certamen">
     <p>Para la red de la figura, vista desde los terminales a–b:</p>
     <figure class="circuit" data-circuit="thev-prop"></figure>
     <ol class="items" type="a">
@@ -895,7 +1343,54 @@
     </div>
   </div>
 
-  <div class="certamen">
+  <div class="certamen verifica" data-gate="v29" data-label="Verifica tu comprensión">
+    <p class="muted">Las preguntas marcadas con (lección) se refieren al ejemplo o a los pasos del PDF de la lección.</p>
+    <ol class="items">
+      <li>¿Por qué un capacitor descargado se comporta como un cable justo después de cerrar el interruptor, y como un circuito abierto después de mucho tiempo?</li>
+      <li>Un circuito tiene \(R_{th} = 2\) kΩ y \(C = 10\ \mu\)F. ¿Cuánto tiempo hay que esperar para considerar terminado el transitorio?</li>
+      <li>(lección) Si duplicas \(R\) en el circuito del Paso 5, ¿cambia la energía final del capacitor? ¿Cambia la energía disipada en la resistencia?</li>
+    </ol>
+    <div class="gate">
+      <label for="v29">Escribe tus respuestas, en una o dos líneas cada una.</label>
+      <textarea id="v29" placeholder="1) ...  2) ...  3) ..."></textarea>
+      <label><input type="checkbox" id="v29c"> Respondí todas y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver respuestas</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Respuestas del solucionario</h4>
+      <ol class="items">
+        <li>El voltaje de un capacitor no puede saltar. Si estaba descargado, en \(t = 0^+\) sigue en 0 V, como un cable. Después de mucho tiempo nada cambia, \(dv/dt = 0\) y la corriente es cero, como un circuito abierto.</li>
+        <li>\(\tau = 2000\cdot 10\times10^{-6} = 20\) ms. El transitorio dura unos \(5\tau = 0{,}1\) s.</li>
+        <li>No cambia ninguna de las dos. La energía final es \(\tfrac12 C\varepsilon^2\) y en la resistencia se disipa siempre \(\tfrac12 C\varepsilon^2\). Solo cambia la rapidez de la carga.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="certamen" data-gate="l29" data-label="Ejercicio propuesto de la lección · 20 pts">
+    <p>En el circuito de la figura, el interruptor S estuvo mucho tiempo en la posición a. En \(t = 0\) pasa a la posición b. Los datos son \(\varepsilon = 20\) V, \(R_1 = 10\) kΩ, \(C = 50\ \mu\)F y \(R_2 = R_3 = 20\) kΩ. En la posición a el capacitor se carga; en la posición b se descarga sobre \(R_2\) y \(R_3\).</p>
+    <figure class="lesson-fig"><img src="img/lecciones/ej2_9.png" alt="Interruptor de dos posiciones: en a carga el capacitor a través de R1, en b lo descarga sobre R2 y R3" loading="lazy" width="1100"></figure>
+    <ol class="items" type="a">
+      <li>(4 pts) Determine \(v_C(0^-)\) y explique por qué la corriente en ese instante es cero. ¿Cuánto tiempo debió estar S en la posición a para que se cumpla esa suposición?</li>
+      <li>(4 pts) Determine \(v_C(0^+)\), la corriente total de descarga en \(t = 0^+\) y la corriente en cada resistencia. Justifique la continuidad del voltaje con la energía del capacitor.</li>
+      <li>(5 pts) Obtenga \(v_C(t)\) para \(t > 0\), indicando la constante de tiempo y cómo la calculó.</li>
+      <li>(3 pts) Calcule el tiempo que tarda \(v_C\) en llegar a 5 V.</li>
+      <li>(4 pts) Calcule la energía total disipada durante la descarga y cuánta de ella se disipa en \(R_2\).</li>
+    </ol>
+    <div class="gate">
+      <label for="l29">Tu planteamiento (ecuaciones con signos y resultados).</label>
+      <textarea id="l29" placeholder="v_C(0−) = ... ; τ = ..."></textarea>
+      <label><input type="checkbox" id="l29c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta del solucionario</h4>
+      <p>a) \(v_C(0^-) = 20\) V: después de mucho tiempo en a, el capacitor es un circuito abierto, no circula corriente y no cae voltaje en \(R_1\). Para que eso se cumpla, S debió estar en a al menos \(5\tau_{carga} = 5\cdot 10^{4}\cdot 50\times10^{-6} = 2{,}5\) s.</p>
+      <p>b) El voltaje no salta: \(v_C(0^+) = 20\) V. En b el capacitor ve \(R_2 \parallel R_3 = 10\) kΩ: \(i(0^+) = 20/10^{4} = 2\) mA, 1 mA por cada resistencia. Un salto de voltaje exigiría que la energía \(\tfrac12 Cv^2\) cambiara en un instante, con potencia infinita.</p>
+      <p>c) \(\tau = 10^{4}\cdot 50\times10^{-6} = 0{,}5\) s. El valor final es 0: \(v_C(t) = 20\,e^{-t/0{,}5} = 20\,e^{-2t}\) V.</p>
+      <p>d) \(5 = 20\,e^{-2t}\), de donde \(t = 0{,}5\ln 4 \approx 0{,}693\) s.</p>
+      <p>e) Energía inicial: \(\tfrac12\cdot 50\times10^{-6}\cdot 20^2 = 10\) mJ, que se disipa toda. Como \(R_2 = R_3\) tienen el mismo voltaje, se reparte en partes iguales: 5 mJ en \(R_2\).</p>
+    </div>
+  </div>
+  <div class="certamen" data-gate="x29" data-label="Ejercicio adicional tipo certamen">
     <p>El capacitor de 50 µF está descargado y el interruptor se cierra en \(t = 0\).</p>
     <figure class="circuit" data-circuit="rc-prop"></figure>
     <ol class="items" type="a">
@@ -977,7 +1472,54 @@
     </div>
   </div>
 
-  <div class="certamen">
+  <div class="certamen verifica" data-gate="v210" data-label="Verifica tu comprensión">
+    <p class="muted">Las preguntas marcadas con (lección) se refieren al ejemplo o a los pasos del PDF de la lección.</p>
+    <ol class="items">
+      <li>(lección) Usando la analogía del carro, explica por qué una bobina se comporta como un circuito abierto en \(t = 0^+\) si no llevaba corriente.</li>
+      <li>(lección) En el ejemplo, ¿cuánta corriente pasa por \(R_2\) en \(t = 0^+\) y cuánta después de mucho tiempo?</li>
+      <li>¿Por qué en el encendido de un auto conviene cortar la corriente de la bobina lo más rápido posible?</li>
+    </ol>
+    <div class="gate">
+      <label for="v210">Escribe tus respuestas, en una o dos líneas cada una.</label>
+      <textarea id="v210" placeholder="1) ...  2) ...  3) ..."></textarea>
+      <label><input type="checkbox" id="v210c"> Respondí todas y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver respuestas</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Respuestas del solucionario</h4>
+      <ol class="items">
+        <li>Como el carro de supermercado, la corriente no puede pasar de cero a un valor finito en un instante. En \(t = 0^+\) sigue siendo cero, y un elemento por el que no pasa corriente se comporta como un circuito abierto.</li>
+        <li>En \(t = 0^+\), \(i_L = 0\) y la corriente de la fuente pasa toda por \(R_1\) y \(R_2\): \(24/18 \approx 1{,}33\) A. Después de mucho tiempo, el inductor es un cable, el nodo queda a 8 V y por \(R_2\) pasan \(8/12 \approx 0{,}67\) A.</li>
+        <li>Porque el voltaje inducido es \(L\,di/dt\). Cuanto más rápido se corta la corriente, mayor es \(di/dt\) y mayor el voltaje que hace saltar la chispa.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="certamen" data-gate="l210" data-label="Ejercicio propuesto de la lección · 20 pts">
+    <p>En el circuito de la figura, el interruptor estuvo cerrado mucho tiempo y se abre en \(t = 0\). La fuente es de 12 V, \(R_1 = 4\ \Omega\), \(L = 0{,}2\) H y \(R_2 = 60\ \Omega\), conectada en paralelo con el inductor. Al abrir el interruptor, la bobina queda conectada solo a \(R_2\).</p>
+    <figure class="lesson-fig"><img src="img/lecciones/ej2_10.png" alt="Fuente de 12 V, interruptor que se abre en t = 0, R1 de 4 Ω, inductor de 0,2 H en paralelo con R2 de 60 Ω" loading="lazy" width="1100"></figure>
+    <ol class="items" type="a">
+      <li>(4 pts) Determine \(i_L(0^-)\) y la corriente en \(R_2\) antes de abrir el interruptor. Justifique con el comportamiento del inductor en régimen permanente.</li>
+      <li>(3 pts) Determine \(i_L(0^+)\) y justifique su respuesta con la energía almacenada.</li>
+      <li>(5 pts) Calcule el voltaje en \(R_2\) en \(t = 0^+\), con su polaridad. Compárelo con el voltaje de la fuente y explique de dónde sale esa diferencia.</li>
+      <li>(4 pts) Obtenga \(i_L(t)\) para \(t > 0\) y calcule el tiempo que tarda la corriente en bajar a 1 A.</li>
+      <li>(4 pts) Calcule la energía disipada en \(R_2\) durante toda la descarga. ¿Qué pasaría en el interruptor si \(R_2\) no estuviera conectada? Relacione su respuesta con la chispa de una aspiradora al desenchufarla.</li>
+    </ol>
+    <div class="gate">
+      <label for="l210">Tu planteamiento (ecuaciones con signos y resultados).</label>
+      <textarea id="l210" placeholder="i_L(0−) = 12/4 ; ..."></textarea>
+      <label><input type="checkbox" id="l210c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta del solucionario</h4>
+      <p>a) En régimen permanente el inductor es un cable: \(i_L(0^-) = 12/4 = 3\) A. \(R_2\) queda en cortocircuito y no lleva corriente.</p>
+      <p>b) \(i_L(0^+) = 3\) A. La corriente no puede saltar, porque la energía \(\tfrac12 Li^2\) no puede cambiar en un instante.</p>
+      <p>c) Los 3 A del inductor ahora solo pueden volver por \(R_2\): \(|v| = 3\cdot 60 = 180\) V. El inductor empuja la corriente hacia abajo, y por \(R_2\) esa corriente sube. El extremo de abajo de \(R_2\) queda 180 V por encima del de arriba, con polaridad invertida respecto de la fuente. El valor sale de la energía guardada en la bobina, no de la fuente: es la corriente de antes obligada a pasar por una resistencia grande.</p>
+      <p>d) \(\tau = 0{,}2/60 \approx 3{,}33\) ms y \(i_L(t) = 3\,e^{-t/0{,}00333}\) A. Para 1 A: \(t = \tau\ln 3 \approx 3{,}66\) ms.</p>
+      <p>e) Se disipa toda la energía inicial: \(\tfrac12\cdot 0{,}2\cdot 3^2 = 0{,}9\) J en \(R_2\). Sin \(R_2\), la corriente se cortaría casi en cero tiempo; \(L\,di/dt\) sería enorme, el aire del interruptor se rompería y la energía se disiparía en un arco. Es la chispa de la aspiradora.</p>
+    </div>
+  </div>
+  <div class="certamen" data-gate="x210" data-label="Ejercicio adicional tipo certamen">
     <p>El interruptor se cierra en \(t = 0\) y el inductor no tiene corriente inicial.</p>
     <figure class="circuit" data-circuit="rl-prop"></figure>
     <ol class="items" type="a">
@@ -1061,7 +1603,54 @@
     </div>
   </div>
 
-  <div class="certamen">
+  <div class="certamen verifica" data-gate="v211" data-label="Verifica tu comprensión">
+    <p class="muted">Las preguntas marcadas con (lección) se refieren al ejemplo o a los pasos del PDF de la lección.</p>
+    <ol class="items">
+      <li>Un cono truncado tiene \(r_b = 2r_a\). ¿Su resistencia es mayor o menor que la de un cilindro de radio \(r_a\) y el mismo largo? ¿Cuántas veces?</li>
+      <li>(lección) En el Paso 4, ¿por qué no se puede cortar en discos (serie), como en el cono?</li>
+      <li>(lección) Si duplicas \(b\) en el coaxial del Paso 5, ¿la fuga aumenta o disminuye? ¿En qué factor cambia \(R\)?</li>
+    </ol>
+    <div class="gate">
+      <label for="v211">Escribe tus respuestas, en una o dos líneas cada una.</label>
+      <textarea id="v211" placeholder="1) ...  2) ...  3) ..."></textarea>
+      <label><input type="checkbox" id="v211c"> Respondí todas y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver respuestas</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Respuestas del solucionario</h4>
+      <ol class="items">
+        <li>Menor. Con \(r_b = 2r_a\): \(R = \rho_\Omega L/(\pi\cdot 2r_a^2)\), la mitad de la del cilindro de radio \(r_a\).</li>
+        <li>Porque la conductividad cambia dentro de cada disco: un disco no es un resistor uniforme. Los casquetes cilíndricos sí tienen conductividad constante, y todos conectan las mismas dos tapas.</li>
+        <li>\(R\) es proporcional a \(\ln(b/a)\), que pasa de \(\ln 4\) a \(\ln 8\). \(R\) aumenta 1,5 veces y la fuga disminuye en el mismo factor.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="certamen" data-gate="l211" data-label="Ejercicio propuesto de la lección · 20 pts">
+    <p>La puesta a tierra de una subestación se modela como un electrodo metálico en forma de semiesfera de radio \(a = 0{,}5\) m, enterrado con la cara plana a ras de suelo. El suelo tiene conductividad uniforme \(\sigma = 0{,}01\) S/m. Cuando hay una falla, entra por el electrodo una corriente \(I = 1000\) A que se reparte por el suelo en dirección radial. En la figura, las líneas azules son equipotenciales y las rojas marcan el largo de un paso.</p>
+    <figure class="lesson-fig"><img src="img/lecciones/ej2_11.png" alt="Electrodo semiesférico en el suelo con líneas de corriente radiales y equipotenciales" loading="lazy" width="1100"></figure>
+    <ol class="items" type="a">
+      <li>(4 pts) Explique por qué conviene cortar el suelo en casquetes semiesféricos y si quedan en serie o en paralelo. Escriba \(dR\) para un casquete de radio \(r\) y espesor \(dr\).</li>
+      <li>(4 pts) Calcule la resistencia entre el electrodo y una semiesfera de radio \(b\). Luego haga \(b \to \infty\) para obtener la resistencia de puesta a tierra y entregue su valor numérico.</li>
+      <li>(4 pts) ¿Qué fracción de la resistencia total se concentra en los primeros 2 m alrededor del electrodo (de \(r = a\) a \(r = 2\) m)? ¿Qué le dice eso sobre dónde conviene mejorar el suelo?</li>
+      <li>(5 pts) Durante la falla, calcule el potencial del electrodo respecto de un punto muy lejano. Luego calcule el voltaje de paso: la diferencia de potencial entre los pies de una persona parada a 5 m del electrodo, con un pie a 5,0 m y el otro a 5,8 m. Obtenga \(V(r)\) con la cadena \(I \to J \to E \to V\).</li>
+      <li>(3 pts) ¿Qué radio debería tener el electrodo para que la resistencia de puesta a tierra sea como máximo 10 Ω?</li>
+    </ol>
+    <div class="gate">
+      <label for="l211">Tu planteamiento (ecuaciones con signos y resultados).</label>
+      <textarea id="l211" placeholder="dR = dr/(σ·2πr²) ; R = ..."></textarea>
+      <label><input type="checkbox" id="l211c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta del solucionario</h4>
+      <p>a) La corriente sale del electrodo en dirección radial y atraviesa casquetes semiesféricos uno tras otro: la misma \(I\) cruza todos, así que están en serie. El área de una semiesfera de radio \(r\) es \(2\pi r^2\): \(dR = \dfrac{dr}{\sigma\cdot 2\pi r^2}\).</p>
+      <p>b) \(R = \dfrac{1}{2\pi\sigma}\left(\dfrac1a - \dfrac1b\right) \xrightarrow{b\to\infty} R = \dfrac{1}{2\pi\sigma a} = \dfrac{1}{2\pi\cdot 0{,}01\cdot 0{,}5} \approx 31{,}8\ \Omega\).</p>
+      <p>c) \(\dfrac{1/a - 1/2}{1/a} = \dfrac{2 - 0{,}5}{2} = 0{,}75\). El 75 % de la resistencia está en los primeros 2 m. Conviene mejorar el suelo cerca del electrodo, con relleno conductor; mejorar el suelo lejano casi no cambia nada.</p>
+      <p>d) \(J = I/(2\pi r^2)\), \(E = J/\sigma\) e integrando desde el infinito, \(V(r) = \dfrac{I}{2\pi\sigma r}\). Potencial del electrodo: \(V(a) = 1000\cdot 31{,}8 \approx 31{,}8\) kV. Voltaje de paso: \(V(5) - V(5{,}8) = \dfrac{1000}{2\pi\cdot 0{,}01}\left(\dfrac15 - \dfrac{1}{5{,}8}\right) \approx 439\) V.</p>
+      <p>e) \(\dfrac{1}{2\pi\sigma a} \le 10\), o sea \(a \ge \dfrac{1}{2\pi\cdot 0{,}01\cdot 10} \approx 1{,}59\) m.</p>
+    </div>
+  </div>
+  <div class="certamen" data-gate="x211" data-label="Ejercicio adicional tipo certamen">
     <p>Dos cascarones esféricos conductores concéntricos, de radios \(a = 2\) cm y \(b = 6\) cm, tienen el espacio entre ellos lleno con un material de \(\sigma = 0{,}01\) S/m. Se aplican 100 V entre ellos.</p>
     <ol class="items" type="a">
       <li>Deduce la expresión de R siguiendo la cadena \(I \to J \to E \to V\). (2 pts)</li>
@@ -1145,7 +1734,54 @@
     </div>
   </div>
 
-  <div class="certamen">
+  <div class="certamen verifica" data-gate="v212" data-label="Verifica tu comprensión">
+    <p class="muted">Las preguntas marcadas con (lección) se refieren al ejemplo o a los pasos del PDF de la lección.</p>
+    <ol class="items">
+      <li>(lección) En la receta del Paso 2, ¿por qué la capacitancia no depende de la carga \(Q\) que supusiste?</li>
+      <li>Si duplicas \(b\) en un coaxial, ¿la capacitancia sube o baja? ¿Y la resistencia de fuga de la 2.11?</li>
+      <li>Con la batería desconectada, metes un dieléctrico de \(\varepsilon_r = 3\). ¿Qué pasa con el campo entre las placas?</li>
+    </ol>
+    <div class="gate">
+      <label for="v212">Escribe tus respuestas, en una o dos líneas cada una.</label>
+      <textarea id="v212" placeholder="1) ...  2) ...  3) ..."></textarea>
+      <label><input type="checkbox" id="v212c"> Respondí todas y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver respuestas</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Respuestas del solucionario</h4>
+      <ol class="items">
+        <li>Porque el campo y el voltaje son proporcionales a \(Q\). En \(C = Q/V\), la carga aparece arriba y abajo y se cancela.</li>
+        <li>La capacitancia baja (\(\ln(b/a)\) crece y está en el denominador). La resistencia de fuga sube, porque \(\ln(b/a)\) está en su numerador. Se cumple \(RC = \varepsilon/\sigma\).</li>
+        <li>Con la carga fija, el campo baja a un tercio: \(E = E_0/\varepsilon_r\).</li>
+      </ol>
+    </div>
+  </div>
+  <div class="certamen" data-gate="l212" data-label="Ejercicio propuesto de la lección · 20 pts">
+    <p>Un capacitor esférico tiene un conductor interior de radio \(a = 1\) cm y uno exterior de radio \(b = 4\) cm. Entre \(r = a\) y \(r = c = 2\) cm hay un dieléctrico con \(\varepsilon_r = 4\); entre \(r = c\) y \(r = b\) hay aire. Se aplica un voltaje \(V = 1\) kV entre los conductores.</p>
+    <figure class="lesson-fig"><img src="img/lecciones/ej2_12.png" alt="Capacitor esférico con una capa de dieléctrico de a a c y aire de c a b" loading="lazy" width="1100"></figure>
+    <ol class="items" type="a">
+      <li>(4 pts) Use la ley de Gauss para escribir \(E(r)\) en cada capa, en función de \(Q\). Explique por qué el campo es discontinuo en \(r = c\).</li>
+      <li>(5 pts) Calcule la capacitancia. Muestre que equivale a dos capacitores en serie e indique cuáles.</li>
+      <li>(4 pts) Calcule la carga \(Q\) y el voltaje que queda en cada capa. ¿Cuál capa se lleva la mayor parte del voltaje y por qué?</li>
+      <li>(4 pts) Calcule el campo máximo en cada capa. Si la rigidez del aire es 3 MV/m y la del dieléctrico es 20 MV/m, ¿cuál se rompe primero al subir el voltaje y con qué voltaje ocurre?</li>
+      <li>(3 pts) Calcule la energía almacenada y la densidad de carga inducida \(\rho_{ind}\) en la cara interior del dieléctrico.</li>
+    </ol>
+    <div class="gate">
+      <label for="l212">Tu planteamiento (ecuaciones con signos y resultados).</label>
+      <textarea id="l212" placeholder="D = Q/(4πr²) ; E = ... ; V = ∫ ..."></textarea>
+      <label><input type="checkbox" id="l212c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta del solucionario</h4>
+      <p>a) Con una gaussiana esférica de radio \(r\), la ley de Gauss para \(\vec D\) da \(D = Q/(4\pi r^2)\) en ambas capas. Entonces \(E = \dfrac{Q}{4\pi\varepsilon_0\varepsilon_r r^2}\) (\(a < r < c\)) y \(E = \dfrac{Q}{4\pi\varepsilon_0 r^2}\) (\(c < r < b\)). En \(r = c\) el campo salta un factor \(\varepsilon_r\), por la carga inducida en la cara exterior del dieléctrico.</p>
+      <p>b) Integrando \(E\) de \(a\) a \(b\): \(V = \dfrac{Q}{4\pi\varepsilon_0}\left[\dfrac{1}{\varepsilon_r}\left(\dfrac1a - \dfrac1c\right) + \dfrac1c - \dfrac1b\right]\), así que \(C = \dfrac{4\pi\varepsilon_0}{12{,}5 + 25} \approx 2{,}97\) pF. Equivale a dos capacitores esféricos en serie: el dieléctrico (\(a\) a \(c\)), \(C_1 \approx 8{,}90\) pF, y el aire (\(c\) a \(b\)), \(C_2 \approx 4{,}45\) pF. \(C_1C_2/(C_1 + C_2) = 2{,}97\) pF.</p>
+      <p>c) \(Q = CV \approx 2{,}97\) nC. Como están en serie tienen la misma carga y el voltaje se reparte en proporción inversa a la capacitancia: \(V_1 \approx 333\) V en el dieléctrico y \(V_2 \approx 667\) V en el aire. El aire se lleva dos tercios porque su capacitancia es la menor.</p>
+      <p>d) En cada capa el campo es máximo en su radio interior. Dieléctrico, en \(r = a\): \(E \approx 66{,}7\) kV/m. Aire, en \(r = c\): \(E \approx 66{,}7\) kV/m. Como el campo es proporcional a \(V\), el aire se rompe con \(V = 1000\cdot 3\times10^{6}/66\,700 = 45\) kV y el dieléctrico se rompería con 300 kV: se rompe primero el aire, con \(V \approx 45\) kV.</p>
+      <p>e) \(W = \tfrac12 CV^2 \approx 1{,}48\ \mu\)J. En \(r = a\) la carga libre es \(\rho_s = Q/(4\pi a^2) \approx 2{,}36\ \mu\)C/m², y la inducida en la cara interior del dieléctrico es \(\rho_{ind} = \dfrac{\varepsilon_r - 1}{\varepsilon_r}\rho_s = 0{,}75\cdot 2{,}36 \approx 1{,}77\ \mu\)C/m², con signo negativo, porque está junto al conductor positivo.</p>
+    </div>
+  </div>
+  <div class="certamen" data-gate="x212" data-label="Ejercicio adicional tipo certamen">
     <p>Un condensador de placas paralelas de 0,02 m² y separación 1 mm tiene la mitad de su área ocupada por un dieléctrico de \(\varepsilon_r = 5\) que va de placa a placa. La otra mitad es aire. Se conecta a 100 V.</p>
     <ol class="items" type="a">
       <li>Identifica si las regiones están en serie o en paralelo y justifica con el comportamiento de E. (1 pt)</li>

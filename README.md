@@ -1,6 +1,12 @@
 # Circuitos E·B
 
-Sitio estático para preparar los certámenes de Electromagnetismo EIE2211 (PUCV), con énfasis en teoría de circuitos. Cada módulo conecta el circuito con la física de campos, resuelve un ejemplo separando planteamiento y álgebra, trae un laboratorio interactivo y termina con un ejercicio tipo certamen cuya pauta se abre solo después de escribir el planteamiento.
+Sitio estático para preparar los certámenes de Electromagnetismo EIE2211 (PUCV), con énfasis en teoría de circuitos. Cada módulo conecta el circuito con la física de campos, resuelve un ejemplo separando planteamiento y álgebra y trae un laboratorio interactivo. Al final tiene tres bloques con la respuesta bloqueada hasta que escribes tu desarrollo:
+
+- **Verifica tu comprensión**: las preguntas de la lección en PDF, con las respuestas del solucionario.
+- **Ejercicio propuesto de la lección** (20 pts): el enunciado y la figura de la lección, con la pauta del solucionario. El módulo 2.4 incluye además el ejercicio de Kirchhoff de la clase 1.
+- **Ejercicio adicional tipo certamen**: un ejercicio extra propio del sitio.
+
+El módulo 2.1 sigue la notación del Cap. 3 (ρe, U_d, μe, S, ρΩ).
 
 ## Módulos
 
@@ -23,6 +29,7 @@ Sitio estático para preparar los certámenes de Electromagnetismo EIE2211 (PUCV
 
 ```
 index.html          contenido de los módulos (HTML semántico, LaTeX con MathJax)
+img/lecciones/      figuras de los ejercicios, recortadas de las lecciones en PDF
 css/styles.css      tokens de diseño, tema oscuro y claro, responsivo
 js/physics.js       funciones puras de física (sin DOM), comentadas
 js/plot.js          gráficos de línea en canvas

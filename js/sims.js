@@ -89,35 +89,38 @@
   const sims = {
 
     /**
-     * 2.1 Conductor óhmico.
-     * El campo E = V/L empuja a los electrones en sentido contrario a E; su velocidad
-     * de deriva v_d = J/(n·e) es del orden de décimas de milímetro por segundo.
-     * La animación exagera v_d (×10⁴) para que se vea, pero conserva las proporciones.
+     * 2.1 Conductor óhmico, con la notación del Cap. 3.
+     * El campo E = V_ab/L empuja a los electrones de conducción contra E; su velocidad
+     * de deriva U_d = J/ρe = −μe·E es de décimas de milímetro por segundo.
+     * La animación exagera U_d para que se vea, pero conserva las proporciones.
      */
     ohm(root) {
       const cv = root.querySelector('canvas');
+      // Conductividades de la lámina 14 del Cap. 3; n = electrones de conducción por m³.
       const mats = [
         { label: 'Cobre (σ = 5,8·10⁷ S/m)', value: { sigma: 5.8e7, n: 8.5e28 } },
-        { label: 'Aluminio (σ = 3,5·10⁷ S/m)', value: { sigma: 3.5e7, n: 18.1e28 } },
-        { label: 'Nicrom (σ = 9,1·10⁵ S/m)', value: { sigma: 9.1e5, n: 9e28 } },
+        { label: 'Aluminio (σ = 3,72·10⁷ S/m)', value: { sigma: 3.72e7, n: 18.1e28 } },
+        { label: 'Plata (σ = 6,17·10⁷ S/m)', value: { sigma: 6.17e7, n: 5.86e28 } },
       ];
       const s = controls(root, [
         { id: 'mat', label: 'Material', options: mats },
-        { id: 'L', label: 'Largo L', unit: 'm', min: 1, max: 100, step: 1, value: 10, dec: 0 },
-        { id: 'd', label: 'Diámetro d', unit: 'mm', min: 0.2, max: 4, step: 0.1, value: 1, dec: 1 },
-        { id: 'I', label: 'Corriente I', unit: 'A', min: 0.1, max: 10, step: 0.1, value: 2, dec: 1 },
+        { id: 'L', label: 'Largo L', unit: 'm', min: 0.5, max: 100, step: 0.5, value: 1, dec: 1 },
+        { id: 'S', label: 'Sección S', unit: 'mm²', min: 0.1, max: 10, step: 0.1, value: 1, dec: 1 },
+        { id: 'I', label: 'Corriente I', unit: 'A', min: 0.1, max: 10, step: 0.1, value: 1, dec: 1 },
       ], update);
       let res = null;
       const dots = Array.from({ length: 70 }, () => ({ x: Math.random(), y: Math.random(), j: Math.random() * 6 }));
       function update() {
-        res = P.wire({ L: s.L, d: s.d / 1000, sigma: s.mat.sigma, I: s.I, n: s.mat.n });
+        res = P.wire({ L: s.L, S: s.S * 1e-6, sigma: s.mat.sigma, I: s.I, n: s.mat.n });
         readouts(root, [
-          { k: 'R = L/(σA)', v: si(res.R, 'Ω') },
-          { k: 'V = IR', v: si(res.V, 'V') },
-          { k: 'E = V/L', v: si(res.E, 'V/m'), cls: 'e' },
-          { k: 'J = I/A', v: si(res.J, 'A/m²') },
+          { k: 'R = L/(σS)', v: si(res.R, 'Ω') },
+          { k: 'V_ab = RI', v: si(res.V, 'V') },
+          { k: 'E = V_ab/L', v: si(res.E, 'V/m'), cls: 'e' },
+          { k: 'J = I/S', v: si(res.J, 'A/m²') },
+          { k: 'ρe', v: (res.rhoE / 1e10).toFixed(2).replace('.', ',') + '·10¹⁰ C/m³' },
+          { k: 'U_d = J/ρe', v: '−' + si(res.vd, 'm/s') },
+          { k: 'μe = −σ/ρe', v: si(res.mu, 'm²/(V·s)') },
           { k: 'P = I²R', v: si(res.P, 'W') },
-          { k: 'v_d = J/(ne)', v: si(res.vd, 'm/s') },
         ]);
       }
       update();
@@ -128,7 +131,7 @@
         if (W && H && !root.closest('[hidden]')) {
           cv.width = W * dpr; cv.height = H * dpr;
           const c = cv.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0);
-          const tubeH = Math.max(18, Math.min(H - 30, 14 + s.d * 22));
+          const tubeH = Math.max(18, Math.min(H - 30, 14 + Math.sqrt(s.S) * 24));
           const y0 = (H - tubeH) / 2;
           c.fillStyle = T('--surface-2'); c.strokeStyle = T('--line');
           c.beginPath(); c.roundRect(10, y0, W - 20, tubeH, tubeH / 2); c.fill(); c.stroke();

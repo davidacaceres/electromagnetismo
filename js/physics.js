@@ -50,18 +50,21 @@
   /* ---------------- 2.1 Corriente y ley de Ohm ---------------- */
 
   /**
-   * Conductor cilíndrico de largo L, diámetro d y conductividad σ con corriente I.
-   * Física: dentro del conductor el campo es uniforme, E = V/L, y la ley de Ohm
-   * microscópica J = σE integrada sobre la sección da V = I·L/(σA) = I·R.
-   * La velocidad de deriva sale de J = n·q·v_d.
+   * Conductor de largo L y sección S (notación del Cap. 3) con corriente I.
+   * Física: el campo empuja a los electrones de conducción y aparece la deriva
+   * U_d = −μe·E. Con J = ρe·U_d se llega a J = σE, σ = −ρe·μe, y al integrar
+   * sobre el conductor, V_ab = E·L = I·L/(σS) = R·I.
+   * @param {{L:number,S:number,sigma:number,I:number,n?:number}} p n = electrones de conducción por m³
    */
-  function wire({ L, d, sigma, I, n = 8.5e28 }) {
-    const A = Math.PI * (d / 2) ** 2;
-    const R = L / (sigma * A);
+  function wire({ L, S, sigma, I, n = 8.5e28 }) {
+    const rhoE = -n * QE;            // densidad de carga de conducción [C/m³], negativa
+    const R = L / (sigma * S);
     const V = I * R;
     const E = V / L;
-    const J = I / A;
-    return { A, R, V, E, J, P: I * I * R, vd: J / (n * QE) };
+    const J = I / S;
+    const Ud = J / rhoE;             // negativa: los electrones van contra el campo
+    const mu = -sigma / rhoE;        // movilidad [m²/(V·s)]
+    return { S, R, V, E, J, P: I * I * R, rhoE, Ud, mu, vd: Math.abs(Ud) };
   }
 
   /* ---------------- 2.2 Fuerza electromotriz ---------------- */

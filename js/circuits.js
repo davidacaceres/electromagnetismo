@@ -247,7 +247,25 @@
     ],
   });
 
+  /* Ejercicio de la clase 1: dos nodos y tres ramas en paralelo. */
+  const clase1 = shift(60, {
+    w: 500, h: 260, title: 'Dos nodos a y b unidos por tres ramas',
+    parts: [
+      { t: 'V', a: [70, 220], b: [70, 170], plus: 'b', label: 'ε₁ = 18 V', side: 1 },
+      { t: 'R', a: [70, 170], b: [70, 115], label: 'r₁ = 1 Ω', side: 1, off: 22 },
+      { t: 'R', a: [70, 115], b: [70, 45], label: 'R₁ = 5 Ω', side: 1 },
+      { t: 'W', a: [70, 45], b: [370, 45] },
+      { t: 'V', a: [220, 220], b: [220, 150], plus: 'b', label: 'ε₂ = 9 V', side: -1 },
+      { t: 'R', a: [220, 150], b: [220, 45], label: 'R₂ = 3 Ω', side: -1 },
+      { t: 'R', a: [370, 45], b: [370, 220], label: 'R₃ = 3 Ω', side: -1 },
+      { t: 'W', a: [70, 220], b: [370, 220] },
+      { t: 'dot', at: [220, 45], label: 'a', dx: -4, dy: -10 },
+      { t: 'dot', at: [220, 220], label: 'b', dx: 8, dy: 16 },
+    ],
+  });
+
   global.Circuits = {
+    'clase1': clase1,
     'fuente-real': fuenteReal('ε = 12 V', 'r = 0,5 Ω', 'R = 5,5 Ω'),
     'fuente-real-sim': fuenteReal('ε', 'r', 'R'),
     'nodo-ej': nodo3('Iₛ = 2 A', 'R₁ = 4 Ω', 'R₂ = 6 Ω', 'ε = 12 V'),
