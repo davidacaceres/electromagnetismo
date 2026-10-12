@@ -190,10 +190,10 @@
   <div class="block">
     <h3>Ecuaciones que usarás</h3>
     <div class="law"><dl>
-      <dt>Deriva, densidad de corriente y conductividad</dt><dd>$$\vec U_d = -\mu_e\vec E, \qquad \vec J = \rho_e\vec U_d, \qquad \sigma = -\rho_e\mu_e$$</dd>
-      <dt>Ley de Ohm puntual y de circuitos</dt><dd>$$\vec J = \sigma\vec E, \qquad R = \frac{L}{\sigma S} = \rho_\Omega\frac{L}{S}, \qquad V_{ab} = RI, \qquad I = G\,V_{ab}$$</dd>
-      <dt>Semiconductores (lámina 40)</dt><dd>$$\sigma_{sc} = -\rho_e\mu_e + \rho_h\mu_h$$</dd>
-      <dt>Potencia disipada (efecto Joule)</dt><dd>$$P = V_{ab}I = I^2R = \frac{V_{ab}^2}{R}$$</dd>
+      <dt data-f="ohm-puntual">Deriva, densidad de corriente y conductividad</dt><dd>$$\vec U_d = -\mu_e\vec E, \qquad \vec J = \rho_e\vec U_d, \qquad \sigma = -\rho_e\mu_e$$</dd>
+      <dt data-f="resistencia">Ley de Ohm puntual y de circuitos</dt><dd>$$\vec J = \sigma\vec E, \qquad R = \frac{L}{\sigma S} = \rho_\Omega\frac{L}{S}, \qquad V_{ab} = RI, \qquad I = G\,V_{ab}$$</dd>
+      <dt data-f="ohm-puntual">Semiconductores (lámina 40)</dt><dd>$$\sigma_{sc} = -\rho_e\mu_e + \rho_h\mu_h$$</dd>
+      <dt data-f="joule">Potencia disipada (efecto Joule)</dt><dd>$$P = V_{ab}I = I^2R = \frac{V_{ab}^2}{R}$$</dd>
     </dl></div>
   </div>
 
@@ -329,8 +329,8 @@
   <div class="block">
     <h3>Ecuaciones que usarás</h3>
     <div class="law"><dl>
-      <dt>Modelo de fuente real</dt><dd>$$V_{ab} = \varepsilon - I r \quad\text{(descarga)},\qquad V_{ab} = \varepsilon + I r \quad\text{(carga)}$$</dd>
-      <dt>Con carga resistiva R</dt><dd>$$I = \frac{\varepsilon}{r + R}, \qquad P_R = \frac{\varepsilon^2 R}{(r+R)^2}, \qquad P_{R,\max} = \frac{\varepsilon^2}{4r}\ \text{en}\ R = r$$</dd>
+      <dt data-f="bateria-real">Modelo de fuente real</dt><dd>$$V_{ab} = \varepsilon - I r \quad\text{(descarga)},\qquad V_{ab} = \varepsilon + I r \quad\text{(carga)}$$</dd>
+      <dt data-f="max-potencia-bateria">Con carga resistiva R</dt><dd>$$I = \frac{\varepsilon}{r + R}, \qquad P_R = \frac{\varepsilon^2 R}{(r+R)^2}, \qquad P_{R,\max} = \frac{\varepsilon^2}{4r}\ \text{en}\ R = r$$</dd>
     </dl></div>
   </div>
 
@@ -464,8 +464,8 @@
   <div class="block">
     <h3>Ecuaciones que usarás</h3>
     <div class="law"><dl>
-      <dt>LCK en un nodo</dt><dd>$$\sum_k I_k = 0 \quad\text{(con signo + las que salen y − las que entran, o al revés, pero consistente)}$$</dd>
-      <dt>Divisor de corriente (dos ramas en paralelo)</dt><dd>$$I_1 = I\,\frac{R_2}{R_1 + R_2}, \qquad I_2 = I\,\frac{R_1}{R_1 + R_2}$$</dd>
+      <dt data-f="lck">LCK en un nodo</dt><dd>$$\sum_k I_k = 0 \quad\text{(con signo + las que salen y − las que entran, o al revés, pero consistente)}$$</dd>
+      <dt data-f="divisor-corriente">Divisor de corriente (dos ramas en paralelo)</dt><dd>$$I_1 = I\,\frac{R_2}{R_1 + R_2}, \qquad I_2 = I\,\frac{R_1}{R_1 + R_2}$$</dd>
     </dl></div>
   </div>
 
@@ -599,9 +599,9 @@
   <div class="block">
     <h3>Ecuaciones que usarás</h3>
     <div class="law"><dl>
-      <dt>LVK</dt><dd>$$\sum_{\text{lazo}} \Delta V = 0$$</dd>
-      <dt>Diferencia de potencial por cualquier camino</dt><dd>$$V_c - V_a = \sum_{a \to c} \Delta V \quad\text{(da lo mismo el camino que elijas)}$$</dd>
-      <dt>Divisor de tensión</dt><dd>$$V_k = V\,\frac{R_k}{\sum R}$$</dd>
+      <dt data-f="lvk">LVK</dt><dd>$$\sum_{\text{lazo}} \Delta V = 0$$</dd>
+      <dt data-f="lvk">Diferencia de potencial por cualquier camino</dt><dd>$$V_c - V_a = \sum_{a \to c} \Delta V \quad\text{(da lo mismo el camino que elijas)}$$</dd>
+      <dt data-f="divisor-tension">Divisor de tensión</dt><dd>$$V_k = V\,\frac{R_k}{\sum R}$$</dd>
     </dl></div>
   </div>
 
@@ -760,9 +760,9 @@
   <div class="block">
     <h3>Ecuaciones que usarás</h3>
     <div class="law"><dl>
-      <dt>Serie y paralelo</dt><dd>$$R_{eq} = R_1 + R_2 + \dots, \qquad \frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots$$</dd>
-      <dt>Δ → Y (la resistencia de la estrella en un nodo usa las dos del triángulo que llegan a ese nodo)</dt><dd>$$R_a = \frac{R_{ab}R_{ca}}{R_{ab} + R_{bc} + R_{ca}}, \quad R_b = \frac{R_{ab}R_{bc}}{\Sigma}, \quad R_c = \frac{R_{bc}R_{ca}}{\Sigma}$$</dd>
-      <dt>Y → Δ</dt><dd>$$R_{ab} = \frac{R_aR_b + R_bR_c + R_cR_a}{R_c}\quad\text{(y en forma cíclica)}$$</dd>
+      <dt data-f="serie-paralelo">Serie y paralelo</dt><dd>$$R_{eq} = R_1 + R_2 + \dots, \qquad \frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots$$</dd>
+      <dt data-f="delta-y">Δ → Y (la resistencia de la estrella en un nodo usa las dos del triángulo que llegan a ese nodo)</dt><dd>$$R_a = \frac{R_{ab}R_{ca}}{R_{ab} + R_{bc} + R_{ca}}, \quad R_b = \frac{R_{ab}R_{bc}}{\Sigma}, \quad R_c = \frac{R_{bc}R_{ca}}{\Sigma}$$</dd>
+      <dt data-f="delta-y">Y → Δ</dt><dd>$$R_{ab} = \frac{R_aR_b + R_bR_c + R_cR_a}{R_c}\quad\text{(y en forma cíclica)}$$</dd>
     </dl></div>
   </div>
 
@@ -897,8 +897,8 @@
   <div class="block">
     <h3>Ecuaciones que usarás</h3>
     <div class="law"><dl>
-      <dt>Forma matricial por inspección (mallas horarias)</dt><dd>$$\begin{bmatrix} R_{11} & -R_{12} \\ -R_{21} & R_{22} \end{bmatrix}\begin{bmatrix} I_1 \\ I_2 \end{bmatrix} = \begin{bmatrix} \sum \varepsilon_1 \\ \sum \varepsilon_2 \end{bmatrix}$$</dd>
-      <dt>Supermalla con fuente de corriente \(I_s\) en la rama compartida</dt><dd>$$I_1 - I_2 = I_s \quad\text{(o } I_2 - I_1\text{ según el sentido de la fuente)} + \text{LVK por el contorno exterior}$$</dd>
+      <dt data-f="mallas">Forma matricial por inspección (mallas horarias)</dt><dd>$$\begin{bmatrix} R_{11} & -R_{12} \\ -R_{21} & R_{22} \end{bmatrix}\begin{bmatrix} I_1 \\ I_2 \end{bmatrix} = \begin{bmatrix} \sum \varepsilon_1 \\ \sum \varepsilon_2 \end{bmatrix}$$</dd>
+      <dt data-f="supermalla">Supermalla con fuente de corriente \(I_s\) en la rama compartida</dt><dd>$$I_1 - I_2 = I_s \quad\text{(o } I_2 - I_1\text{ según el sentido de la fuente)} + \text{LVK por el contorno exterior}$$</dd>
     </dl></div>
   </div>
 
@@ -1035,8 +1035,8 @@
   <div class="block">
     <h3>Ecuaciones que usarás</h3>
     <div class="law"><dl>
-      <dt>LCK en el nodo i, corrientes saliendo</dt><dd>$$\sum_j \frac{V_i - V_j}{R_{ij}} = I_{s,\text{entrando}}$$</dd>
-      <dt>Supernodo entre 1 y 2 con fuente \(\varepsilon\) (+ en 1)</dt><dd>$$\text{LCK de la superficie que encierra 1 y 2}, \qquad V_1 - V_2 = \varepsilon$$</dd>
+      <dt data-f="nodos">LCK en el nodo i, corrientes saliendo</dt><dd>$$\sum_j \frac{V_i - V_j}{R_{ij}} = I_{s,\text{entrando}}$$</dd>
+      <dt data-f="supernodo">Supernodo entre 1 y 2 con fuente \(\varepsilon\) (+ en 1)</dt><dd>$$\text{LCK de la superficie que encierra 1 y 2}, \qquad V_1 - V_2 = \varepsilon$$</dd>
     </dl></div>
   </div>
 
@@ -1172,8 +1172,8 @@
   <div class="block">
     <h3>Ecuaciones que usarás</h3>
     <div class="law"><dl>
-      <dt>Equivalentes</dt><dd>$$V_{th} = V_{ab}\big|_{\text{abierto}}, \quad I_N = I_{ab}\big|_{\text{corto}}, \quad R_{th} = \frac{V_{th}}{I_N} = R_{ab}\big|_{\text{fuentes indep. apagadas}}$$</dd>
-      <dt>Máxima transferencia de potencia</dt><dd>$$R_L = R_{th}, \qquad P_{\max} = \frac{V_{th}^2}{4R_{th}}$$</dd>
+      <dt data-f="thevenin">Equivalentes</dt><dd>$$V_{th} = V_{ab}\big|_{\text{abierto}}, \quad I_N = I_{ab}\big|_{\text{corto}}, \quad R_{th} = \frac{V_{th}}{I_N} = R_{ab}\big|_{\text{fuentes indep. apagadas}}$$</dd>
+      <dt data-f="max-potencia-bateria">Máxima transferencia de potencia</dt><dd>$$R_L = R_{th}, \qquad P_{\max} = \frac{V_{th}^2}{4R_{th}}$$</dd>
     </dl></div>
   </div>
 
@@ -1307,8 +1307,8 @@
   <div class="block">
     <h3>Ecuaciones que usarás</h3>
     <div class="law"><dl>
-      <dt>Respuesta de primer orden (cualquier variable)</dt><dd>$$x(t) = x(\infty) + \left[x(0^+) - x(\infty)\right]e^{-t/\tau}, \qquad \tau = R_{th}C$$</dd>
-      <dt>Capacitor</dt><dd>$$i_C = C\frac{dv_C}{dt}, \qquad v_C(0^+) = v_C(0^-), \qquad W = \tfrac12 C v_C^2$$</dd>
+      <dt data-f="primer-orden">Respuesta de primer orden (cualquier variable)</dt><dd>$$x(t) = x(\infty) + \left[x(0^+) - x(\infty)\right]e^{-t/\tau}, \qquad \tau = R_{th}C$$</dd>
+      <dt data-f="capacitor-iv">Capacitor</dt><dd>$$i_C = C\frac{dv_C}{dt}, \qquad v_C(0^+) = v_C(0^-), \qquad W = \tfrac12 C v_C^2$$</dd>
     </dl></div>
   </div>
 
@@ -1439,8 +1439,8 @@
   <div class="block">
     <h3>Ecuaciones que usarás</h3>
     <div class="law"><dl>
-      <dt>Inductor</dt><dd>$$v_L = L\frac{di_L}{dt}, \qquad i_L(0^+) = i_L(0^-), \qquad W = \tfrac12 L i_L^2$$</dd>
-      <dt>Respuesta de primer orden</dt><dd>$$i_L(t) = i_L(\infty) + \left[i_L(0^+) - i_L(\infty)\right]e^{-t/\tau}, \qquad \tau = \frac{L}{R_{th}}$$</dd>
+      <dt data-f="inductor-iv">Inductor</dt><dd>$$v_L = L\frac{di_L}{dt}, \qquad i_L(0^+) = i_L(0^-), \qquad W = \tfrac12 L i_L^2$$</dd>
+      <dt data-f="rl">Respuesta de primer orden</dt><dd>$$i_L(t) = i_L(\infty) + \left[i_L(0^+) - i_L(\infty)\right]e^{-t/\tau}, \qquad \tau = \frac{L}{R_{th}}$$</dd>
     </dl></div>
   </div>
 
@@ -1552,13 +1552,13 @@
   <header class="mod-head">
     <span class="mod-code">Módulo 2.11 · Cap. 3</span>
     <h2>Resistencia en geometrías no uniformes</h2>
-    <p class="lead">Cuando la sección cambia a lo largo del camino de la corriente, R = L/(σA) deja de servir y hay que integrar.</p>
-    <div class="chips"><span class="chip">coaxial</span><span class="chip">esferas concéntricas</span><span class="chip">dR = dl/(σA)</span></div>
+    <p class="lead">Cuando la sección cambia a lo largo del camino de la corriente, R = L/(σS) deja de servir y hay que integrar.</p>
+    <div class="chips"><span class="chip">coaxial</span><span class="chip">esferas concéntricas</span><span class="chip">dR = dl/(σS)</span></div>
   </header>
 
   <div class="block prose">
     <h3>La física detrás <span class="tag">J, E y V en ese orden</span></h3>
-    <p>El procedimiento que pide el Cap. 3 tiene cuatro pasos y conviene hacerlos siempre en el mismo orden. Supones una corriente total \(I\). Por continuidad, esa misma \(I\) atraviesa cada superficie perpendicular al flujo, así que \(J = I/A(r)\). Con la ley de Ohm, \(E = J/\sigma\). Integras \(E\) entre los electrodos para obtener \(V\), y finalmente \(R = V/I\), donde \(I\) se cancela.</p>
+    <p>El procedimiento que pide el Cap. 3 tiene cuatro pasos y conviene hacerlos siempre en el mismo orden. Supones una corriente total \(I\). Por continuidad, esa misma \(I\) atraviesa cada superficie perpendicular al flujo, así que \(J = I/S(r)\). Con la ley de Ohm, \(E = J/\sigma\). Integras \(E\) entre los electrodos para obtener \(V\), y finalmente \(R = V/I\), donde \(I\) se cancela.</p>
     <p>En un coaxial con material resistivo entre los conductores, la corriente sale radial del conductor interno. Atraviesa cilindros de área \(2\pi r L\), que crecen con \(r\). Cerca del conductor interno la corriente se apretuja en un área pequeña, por lo que \(J\) y \(E\) son mayores ahí:</p>
     $$J = \frac{I}{2\pi r L}, \quad E = \frac{I}{2\pi\sigma r L}, \quad V = \int_a^b E\,dr = \frac{I}{2\pi\sigma L}\ln\frac{b}{a}$$
     <div class="note"><p>El mismo esquema, cambiando conductividad por permitividad, da la capacitancia del módulo 2.12. Por eso \(RC = \varepsilon/\sigma\) para cualquier geometría con el mismo material.</p></div>
@@ -1567,9 +1567,9 @@
   <div class="block">
     <h3>Ecuaciones que usarás</h3>
     <div class="law"><dl>
-      <dt>Coaxial, corriente radial</dt><dd>$$R = \frac{\ln(b/a)}{2\pi\sigma L}$$</dd>
-      <dt>Esferas concéntricas</dt><dd>$$R = \frac{1}{4\pi\sigma}\left(\frac{1}{a} - \frac{1}{b}\right)$$</dd>
-      <dt>Procedimiento general</dt><dd>$$I \;\to\; J = \frac{I}{A} \;\to\; E = \frac{J}{\sigma} \;\to\; V = \int E\,dl \;\to\; R = \frac{V}{I}$$</dd>
+      <dt data-f="r-coaxial">Coaxial, corriente radial</dt><dd>$$R = \frac{\ln(b/a)}{2\pi\sigma L}$$</dd>
+      <dt data-f="r-general">Esferas concéntricas</dt><dd>$$R = \frac{1}{4\pi\sigma}\left(\frac{1}{a} - \frac{1}{b}\right)$$</dd>
+      <dt data-f="r-general">Procedimiento general</dt><dd>$$I \;\to\; J = \frac{I}{S(r)} \;\to\; E = \frac{J}{\sigma} \;\to\; V = \int E\,dl \;\to\; R = \frac{V}{I}$$</dd>
     </dl></div>
   </div>
 
@@ -1697,10 +1697,10 @@
   <div class="block">
     <h3>Ecuaciones que usarás</h3>
     <div class="law"><dl>
-      <dt>Placas paralelas</dt><dd>$$C = \frac{\varepsilon_0\varepsilon_r A}{d}, \qquad W = \tfrac12 CV^2 = \int \tfrac12\varepsilon E^2\,dv$$</dd>
-      <dt>Capas en serie (lámina de espesor t)</dt><dd>$$C = \frac{\varepsilon_0 A}{t/\varepsilon_r + (d - t)}$$</dd>
-      <dt>Capas en paralelo (fracciones de área)</dt><dd>$$C = \frac{\varepsilon_0}{d}\left(\varepsilon_{r1}A_1 + \varepsilon_{r2}A_2\right)$$</dd>
-      <dt>Carga ligada en la superficie del dieléctrico</dt><dd>$$\rho_{s,b} = P = (\varepsilon_r - 1)\varepsilon_0 E$$</dd>
+      <dt data-f="c-placas">Placas paralelas</dt><dd>$$C = \frac{\varepsilon_0\varepsilon_r A}{d}, \qquad W = \tfrac12 CV^2 = \int \tfrac12\varepsilon E^2\,dv$$</dd>
+      <dt data-f="c-capas-serie">Capas en serie (lámina de espesor t)</dt><dd>$$C = \frac{\varepsilon_0 A}{t/\varepsilon_r + (d - t)}$$</dd>
+      <dt data-f="c-capas-paralelo">Capas en paralelo (fracciones de área)</dt><dd>$$C = \frac{\varepsilon_0}{d}\left(\varepsilon_{r1}A_1 + \varepsilon_{r2}A_2\right)$$</dd>
+      <dt data-f="dielectricos">Carga ligada en la superficie del dieléctrico</dt><dd>$$\rho_{s,b} = P = (\varepsilon_r - 1)\varepsilon_0 E$$</dd>
     </dl></div>
   </div>
 
@@ -1817,5 +1817,11 @@
 <script src="js/circuits.js"></script>
 <script src="js/sims.js"></script>
 <script src="js/app.js"></script>
+<script src="js/notation.js"></script>
+<script src="js/formulas/f1-corriente.js"></script>
+<script src="js/formulas/f2-fuentes-kirchhoff.js"></script>
+<script src="js/formulas/f3-metodos-transitorios.js"></script>
+<script src="js/formulas/f4-campos-materiales.js"></script>
+<script src="js/panel.js"></script>
 </body>
 </html>

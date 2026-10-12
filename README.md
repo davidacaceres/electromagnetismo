@@ -8,6 +8,15 @@ Sitio estático para preparar los certámenes de Electromagnetismo EIE2211 (PUCV
 
 El módulo 2.1 sigue la notación del Cap. 3 (ρe, U_d, μe, S, ρΩ).
 
+## Panel de notación y formulario
+
+En el borde derecho hay dos pestañas que abren un panel visible desde cualquier módulo:
+
+- **Notación**: los símbolos del curso con su unidad, agrupados por tema y con la variante que usan los apuntes cuando difiere (Cap. 3, 4 y 7, formulario del profesor Villarroel, guía de circuitos y libro de ejercicios). Arriba están las reglas de escritura del ramo.
+- **Formulario**: las fórmulas de los doce módulos. Cada una tiene el botón *Explicar paso a paso*, que abre una ventana con qué dice la fórmula, de dónde sale, qué es cada símbolo, cuándo se usa, un ejemplo resuelto y el error típico del certamen.
+
+El panel muestra por defecto lo del módulo abierto (se puede cambiar a todo el curso) y tiene buscador. Los bloques "Ecuaciones que usarás" de cada módulo también llevan un enlace *Explicar* a la misma ventana.
+
 ## Módulos
 
 | Módulo | Tema | Laboratorio |
@@ -37,7 +46,11 @@ js/schematic.js     dibujante de circuitos en SVG a partir de datos
 js/circuits.js      diagramas de cada módulo descritos como datos
 js/sims.js          laboratorios interactivos
 js/app.js           navegación, progreso, tema y pauta bloqueada
+js/notation.js      símbolos del curso por tema (datos del panel de notación)
+js/formulas/*.js    fórmulas con su explicación paso a paso, en cuatro partes
+js/panel.js         panel lateral derecho y ventana de explicación
 tests/physics.test.js  verifica los números de ejemplos y pautas
+tests/formulas.test.js verifica los datos del panel y los ejemplos del formulario
 vercel.json         configuración de Vercel (sitio estático, sin build)
 ```
 
@@ -49,6 +62,7 @@ No hay dependencias ni paso de compilación. MathJax 3.2.2 y las fuentes se carg
 python -m http.server 8000      # o: npx serve .
 # abrir http://localhost:8000
 node tests/physics.test.js      # pruebas de los cálculos
+node tests/formulas.test.js     # pruebas del formulario y la notación
 ```
 
 ## Publicar en Vercel
