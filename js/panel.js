@@ -154,7 +154,8 @@
 
   /* ---------- estado: abierto, pestaña, alcance, búsqueda ---------- */
   const state = {
-    open: store.get('ref:open', false),
+    /* Sin preferencia guardada, el panel parte abierto si la pantalla tiene espacio para él (≥ 1280 px). */
+    open: store.get('ref:open', matchMedia('(min-width: 1280px)').matches),
     tab: store.get('ref:tab', 'notacion'),
     scope: store.get('ref:scope', 'mod'),
     q: '',

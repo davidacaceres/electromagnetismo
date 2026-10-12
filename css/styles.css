@@ -307,11 +307,13 @@ table.notation th { font: 500 .72rem var(--font-mono); letter-spacing: .08em; te
 }
 .ref-rail button {
   writing-mode: vertical-rl; transform: rotate(180deg);
-  font: 500 .74rem var(--font-mono); letter-spacing: .1em; text-transform: uppercase;
-  color: var(--fg); background: var(--surface-2); border: 1px solid var(--line); border-right: 0;
-  border-radius: 0 8px 8px 0; padding: .9rem .45rem; cursor: pointer;
+  font: 600 .8rem var(--font-mono); letter-spacing: .1em; text-transform: uppercase;
+  color: var(--bg); background: var(--e); border: 1px solid var(--e); border-right: 0;
+  border-radius: 0 8px 8px 0; padding: 1rem .55rem; cursor: pointer;
+  box-shadow: -4px 0 14px rgba(0, 0, 0, .25);
 }
-.ref-rail button:hover, .ref-rail button[aria-expanded="true"] { color: var(--e); border-color: var(--e); }
+.ref-rail button[aria-expanded="true"] { background: var(--surface-2); color: var(--e); }
+.ref-rail button:hover { filter: brightness(1.1); }
 body.ref-open .ref-rail { right: var(--ref-w); }
 
 .refpanel {
