@@ -15,6 +15,8 @@ En el borde derecho hay dos pestañas que abren un panel visible desde cualquier
 - **Notación**: los símbolos del curso con su unidad, agrupados por tema y con la variante que usan los apuntes cuando difiere (Cap. 3, 4 y 7, formulario del profesor Villarroel, guía de circuitos y libro de ejercicios). Arriba están las reglas de escritura del ramo.
 - **Formulario**: las fórmulas de los doce módulos. Cada una tiene el botón *Explicar paso a paso*, que abre una ventana con qué dice la fórmula, de dónde sale, qué es cada símbolo, cuándo se usa, un ejemplo resuelto y el error típico del certamen.
 
+El sitio también ofrece **Formulario PDF** (`descargas/Formulario_EIE2211_circuitos.pdf`): dos páginas A4 con el nombre y la fórmula de las 38 fichas del panel, las que aparecen en los módulos sin ficha propia y las constantes del curso, para usar en la prueba. Se regenera con `python3 tools/build_formulario.py` (requiere node y pdflatex) cada vez que cambien las fórmulas.
+
 El panel muestra por defecto lo del módulo abierto (se puede cambiar a todo el curso) y tiene buscador. Los bloques "Ecuaciones que usarás" de cada módulo también llevan un enlace *Explicar* a la misma ventana.
 
 ## Módulos
@@ -51,6 +53,8 @@ js/formulas/*.js    fórmulas con su explicación paso a paso, en cuatro partes
 js/panel.js         panel lateral derecho y ventana de explicación
 tests/physics.test.js  verifica los números de ejemplos y pautas
 tests/formulas.test.js verifica los datos del panel y los ejemplos del formulario
+descargas/          formulario en PDF para la prueba
+tools/              generador del PDF (build_formulario.py, dump-formulas.js, formulario.tex)
 vercel.json         configuración de Vercel (sitio estático, sin build)
 ```
 

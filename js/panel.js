@@ -94,7 +94,9 @@
   function formulasHTML() {
     const byGroup = new Map();
     F.forEach(f => { if (!byGroup.has(f.g)) byGroup.set(f.g, []); byGroup.get(f.g).push(f); });
-    return [...byGroup].map(([g, items]) => `
+    // Enlace al PDF para la prueba (se genera con tools/build_formulario.py).
+    const dl = `<a class="ref-dl" href="descargas/Formulario_EIE2211_circuitos.pdf" download>Descargar formulario en PDF <small>2 páginas, para la prueba</small></a>`;
+    return dl + [...byGroup].map(([g, items]) => `
       <div class="ref-group" data-group>
         <h3>${esc(g)}</h3>
         ${items.map(f => `

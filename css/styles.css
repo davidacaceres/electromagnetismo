@@ -102,6 +102,7 @@ code, .mono { font-family: var(--font-mono); font-size: .9em; }
 }
 .btn:hover:not(:disabled) { border-color: var(--e); }
 .btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-dl { text-decoration: none; color: var(--e); border-color: var(--e); }
 .btn.primary { background: var(--e); color: var(--bg); border-color: var(--e); }
 
 .topbar { display: none; }
@@ -357,6 +358,10 @@ body.ref-open .refpanel { transform: none; visibility: visible; box-shadow: -12p
 .ref-conv { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface-2); padding: .6rem .8rem; font-size: .84rem; line-height: 1.5; }
 .ref-conv summary { cursor: pointer; font: 500 .78rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-2); }
 .ref-conv ul { margin: .5rem 0 0; padding-left: 1.1rem; display: grid; gap: .45rem; }
+.ref-dl { display: grid; gap: .1rem; padding: .7rem .9rem; border: 1px solid var(--e); border-radius: var(--radius); background: var(--e-soft); color: var(--e); text-decoration: none; font: 600 .85rem var(--font-mono); }
+.ref-dl small { font-weight: 400; color: var(--muted); }
+.ref-dl:hover { background: var(--e); color: var(--bg); }
+.ref-dl:hover small { color: var(--bg); }
 .ref-empty { color: var(--muted); font-size: var(--step--1); }
 
 .fcard { border: 1px solid var(--line); border-radius: var(--radius); padding: .7rem .8rem; background: var(--bg); display: grid; gap: .3rem; min-width: 0; }
