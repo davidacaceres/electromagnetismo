@@ -1,0 +1,1185 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Circuitos EIE2211</title>
+<meta name="description" content="Laboratorio interactivo de teoría de circuitos para Electromagnetismo EIE2211 (PUCV): Kirchhoff, mallas, nodos, Thévenin y transitorios RC/RL conectados con la física de campos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+  /* Configuración de MathJax: \( \) para fórmulas en línea, $$ $$ para fórmulas destacadas. */
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['$$', '$$']] },
+    svg: { fontCache: 'global' },
+    options: { ignoreHtmlClass: 'no-mj' }
+  };
+</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <a class="brand" href="#inicio"><b>Circuitos <i>E</i>·<em>B</em></b></a>
+  <button class="btn" type="button" data-nav-toggle aria-label="Abrir índice de módulos">Módulos</button>
+</div>
+
+<div class="shell">
+  <aside class="side" aria-label="Índice">
+    <a class="brand" href="#inicio">
+      <b>Circuitos <i>E</i>·<em>B</em></b>
+      <small>EIE2211 · Electromagnetismo PUCV</small>
+    </a>
+    <div class="progress" data-progress><div class="bar"></div>Módulos estudiados <span>0/12</span></div>
+    <nav class="nav">
+      <div>
+        <h2>Fundamentos</h2>
+        <ul>
+          <li><a href="#m21"><span>2.1</span>Corriente y ley de Ohm</a></li>
+          <li><a href="#m22"><span>2.2</span>Fuerza electromotriz</a></li>
+          <li><a href="#m23"><span>2.3</span>Ley de corrientes (LCK)</a></li>
+          <li><a href="#m24"><span>2.4</span>Ley de voltajes (LVK)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Métodos de análisis</h2>
+        <ul>
+          <li><a href="#m25"><span>2.5</span>Serie, paralelo y Δ–Y</a></li>
+          <li><a href="#m26"><span>2.6</span>Análisis de mallas</a></li>
+          <li><a href="#m27"><span>2.7</span>Análisis de nodos</a></li>
+          <li><a href="#m28"><span>2.8</span>Thévenin, Norton y máxima potencia</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Transitorios</h2>
+        <ul>
+          <li><a href="#m29"><span>2.9</span>Capacitores y circuito RC</a></li>
+          <li><a href="#m210" class="mag"><span>2.10</span>Inductancia y circuito RL</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Campos y materiales</h2>
+        <ul>
+          <li><a href="#m211"><span>2.11</span>Resistencia en geometrías no uniformes</a></li>
+          <li><a href="#m212"><span>2.12</span>Capacitancia y dieléctricos</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="side-foot">
+      <button class="btn" type="button" data-theme-toggle>Cambiar tema</button>
+    </div>
+  </aside>
+
+  <main id="contenido">
+
+<!-- ======================================================== INICIO -->
+<section class="module" id="inicio" data-module data-title="Inicio">
+  <div class="hero">
+    <span class="kicker">Teoría de circuitos · preparación de certámenes</span>
+    <h2>Kirchhoff son las ecuaciones de Maxwell con dos <i>aproximaciones</i> y un poco de <em>paciencia</em>.</h2>
+    <p class="prose">Cada módulo parte por la física de campos, plantea las ecuaciones antes de tocar el álgebra, trae un laboratorio para mover parámetros y termina con un ejercicio tipo certamen. La pauta de ese ejercicio se abre solo después de que escribas tu planteamiento.</p>
+  </div>
+
+  <div class="derive">
+    <article>
+      <h3>Campo electrostático conservativo</h3>
+      $$\oint \vec E\cdot d\vec l = 0 \;\Longrightarrow\; \sum_{\text{lazo}} \Delta V = 0$$
+      <p>El potencial depende solo del punto, igual que la altura en un cerro. De ahí sale la LVK (módulo 2.4).</p>
+    </article>
+    <article>
+      <h3>Conservación de la carga en régimen DC</h3>
+      $$\oint \vec J\cdot d\vec S = -\frac{dQ}{dt} = 0 \;\Longrightarrow\; \sum_{\text{nodo}} I = 0$$
+      <p>La carga no se acumula en un nodo. De ahí sale la LCK (módulo 2.3).</p>
+    </article>
+  </div>
+
+  <div class="block">
+    <h3>Módulos <span class="tag">orden sugerido de estudio</span></h3>
+    <div class="map">
+      <a href="#m21"><b>2.1</b><span>Corriente y ley de Ohm</span><small>De J = σE a V = IR</small></a>
+      <a href="#m22"><b>2.2</b><span>Fuerza electromotriz</span><small>La fuerza no electrostática de la batería</small></a>
+      <a href="#m23"><b>2.3</b><span>Ley de corrientes</span><small>Conservación de la carga en un nodo</small></a>
+      <a href="#m24"><b>2.4</b><span>Ley de voltajes</span><small>El potencial como altura</small></a>
+      <a href="#m25"><b>2.5</b><span>Serie, paralelo y Δ–Y</span><small>Redes equivalentes vistas desde afuera</small></a>
+      <a href="#m26"><b>2.6</b><span>Mallas</span><small>LVK sistematizada, supermalla</small></a>
+      <a href="#m27"><b>2.7</b><span>Nodos</span><small>LCK sistematizada, supernodo</small></a>
+      <a href="#m28"><b>2.8</b><span>Thévenin y Norton</span><small>Linealidad y máxima transferencia</small></a>
+      <a href="#m29"><b>2.9</b><span>Circuito RC</span><small>Energía en el campo eléctrico</small></a>
+      <a href="#m210" class="mag"><b>2.10</b><span>Circuito RL</span><small>Faraday y energía en el campo magnético</small></a>
+      <a href="#m211"><b>2.11</b><span>Resistencia no uniforme</span><small>Coaxial y esferas, Cap. 3</small></a>
+      <a href="#m212"><b>2.12</b><span>Dieléctricos</span><small>Capas en serie y en paralelo, Cap. 4</small></a>
+    </div>
+  </div>
+
+  <div class="block how">
+    <div><h4>Convenciones</h4><p>Corrientes de malla horarias, tensiones de nodo respecto de tierra y referencia pasiva para la potencia: si \(p = v\,i > 0\) el elemento absorbe energía. Son las mismas del Cap. 3 y de la guía del curso.</p></div>
+    <div><h4>Cómo usar la pauta</h4><p>Resuelve en papel, como en la prueba. Escribe en el recuadro las ecuaciones que planteaste, con signos, y recién ahí se habilita la pauta. Si tu número no coincide, busca el paso donde te separaste.</p></div>
+    <div><h4>Tu avance</h4><p>Al final de cada módulo puedes marcarlo como estudiado. El avance y tus borradores quedan guardados solo en este navegador.</p></div>
+  </div>
+</section>
+
+<!-- ======================================================== 2.1 -->
+<section class="module" id="m21" data-module data-title="2.1 Corriente y ley de Ohm" hidden>
+  <header class="mod-head">
+    <span class="mod-code">Módulo 2.1 · Cap. 3</span>
+    <h2>Corriente y ley de Ohm</h2>
+    <p class="lead">La resistencia de un cable sale de cómo responde el material a un campo eléctrico. V = IR es la versión integrada de J = σE.</p>
+    <div class="chips"><span class="chip">densidad de corriente</span><span class="chip">conductividad</span><span class="chip">efecto Joule</span></div>
+  </header>
+
+  <div class="block prose">
+    <h3>La física detrás <span class="tag">campo y portadores</span></h3>
+    <p>En un cable de cobre hay del orden de \(8{,}5\times10^{28}\) electrones libres por metro cúbico. Se mueven todo el tiempo a unos \(10^{6}\) m/s por agitación térmica, pero en direcciones al azar, así que el flujo neto es cero.</p>
+    <p>Cuando aplicas una diferencia de potencial aparece un campo \(\vec E\) dentro del conductor. Cada electrón siente \(\vec F = -e\vec E\) y, entre choque y choque con la red cristalina, gana una pequeña velocidad promedio en contra del campo: la velocidad de deriva \(v_d\). Esa deriva es la corriente.</p>
+    <p>Los choques hacen que la velocidad de deriva sea proporcional al campo. Por eso, en un material óhmico, la densidad de corriente es proporcional a \(\vec E\):</p>
+    $$\vec J = \sigma\,\vec E \qquad [\mathrm{A/m^2}]$$
+    <p>Ahora integra. En un conductor de largo \(L\) y sección \(A\) con campo uniforme, \(V = EL\) y \(I = JA\). Reemplazando:</p>
+    $$I = JA = \sigma \frac{V}{L} A \;\Longrightarrow\; V = I\,\underbrace{\frac{L}{\sigma A}}_{R}$$
+    <p>La resistencia depende de la geometría y del material. Si cambias el circuito, la resistencia del cable no cambia.</p>
+    <div class="note"><p>Conexión con la energía: al atravesar la resistencia, cada coulomb baja \(V\) volts de potencial y entrega esa energía a la red cristalina como calor. La potencia es \(P = VI = I^2R = V^2/R\). Ese es el origen del término \(-IR\) que vas a escribir en cada LVK.</p></div>
+  </div>
+
+  <div class="block">
+    <h3>Ecuaciones que usarás</h3>
+    <div class="law"><dl>
+      <dt>Corriente y densidad de corriente</dt><dd>$$I = \frac{dQ}{dt} = \int_S \vec J\cdot d\vec S, \qquad J = n\,q\,v_d$$</dd>
+      <dt>Ley de Ohm microscópica y macroscópica</dt><dd>$$\vec J = \sigma\vec E, \qquad R = \frac{L}{\sigma A} = \frac{\rho L}{A}, \qquad V = IR$$</dd>
+      <dt>Potencia disipada (efecto Joule)</dt><dd>$$P = VI = I^2 R = \frac{V^2}{R}$$</dd>
+    </dl></div>
+  </div>
+
+  <div class="block example">
+    <h3>Ejemplo resuelto <span class="tag">planteamiento antes del álgebra</span></h3>
+    <div class="statement">
+      <p>Un cable de cobre (\(\sigma = 5{,}8\times10^{7}\) S/m, \(n = 8{,}5\times10^{28}\) m\(^{-3}\)) de 10 m de largo y 1,0 mm de diámetro lleva una corriente de 2 A. Calcula su resistencia, la caída de tensión, el campo eléctrico dentro del cable, la potencia disipada y la velocidad de deriva.</p>
+    </div>
+    <ol class="steps">
+      <li><div><span class="phase">Planteamiento</span>
+        <p>El área es la de un círculo de radio \(d/2\), no de radio \(d\). Ese error aparece en todos los certámenes.</p>
+        $$A = \pi\left(\frac{d}{2}\right)^2, \qquad R = \frac{L}{\sigma A}$$
+      </div></li>
+      <li><div><span class="phase">Planteamiento</span>
+        <p>Con \(R\) conocida, el resto sale de definiciones: \(V = IR\), el campo es uniforme así que \(E = V/L\), y la deriva sale de \(J = I/A = n e v_d\).</p>
+      </div></li>
+      <li><div><span class="phase">Álgebra</span>
+        $$A = \pi (0{,}5\times10^{-3})^2 = 7{,}854\times10^{-7}\ \mathrm{m^2}$$
+        $$R = \frac{10}{5{,}8\times10^{7}\cdot 7{,}854\times10^{-7}} = 0{,}2195\ \Omega$$
+        $$V = 2\cdot 0{,}2195 = 0{,}439\ \mathrm{V}, \qquad E = \frac{0{,}439}{10} = 0{,}0439\ \mathrm{V/m}$$
+        $$v_d = \frac{I/A}{n e} = \frac{2{,}546\times10^{6}}{8{,}5\times10^{28}\cdot 1{,}602\times10^{-19}} = 1{,}87\times10^{-4}\ \mathrm{m/s}$$
+      </div></li>
+      <li><div><span class="phase">Interpretación</span>
+        <p>Los electrones derivan a 0,19 mm/s y aun así la ampolleta se enciende al instante. Lo que viaja rápido es el campo, que se establece en todo el conductor casi a la velocidad de la luz.</p>
+      </div></li>
+    </ol>
+    <div class="result">R = 0,220 Ω · V = 0,439 V · E = 0,0439 V/m · P = I²R = 0,878 W · v_d = 1,87·10⁻⁴ m/s</div>
+  </div>
+
+  <div class="block">
+    <h3>Laboratorio <span class="tag">mueve los parámetros</span></h3>
+    <div class="lab" data-sim="ohm">
+      <div class="lab-side"><span class="lab-title">Conductor óhmico</span><div class="sim-controls"></div></div>
+      <div class="lab-main">
+        <canvas class="short" aria-label="Animación de electrones derivando dentro del conductor"></canvas>
+        <dl class="sim-readouts"></dl>
+        <p class="lab-hint">Duplica el diámetro y mira R: baja a la cuarta parte, porque el área va con d². La animación exagera la deriva 10⁴ veces.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="certamen">
+    <p>Se necesita alimentar un equipo que consume 5 A con una línea de aluminio (\(\sigma = 3{,}5\times10^{7}\) S/m) de 50 m. La caída de tensión en la línea no puede superar 1 V.</p>
+    <ol class="items" type="a">
+      <li>Determina el diámetro mínimo del conductor. (2 pts)</li>
+      <li>Calcula el campo eléctrico dentro del conductor en esa condición. (1 pt)</li>
+      <li>¿Cuánta potencia se pierde como calor en la línea? (1 pt)</li>
+      <li>Si se reemplaza por cobre del mismo diámetro, ¿cuál es la nueva caída de tensión? Justifica sin recalcular el área. (2 pts)</li>
+    </ol>
+    <details><summary>Pista</summary><p>Parte desde la condición de diseño: la caída máxima fija la resistencia máxima. Para la parte d piensa qué pasa con \(R\) si solo cambia \(\sigma\).</p></details>
+    <div class="gate">
+      <label for="g21">Escribe aquí tu planteamiento (ecuaciones y resultados). Mínimo un par de líneas.</label>
+      <textarea id="g21" placeholder="R_max = ..., A = ..., d = ..."></textarea>
+      <label><input type="checkbox" id="g21c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta</h4>
+      <p>a) La condición \(IR \le 1\) V da \(R_{\max} = 1/5 = 0{,}2\ \Omega\). Despejando el área: \(A = L/(\sigma R) = 50/(3{,}5\times10^{7}\cdot 0{,}2) = 7{,}14\times10^{-6}\ \mathrm{m^2}\), y \(d = 2\sqrt{A/\pi} = 3{,}02\) mm.</p>
+      <p>b) \(E = V/L = 1/50 = 0{,}02\) V/m.</p>
+      <p>c) \(P = VI = 1\cdot 5 = 5\) W.</p>
+      <p>d) Con la misma geometría, \(R \propto 1/\sigma\): \(R_{Cu} = 0{,}2\cdot 3{,}5/5{,}8 = 0{,}121\ \Omega\) y la caída queda en \(5\cdot 0{,}121 = 0{,}603\) V.</p>
+      <p class="muted">Error típico: usar \(A = \pi d^2\). Da un diámetro la mitad del correcto.</p>
+    </div>
+  </div>
+
+  <footer class="mod-foot"><button class="btn" type="button" data-done-toggle>Marcar módulo como estudiado</button><nav class="pager" aria-label="Módulos vecinos"></nav></footer>
+</section>
+
+<!-- ======================================================== 2.2 -->
+<section class="module" id="m22" data-module data-title="2.2 Fuerza electromotriz" hidden>
+  <header class="mod-head">
+    <span class="mod-code">Módulo 2.2 · Cap. 3</span>
+    <h2>Fuerza electromotriz</h2>
+    <p class="lead">Si el campo electrostático es conservativo, algo distinto tiene que subir a las cargas de vuelta. Ese algo es la fem.</p>
+    <div class="chips"><span class="chip">fuerza no electrostática</span><span class="chip">resistencia interna</span><span class="chip">balance de potencia</span></div>
+  </header>
+
+  <div class="block prose">
+    <h3>La física detrás <span class="tag">¿por qué circula la carga?</span></h3>
+    <p>Piensa en una noria de agua: el agua baja sola por la canaleta, pero alguien tiene que subirla de nuevo. En un circuito, las cargas pierden energía en cada resistencia. Como \(\oint \vec E\cdot d\vec l = 0\), el campo electrostático por sí solo no puede devolverles esa energía en un lazo cerrado.</p>
+    <p>Dentro de la batería actúa una fuerza por unidad de carga \(\vec f_s\) de origen químico, que empuja las cargas positivas desde el terminal negativo al positivo, contra el campo. La fem es el trabajo que hace esa fuerza por coulomb:</p>
+    $$\varepsilon = \oint \vec f_s\cdot d\vec l = \int_{-}^{+} \vec f_s\cdot d\vec l \qquad [\mathrm{V}]$$
+    <p>La ley de Ohm completa dentro de cualquier conductor es \(\vec J = \sigma(\vec E + \vec f_s)\). En la batería real, parte del trabajo químico se pierde en su propia resistencia interna \(r\). Por eso la tensión en los bornes baja cuando aumenta la corriente:</p>
+    $$V_{ab} = \varepsilon - I r$$
+    <div class="note"><p>Balance de energía multiplicando por \(I\): \(\varepsilon I = I^2 r + V_{ab} I\). La batería entrega \(\varepsilon I\); una parte calienta la batería y el resto llega al circuito externo.</p></div>
+  </div>
+
+  <div class="block">
+    <h3>Ecuaciones que usarás</h3>
+    <div class="law"><dl>
+      <dt>Modelo de fuente real</dt><dd>$$V_{ab} = \varepsilon - I r \quad\text{(descarga)},\qquad V_{ab} = \varepsilon + I r \quad\text{(carga)}$$</dd>
+      <dt>Con carga resistiva R</dt><dd>$$I = \frac{\varepsilon}{r + R}, \qquad P_R = \frac{\varepsilon^2 R}{(r+R)^2}, \qquad P_{R,\max} = \frac{\varepsilon^2}{4r}\ \text{en}\ R = r$$</dd>
+    </dl></div>
+  </div>
+
+  <div class="block example">
+    <h3>Ejemplo resuelto</h3>
+    <div class="statement">
+      <p>Una batería de \(\varepsilon = 12\) V y \(r = 0{,}5\ \Omega\) alimenta una resistencia de \(5{,}5\ \Omega\). Encuentra la corriente, la tensión en bornes y el balance de potencia.</p>
+    </div>
+    <figure class="circuit" data-circuit="fuente-real"><figcaption>La batería real es la fem ideal más su resistencia interna.</figcaption></figure>
+    <ol class="steps">
+      <li><div><span class="phase">Planteamiento</span>
+        <p>Recorre el lazo en sentido horario partiendo de b. Subes \(\varepsilon\) en la fuente, bajas \(Ir\) en la resistencia interna y bajas \(IR\) en la carga, y vuelves a b:</p>
+        $$+\varepsilon - I r - I R = 0$$
+      </div></li>
+      <li><div><span class="phase">Álgebra</span>
+        $$I = \frac{12}{0{,}5 + 5{,}5} = 2\ \mathrm{A}, \qquad V_{ab} = 12 - 2\cdot 0{,}5 = 11\ \mathrm{V}$$
+      </div></li>
+      <li><div><span class="phase">Chequeo de energía</span>
+        $$\varepsilon I = 24\ \mathrm{W} = \underbrace{I^2 r}_{2\ \mathrm{W}} + \underbrace{I^2 R}_{22\ \mathrm{W}}$$
+      </div></li>
+    </ol>
+    <div class="result">I = 2 A · V_ab = 11 V · P_fuente = 24 W = 2 W (r) + 22 W (R)</div>
+  </div>
+
+  <div class="block">
+    <h3>Laboratorio</h3>
+    <figure class="circuit" data-circuit="fuente-real-sim"></figure>
+    <div class="lab" data-sim="fem">
+      <div class="lab-side"><span class="lab-title">Batería real con carga</span><div class="sim-controls"></div></div>
+      <div class="lab-main">
+        <canvas aria-label="Potencia en la carga en función de R"></canvas>
+        <dl class="sim-readouts"></dl>
+        <p class="lab-hint">Lleva R hasta igualar r: la potencia en la carga es máxima, pero la eficiencia cae a 50 %. Por eso las redes de distribución no trabajan en máxima transferencia.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="certamen">
+    <p>Al probar una batería, un voltímetro ideal marca 8,7 V entre sus bornes cuando entrega 1 A, y 8,1 V cuando entrega 3 A.</p>
+    <ol class="items" type="a">
+      <li>Determina \(\varepsilon\) y \(r\). (2 pts)</li>
+      <li>¿Qué resistencia de carga produce una corriente de 3 A? (1 pt)</li>
+      <li>¿Cuál es la potencia máxima que puede entregar a una carga externa y con qué R ocurre? (2 pts)</li>
+      <li>Si se cortocircuitan los bornes, ¿qué corriente circula y dónde se disipa la energía? (1 pt)</li>
+    </ol>
+    <details><summary>Pista</summary><p>Escribe \(V_{ab} = \varepsilon - Ir\) para cada medición. Son dos ecuaciones con dos incógnitas.</p></details>
+    <div class="gate">
+      <label for="g22">Tu planteamiento</label>
+      <textarea id="g22" placeholder="8,7 = ε − 1·r ; 8,1 = ε − 3·r ..."></textarea>
+      <label><input type="checkbox" id="g22c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta</h4>
+      <p>a) Restando las ecuaciones: \(0{,}6 = 2r\), así que \(r = 0{,}3\ \Omega\) y \(\varepsilon = 8{,}7 + 0{,}3 = 9{,}0\) V.</p>
+      <p>b) \(R = V_{ab}/I = 8{,}1/3 = 2{,}7\ \Omega\).</p>
+      <p>c) Máxima transferencia en \(R = r = 0{,}3\ \Omega\): \(P_{\max} = \varepsilon^2/(4r) = 81/1{,}2 = 67{,}5\) W.</p>
+      <p>d) \(I_{cc} = \varepsilon/r = 30\) A. Toda la energía \(\varepsilon I = 270\) W se disipa dentro de la batería, que se calienta.</p>
+    </div>
+  </div>
+
+  <footer class="mod-foot"><button class="btn" type="button" data-done-toggle>Marcar módulo como estudiado</button><nav class="pager" aria-label="Módulos vecinos"></nav></footer>
+</section>
+
+<!-- ======================================================== 2.3 -->
+<section class="module" id="m23" data-module data-title="2.3 Ley de corrientes" hidden>
+  <header class="mod-head">
+    <span class="mod-code">Módulo 2.3 · Cap. 3 y Cap. 8</span>
+    <h2>Ley de corrientes de Kirchhoff</h2>
+    <p class="lead">Lo que entra a un nodo, sale. Es la conservación de la carga escrita para régimen permanente.</p>
+    <div class="chips"><span class="chip">ecuación de continuidad</span><span class="chip">superficie generalizada</span><span class="chip">divisor de corriente</span></div>
+  </header>
+
+  <div class="block prose">
+    <h3>La física detrás <span class="tag">continuidad</span></h3>
+    <p>Encierra un nodo con una superficie cerrada. La carga que sale por unidad de tiempo tiene que ser igual a lo que disminuye la carga encerrada. Esa es la ecuación de continuidad:</p>
+    $$\oint_S \vec J\cdot d\vec S = -\frac{dQ_{enc}}{dt}$$
+    <p>En un circuito DC el nodo no acumula carga. Si acumulara, crecería un campo que frenaría la corriente que llega y empujaría la que sale. En el cobre esa carga se redistribuye en tiempos del orden de \(\varepsilon_0/\sigma \approx 10^{-19}\) s. Con \(dQ/dt = 0\):</p>
+    $$\sum_{\text{entran}} I = \sum_{\text{salen}} I$$
+    <p>La ley no depende de qué elementos llegan al nodo. Vale igual para resistencias, fuentes o diodos. La superficie tampoco tiene que encerrar un solo nodo: puede encerrar un pedazo completo del circuito. Esa idea es la base del supernodo del módulo 2.7.</p>
+    <div class="note warn"><p>En el capacitor la corriente de conducción no cruza el dieléctrico. La LCK sigue valiendo porque entre las placas circula la corriente de desplazamiento \(\varepsilon\,\partial E/\partial t\) (Cap. 8, Ampère-Maxwell).</p></div>
+  </div>
+
+  <div class="block">
+    <h3>Ecuaciones que usarás</h3>
+    <div class="law"><dl>
+      <dt>LCK en un nodo</dt><dd>$$\sum_k I_k = 0 \quad\text{(con signo + las que salen y − las que entran, o al revés, pero consistente)}$$</dd>
+      <dt>Divisor de corriente (dos ramas en paralelo)</dt><dd>$$I_1 = I\,\frac{R_2}{R_1 + R_2}, \qquad I_2 = I\,\frac{R_1}{R_1 + R_2}$$</dd>
+    </dl></div>
+  </div>
+
+  <div class="block example">
+    <h3>Ejemplo resuelto</h3>
+    <div class="statement"><p>En el circuito, encuentra la tensión del nodo a, la corriente en cada rama y verifica el balance de potencia.</p></div>
+    <figure class="circuit" data-circuit="nodo-ej"></figure>
+    <ol class="steps">
+      <li><div><span class="phase">Planteamiento</span>
+        <p>Hay un solo nodo con tensión desconocida, \(V_a\). Expreso cada corriente que sale del nodo con la ley de Ohm. Por \(R_1\) sale \(V_a/R_1\). Por la rama de \(R_2\) sale \((V_a - \varepsilon)/R_2\), porque la parte de abajo de \(R_2\) está a \(\varepsilon\) volts. La fuente de corriente inyecta \(I_s\).</p>
+        $$\frac{V_a}{4} + \frac{V_a - 12}{6} = 2$$
+      </div></li>
+      <li><div><span class="phase">Álgebra</span>
+        $$V_a\left(\tfrac14 + \tfrac16\right) = 2 + 2 \;\Rightarrow\; V_a = \frac{4}{5/12} = 9{,}6\ \mathrm{V}$$
+        $$I_{R_1} = 2{,}4\ \mathrm{A}\ (\downarrow), \qquad I_{R_2} = \frac{12 - 9{,}6}{6} = 0{,}4\ \mathrm{A}\ (\text{sube hacia a})$$
+      </div></li>
+      <li><div><span class="phase">Chequeo de LCK y energía</span>
+        <p>Entran \(2 + 0{,}4 = 2{,}4\) A y salen 2,4 A. Potencias: la fuente de corriente entrega \(2\cdot 9{,}6 = 19{,}2\) W, la de tensión \(12\cdot 0{,}4 = 4{,}8\) W. Las resistencias absorben \(23{,}04 + 0{,}96 = 24\) W.</p>
+      </div></li>
+    </ol>
+    <div class="result">V_a = 9,6 V · I_R1 = 2,4 A · I_R2 = 0,4 A hacia a · 24 W entregados = 24 W disipados</div>
+  </div>
+
+  <div class="block">
+    <h3>Laboratorio</h3>
+    <figure class="circuit" data-circuit="nodo-sim"></figure>
+    <div class="lab" data-sim="lck">
+      <div class="lab-side"><span class="lab-title">Balanza de carga en el nodo a</span><div class="sim-controls"></div></div>
+      <div class="lab-main">
+        <div class="balance" aria-live="polite"></div>
+        <dl class="sim-readouts"></dl>
+        <p class="lab-hint">Baja ε a cero: la corriente de esa rama se invierte y la fuente pasa a absorber energía. La balanza sigue cuadrando.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="certamen">
+    <p>En el circuito, la fuente de corriente inyecta 6 A al nodo a.</p>
+    <figure class="circuit" data-circuit="nodo-prop"></figure>
+    <ol class="items" type="a">
+      <li>Plantea la LCK en el nodo a usando la ley de Ohm y encuentra \(V_a\). (2 pts)</li>
+      <li>Calcula la corriente en cada rama indicando su sentido. (2 pts)</li>
+      <li>¿La fuente de 4 V entrega o absorbe energía? Justifica con la convención de referencia pasiva. (1 pt)</li>
+      <li>Verifica el balance de potencia. (1 pt)</li>
+    </ol>
+    <details><summary>Pista</summary><p>En la rama de la derecha, el extremo inferior de la resistencia de 2 Ω está a 4 V respecto de tierra.</p></details>
+    <div class="gate">
+      <label for="g23">Tu planteamiento</label>
+      <textarea id="g23" placeholder="V_a/3 + V_a/6 + (V_a − 4)/2 = 6 ..."></textarea>
+      <label><input type="checkbox" id="g23c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta</h4>
+      <p>a) \(\dfrac{V_a}{3} + \dfrac{V_a}{6} + \dfrac{V_a - 4}{2} = 6 \Rightarrow V_a\left(\tfrac13 + \tfrac16 + \tfrac12\right) = 6 + 2 \Rightarrow V_a = 8\) V.</p>
+      <p>b) Por 3 Ω bajan 2,67 A; por 6 Ω bajan 1,33 A; por la rama de 2 Ω bajan \((8-4)/2 = 2\) A. Suma: 6 A.</p>
+      <p>c) Los 2 A entran por el terminal positivo de la fuente de 4 V. Con referencia pasiva \(p = 4\cdot 2 = 8\) W absorbidos: la fuente se está cargando.</p>
+      <p>d) Entregada: \(6\cdot 8 = 48\) W. Absorbida: \(21{,}33 + 10{,}67 + 8\) (2 Ω) \(+ 8\) (fuente) \(= 48\) W.</p>
+    </div>
+  </div>
+
+  <footer class="mod-foot"><button class="btn" type="button" data-done-toggle>Marcar módulo como estudiado</button><nav class="pager" aria-label="Módulos vecinos"></nav></footer>
+</section>
+
+<!-- ======================================================== 2.4 -->
+<section class="module" id="m24" data-module data-title="2.4 Ley de voltajes" hidden>
+  <header class="mod-head">
+    <span class="mod-code">Módulo 2.4 · Cap. 2 y Cap. 3</span>
+    <h2>Ley de voltajes de Kirchhoff</h2>
+    <p class="lead">Si sales de tu casa, das vueltas por el cerro y vuelves a la puerta, tu cambio de altura total es cero. Con el potencial pasa lo mismo.</p>
+    <div class="chips"><span class="chip">campo conservativo</span><span class="chip">convención de signos</span><span class="chip">conservación de la energía</span></div>
+  </header>
+
+  <div class="block prose">
+    <h3>La física detrás <span class="tag">el potencial como altura</span></h3>
+    <p>El Cap. 2 define la diferencia de potencial como el trabajo por unidad de carga para llevar una carga de prueba de A a B:</p>
+    $$V_B - V_A = -\int_A^B \vec E\cdot d\vec l$$
+    <p>Para el campo electrostático esa integral no depende del camino. Si vuelves al punto de partida, la integral cerrada es cero. Marca puntos a, b, c, ... sobre un lazo del circuito y suma las diferencias de potencial de cada tramo:</p>
+    $$(V_b - V_a) + (V_c - V_b) + \dots + (V_a - V_n) = 0$$
+    <p>Los términos se cancelan de a pares y queda la LVK. No hizo falta saber qué elementos hay en el lazo, solo que cada punto tiene un único potencial.</p>
+    <div class="note"><p>Lectura energética: si recorres el lazo con una carga \(q\), la fuente le sube la energía en \(q\varepsilon\) y cada resistencia se la baja en \(qIR\). La LVK dice que la energía que entregan las fuentes es igual a la que se disipa.</p></div>
+    <p>Para escribir la ecuación sin errores usa una regla y no la cambies durante la prueba. Recorriendo el lazo: al atravesar una fuente de − a + sumas \(+\varepsilon\); al atravesar una resistencia en el mismo sentido de la corriente sumas \(-IR\).</p>
+  </div>
+
+  <div class="block">
+    <h3>Ecuaciones que usarás</h3>
+    <div class="law"><dl>
+      <dt>LVK</dt><dd>$$\sum_{\text{lazo}} \Delta V = 0$$</dd>
+      <dt>Diferencia de potencial por cualquier camino</dt><dd>$$V_c - V_a = \sum_{a \to c} \Delta V \quad\text{(da lo mismo el camino que elijas)}$$</dd>
+      <dt>Divisor de tensión</dt><dd>$$V_k = V\,\frac{R_k}{\sum R}$$</dd>
+    </dl></div>
+  </div>
+
+  <div class="block example">
+    <h3>Ejemplo resuelto</h3>
+    <div class="statement"><p>Encuentra la corriente del lazo y la diferencia de potencial \(V_c - V_a\) por los dos caminos posibles. Comprueba el balance de energía.</p></div>
+    <figure class="circuit" data-circuit="lazo-ej"></figure>
+    <ol class="steps">
+      <li><div><span class="phase">Planteamiento</span>
+        <p>Supongo \(I\) en sentido horario. Parto de a: subo por \(\varepsilon_1\) de − a +, cruzo \(R_1\), cruzo \(\varepsilon_2\) de + a − (bajo), cruzo \(R_2\) y \(R_3\):</p>
+        $$+15 - 2I - 4 - 5I - 3I = 0$$
+      </div></li>
+      <li><div><span class="phase">Álgebra</span>
+        $$I = \frac{15 - 4}{10} = 1{,}1\ \mathrm{A}$$
+      </div></li>
+      <li><div><span class="phase">Dos caminos de a hasta c</span>
+        <p>Por b: \(V_c - V_a = +15 - 1{,}1\cdot 2 = 12{,}8\) V.</p>
+        <p>Por e y d, contra la corriente: \(+1{,}1\cdot 3 + 1{,}1\cdot 5 + 4 = 12{,}8\) V. En \(R_3\) y \(R_2\) subes porque vas contra la corriente, y en \(\varepsilon_2\) subes porque la cruzas de − a +.</p>
+      </div></li>
+      <li><div><span class="phase">Chequeo de energía</span>
+        <p>\(\varepsilon_1\) entrega \(15\cdot 1{,}1 = 16{,}5\) W. \(\varepsilon_2\) recibe corriente por su terminal + y absorbe \(4{,}4\) W. Las resistencias disipan \(1{,}1^2\cdot 10 = 12{,}1\) W. \(16{,}5 = 4{,}4 + 12{,}1\).</p>
+      </div></li>
+    </ol>
+    <div class="result">I = 1,1 A horaria · V_c − V_a = 12,8 V por ambos caminos · 16,5 W = 4,4 W + 12,1 W</div>
+  </div>
+
+  <div class="block">
+    <h3>Laboratorio <span class="tag">perfil de potencial</span></h3>
+    <div class="lab" data-sim="lvk">
+      <div class="lab-side"><span class="lab-title">El cerro del potencial</span><div class="sim-controls"></div></div>
+      <div class="lab-main">
+        <canvas aria-label="Potencial en cada punto del lazo respecto del punto a"></canvas>
+        <dl class="sim-readouts"></dl>
+        <p class="lab-hint">Haz ε₂ mayor que ε₁: la corriente se invierte y las resistencias pasan a subir el potencial en el sentido del recorrido. El gráfico siempre termina en 0.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="certamen">
+    <p>Dos baterías reales se conectan como muestra la figura. La batería 1 tiene \(\varepsilon_1 = 20\) V y \(r_1 = 1\ \Omega\); la batería 2 tiene \(\varepsilon_2 = 6\) V y \(r_2 = 0{,}5\ \Omega\).</p>
+    <figure class="circuit" data-circuit="lazo-prop"></figure>
+    <ol class="items" type="a">
+      <li>Plantea la LVK indicando tu convención y calcula la corriente. (2 pts)</li>
+      <li>Calcula la tensión entre los bornes de cada batería. (2 pts)</li>
+      <li>¿Qué batería se está cargando? ¿A qué tasa se almacena energía química en ella? (1 pt)</li>
+      <li>Verifica que la potencia entregada por la batería 1 es igual a la suma de lo disipado y lo almacenado. (1 pt)</li>
+    </ol>
+    <details><summary>Pista</summary><p>La tensión en bornes de una batería que se carga es mayor que su fem: \(V = \varepsilon + Ir\).</p></details>
+    <div class="gate">
+      <label for="g24">Tu planteamiento</label>
+      <textarea id="g24" placeholder="+20 − 1·I − 4·I − 6 − 0,5·I − 4,5·I = 0 ..."></textarea>
+      <label><input type="checkbox" id="g24c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta</h4>
+      <p>a) Sentido horario: \(20 - I(1 + 4 + 0{,}5 + 4{,}5) - 6 = 0 \Rightarrow I = 1{,}4\) A.</p>
+      <p>b) Batería 1 se descarga: \(V_1 = 20 - 1{,}4\cdot 1 = 18{,}6\) V. Batería 2 recibe corriente por su +: \(V_{pq} = 6 + 1{,}4\cdot 0{,}5 = 6{,}7\) V.</p>
+      <p>c) Se carga la batería 2. Almacena \(\varepsilon_2 I = 8{,}4\) W.</p>
+      <p>d) \(\varepsilon_1 I = 28\) W \(= I^2\cdot 10\) (19,6 W, todas las resistencias incluidas las internas) \(+ 8{,}4\) W.</p>
+    </div>
+  </div>
+
+  <footer class="mod-foot"><button class="btn" type="button" data-done-toggle>Marcar módulo como estudiado</button><nav class="pager" aria-label="Módulos vecinos"></nav></footer>
+</section>
+
+<!-- ======================================================== 2.5 -->
+<section class="module" id="m25" data-module data-title="2.5 Serie, paralelo y Δ–Y" hidden>
+  <header class="mod-head">
+    <span class="mod-code">Módulo 2.5 · Cap. 3</span>
+    <h2>Serie, paralelo y transformación Δ–Y</h2>
+    <p class="lead">Dos redes son equivalentes cuando, vistas desde sus terminales, tienen la misma relación entre tensión y corriente.</p>
+    <div class="chips"><span class="chip">misma corriente</span><span class="chip">misma tensión</span><span class="chip">puente</span></div>
+  </header>
+
+  <div class="block prose">
+    <h3>La física detrás <span class="tag">equipotenciales y continuidad</span></h3>
+    <p>En serie, la LCK obliga a que la misma corriente pase por todos los elementos (no hay nodos intermedios donde la carga pueda desviarse). Las caídas \(IR_k\) se suman por LVK, así que \(R_{eq} = \sum R_k\).</p>
+    <p>En paralelo, los extremos de cada elemento están unidos por cables ideales, que son equipotenciales: todos ven la misma tensión. Las corrientes se suman por LCK, así que \(1/R_{eq} = \sum 1/R_k\). En términos de conductancia, se suman los caminos disponibles para la carga.</p>
+    <p>Hay redes que no tienen ningún par de resistencias en serie ni en paralelo, como el puente. Ahí se usa la transformación triángulo-estrella: se reemplaza un triángulo de tres resistencias por una estrella que, entre cada par de terminales, presenta la misma resistencia.</p>
+  </div>
+
+  <div class="block">
+    <h3>Ecuaciones que usarás</h3>
+    <div class="law"><dl>
+      <dt>Serie y paralelo</dt><dd>$$R_{eq} = R_1 + R_2 + \dots, \qquad \frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots$$</dd>
+      <dt>Δ → Y (la resistencia de la estrella en un nodo usa las dos del triángulo que llegan a ese nodo)</dt><dd>$$R_a = \frac{R_{ab}R_{ca}}{R_{ab} + R_{bc} + R_{ca}}, \quad R_b = \frac{R_{ab}R_{bc}}{\Sigma}, \quad R_c = \frac{R_{bc}R_{ca}}{\Sigma}$$</dd>
+      <dt>Y → Δ</dt><dd>$$R_{ab} = \frac{R_aR_b + R_bR_c + R_cR_a}{R_c}\quad\text{(y en forma cíclica)}$$</dd>
+    </dl></div>
+  </div>
+
+  <div class="block example">
+    <h3>Ejemplo resuelto</h3>
+    <div class="statement"><p>Calcula la resistencia equivalente entre A y B, la corriente que entrega la fuente de 12 V y la corriente en la resistencia de 9 Ω que une c con d.</p></div>
+    <figure class="circuit" data-circuit="puente-ej"></figure>
+    <ol class="steps">
+      <li><div><span class="phase">Planteamiento</span>
+        <p>Ninguna resistencia está en serie ni en paralelo con otra. Tomo el triángulo A, c, d: \(R_{Ac} = 6\), \(R_{Ad} = 3\), \(R_{cd} = 9\), con \(\Sigma = 18\ \Omega\). Lo cambio por una estrella con centro N.</p>
+        $$R_A = \frac{6\cdot 3}{18} = 1\ \Omega, \quad R_c = \frac{6\cdot 9}{18} = 3\ \Omega, \quad R_d = \frac{3\cdot 9}{18} = 1{,}5\ \Omega$$
+      </div></li>
+      <li><div><span class="phase">Planteamiento</span>
+        <p>Ahora sí hay serie y paralelo: de N a B hay dos ramas, \(3 + 7 = 10\ \Omega\) y \(1{,}5 + 8{,}5 = 10\ \Omega\), en paralelo. Todo eso queda en serie con \(R_A\).</p>
+      </div></li>
+      <li><div><span class="phase">Álgebra</span>
+        $$R_{eq} = 1 + (10 \parallel 10) = 6\ \Omega, \qquad I = \frac{12}{6} = 2\ \mathrm{A}$$
+        <p>Cada rama N–B lleva 1 A. Volviendo al circuito original: \(V_c = 7\cdot 1 = 7\) V y \(V_d = 8{,}5\cdot 1 = 8{,}5\) V (con B a 0 V).</p>
+        $$I_{d\to c} = \frac{8{,}5 - 7}{9} = 0{,}167\ \mathrm{A}$$
+      </div></li>
+    </ol>
+    <div class="result">R_eq = 6 Ω · I = 2 A · por la resistencia de 9 Ω circulan 0,167 A de d hacia c</div>
+    <p class="note warn">La estrella es equivalente solo hacia afuera. Las corrientes dentro del triángulo hay que calcularlas en el circuito original, con las tensiones de nodo.</p>
+  </div>
+
+  <div class="block">
+    <h3>Laboratorio <span class="tag">conversor Δ ↔ Y</span></h3>
+    <div class="lab" data-sim="deltay">
+      <div class="lab-side"><span class="lab-title">Triángulo y estrella</span><div class="sim-controls"></div></div>
+      <div class="lab-main">
+        <div class="dy-figure"></div>
+        <dl class="sim-readouts"></dl>
+        <p class="lab-hint">Compara la resistencia vista entre a y b en ambas redes: es la misma con cualquier valor. Esa es la condición con la que se deducen las fórmulas.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="certamen">
+    <p>La red puente de la figura se alimenta con 24 V entre A y B.</p>
+    <figure class="circuit" data-circuit="puente-prop"></figure>
+    <ol class="items" type="a">
+      <li>Calcula la resistencia equivalente vista por la fuente. (2 pts)</li>
+      <li>Calcula la corriente que entrega la fuente y su potencia. (1 pt)</li>
+      <li>Determina \(V_c - V_d\) y la corriente en la resistencia de 18 Ω, con su sentido. (2 pts)</li>
+      <li>Explica por qué la corriente en la resistencia de 18 Ω no se obtiene directamente de la estrella equivalente. (1 pt)</li>
+    </ol>
+    <details><summary>Pista</summary><p>Usa el triángulo A, c, d. Con la corriente total, calcula la tensión del centro de la estrella y después vuelve a c y d por las ramas exteriores.</p></details>
+    <div class="gate">
+      <label for="g25">Tu planteamiento</label>
+      <textarea id="g25" placeholder="R_A = 12·6/36 ..."></textarea>
+      <label><input type="checkbox" id="g25c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta</h4>
+      <p>a) \(\Sigma = 36\ \Omega\): \(R_A = 2\), \(R_c = 6\), \(R_d = 3\ \Omega\). Ramas N–B: \(6 + 4 = 10\) y \(3 + 3 = 6\), en paralelo dan 3,75 Ω. \(R_{eq} = 2 + 3{,}75 = 5{,}75\ \Omega\).</p>
+      <p>b) \(I = 24/5{,}75 = 4{,}17\) A; \(P = 24\cdot 4{,}17 = 100{,}2\) W.</p>
+      <p>c) \(V_N = 24 - 2\cdot 4{,}174 = 15{,}65\) V. Rama c: \(15{,}65/10 = 1{,}565\) A, así que \(V_c = 4\cdot 1{,}565 = 6{,}26\) V. Rama d: \(15{,}65/6 = 2{,}609\) A, \(V_d = 3\cdot 2{,}609 = 7{,}83\) V. \(V_c - V_d = -1{,}57\) V; por 18 Ω circulan 0,087 A de d hacia c.</p>
+      <p>d) La estrella reproduce la relación V–I solo en los terminales A, c y d. Las corrientes internas del triángulo, como la de \(R_{cd}\), no existen en la estrella; se calculan con \(V_c\) y \(V_d\) en el circuito original.</p>
+    </div>
+  </div>
+
+  <footer class="mod-foot"><button class="btn" type="button" data-done-toggle>Marcar módulo como estudiado</button><nav class="pager" aria-label="Módulos vecinos"></nav></footer>
+</section>
+
+<!-- ======================================================== 2.6 -->
+<section class="module" id="m26" data-module data-title="2.6 Análisis de mallas" hidden>
+  <header class="mod-head">
+    <span class="mod-code">Módulo 2.6 · Cap. 3</span>
+    <h2>Análisis de mallas</h2>
+    <p class="lead">Una LVK por malla, escrita con corrientes que ya cumplen la LCK por construcción.</p>
+    <div class="chips"><span class="chip">corriente de malla</span><span class="chip">supermalla</span><span class="chip">sistema lineal</span></div>
+  </header>
+
+  <div class="block prose">
+    <h3>La física detrás <span class="tag">por qué funciona</span></h3>
+    <p>Una corriente de malla es una corriente que circula por todo el contorno de una malla. En cada nodo entra y sale la misma corriente de malla, así que la LCK se cumple sola. Con eso, las únicas ecuaciones que faltan son las LVK, una por malla.</p>
+    <p>En una rama compartida circulan dos corrientes de malla en sentidos opuestos, y la corriente real es su diferencia. Por eso aparece \(R_3(I_1 - I_2)\) en la malla 1 y \(R_3(I_2 - I_1)\) en la malla 2.</p>
+    <p>Como el medio es óhmico, cada caída es lineal en las corrientes y el resultado es un sistema lineal \(\mathbf{R}\,\mathbf{I} = \mathbf{V}\). Por inspección: en la diagonal va la suma de resistencias de la malla y fuera de ella el negativo de la resistencia compartida (con todas las mallas horarias).</p>
+    <div class="note warn"><p>Signo de las fuentes, como en el Cap. 3: si la corriente de malla sale por el terminal +, la fuente aparece positiva al lado derecho. Si entra por el +, negativa.</p></div>
+    <p>Las fuentes de corriente cambian el procedimiento. Si la fuente está en una sola malla, fija esa corriente de malla. Si está en una rama compartida, no conoces su tensión: se escribe la LVK por el contorno exterior de ambas mallas (supermalla) y se agrega la restricción de la fuente.</p>
+  </div>
+
+  <div class="block">
+    <h3>Ecuaciones que usarás</h3>
+    <div class="law"><dl>
+      <dt>Forma matricial por inspección (mallas horarias)</dt><dd>$$\begin{bmatrix} R_{11} & -R_{12} \\ -R_{21} & R_{22} \end{bmatrix}\begin{bmatrix} I_1 \\ I_2 \end{bmatrix} = \begin{bmatrix} \sum \varepsilon_1 \\ \sum \varepsilon_2 \end{bmatrix}$$</dd>
+      <dt>Supermalla con fuente de corriente \(I_s\) en la rama compartida</dt><dd>$$I_1 - I_2 = I_s \quad\text{(o } I_2 - I_1\text{ según el sentido de la fuente)} + \text{LVK por el contorno exterior}$$</dd>
+    </dl></div>
+  </div>
+
+  <div class="block example">
+    <h3>Ejemplo resuelto</h3>
+    <div class="statement"><p>Encuentra las corrientes de malla, la corriente en \(R_3\) y el balance de potencia.</p></div>
+    <figure class="circuit" data-circuit="mallas-ej"></figure>
+    <ol class="steps">
+      <li><div><span class="phase">Planteamiento, malla 1</span>
+        <p>Recorro en sentido horario desde abajo a la izquierda: subo por \(\varepsilon_1\), bajo en \(R_1\) y bajo en \(R_3\) con la corriente neta \(I_1 - I_2\).</p>
+        $$10 - 2I_1 - 4(I_1 - I_2) = 0 \;\Rightarrow\; 6I_1 - 4I_2 = 10$$
+      </div></li>
+      <li><div><span class="phase">Planteamiento, malla 2</span>
+        <p>En la rama derecha \(I_2\) va hacia abajo, entra a \(\varepsilon_2\) por su terminal +: al cruzarla bajo 4 V.</p>
+        $$-4(I_2 - I_1) - 6I_2 - 4 = 0 \;\Rightarrow\; -4I_1 + 10I_2 = -4$$
+      </div></li>
+      <li><div><span class="phase">Álgebra (Cramer)</span>
+        $$\Delta = 6\cdot 10 - 16 = 44, \quad I_1 = \frac{100 - 16}{44} = 1{,}909\ \mathrm{A}, \quad I_2 = \frac{-24 + 40}{44} = 0{,}364\ \mathrm{A}$$
+        <p>Por \(R_3\) baja \(I_1 - I_2 = 1{,}545\) A.</p>
+      </div></li>
+      <li><div><span class="phase">Chequeo de energía</span>
+        <p>\(\varepsilon_1\) entrega 19,09 W. \(\varepsilon_2\) absorbe \(4\cdot 0{,}364 = 1{,}45\) W (se carga). Resistencias: \(7{,}29 + 0{,}79 + 9{,}55 = 17{,}64\) W. Suma absorbida 19,09 W.</p>
+      </div></li>
+    </ol>
+    <div class="result">I₁ = 1,909 A · I₂ = 0,364 A · I(R₃) = 1,545 A hacia abajo · ε₂ absorbe 1,45 W</div>
+  </div>
+
+  <div class="block">
+    <h3>Laboratorio <span class="tag">la matriz en vivo</span></h3>
+    <figure class="circuit" data-circuit="mallas-sim"></figure>
+    <div class="lab" data-sim="mallas">
+      <div class="lab-side"><span class="lab-title">Solver de dos mallas</span><div class="sim-controls"></div></div>
+      <div class="lab-main">
+        <div class="sim-eq" aria-live="polite"></div>
+        <dl class="sim-readouts"></dl>
+        <p class="lab-hint">Sube ε₂ por sobre ~6,7 V con los valores iniciales: I₂ cambia de signo y ε₂ pasa de absorber a entregar energía.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="certamen">
+    <p>En el circuito, la fuente de corriente de 3 A está en la rama compartida por ambas mallas y apunta de x hacia y.</p>
+    <figure class="circuit" data-circuit="mallas-prop"></figure>
+    <ol class="items" type="a">
+      <li>Explica por qué no puedes escribir la LVK de cada malla por separado. (1 pt)</li>
+      <li>Plantea la supermalla y la ecuación de restricción. Calcula \(I_1\) e \(I_2\). (3 pts)</li>
+      <li>Calcula la tensión \(V_x - V_y\) en la fuente de corriente e indica si entrega o absorbe potencia. (1 pt)</li>
+      <li>Verifica el balance de potencia. (1 pt)</li>
+    </ol>
+    <details><summary>Pista</summary><p>En la rama compartida, \(I_1\) va hacia abajo e \(I_2\) hacia arriba. La fuente fija la corriente neta hacia abajo.</p></details>
+    <div class="gate">
+      <label for="g26">Tu planteamiento</label>
+      <textarea id="g26" placeholder="I1 − I2 = 3 ; 30 − 4·I1 − 6·I2 − 2·I1 = 0 ..."></textarea>
+      <label><input type="checkbox" id="g26c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta</h4>
+      <p>a) La tensión en la fuente de corriente es desconocida: depende del resto del circuito. Cada LVK por separado tendría una incógnita extra.</p>
+      <p>b) Restricción: \(I_1 - I_2 = 3\). Supermalla por el contorno exterior: \(30 - 4I_1 - 6I_2 - 2I_1 = 0\). Reemplazando, \(30 = 6(I_2 + 3) + 6I_2 \Rightarrow I_2 = 1\) A, \(I_1 = 4\) A.</p>
+      <p>c) Por la rama derecha: \(V_x - V_y = 6\cdot I_2 = 6\) V. La corriente de la fuente va de x (a 6 V) hacia y dentro de ella, entrando por el punto de mayor potencial: absorbe \(6\cdot 3 = 18\) W.</p>
+      <p>d) La fuente de 30 V entrega \(30\cdot 4 = 120\) W. Absorben: \(16\cdot 6 = 96\) W (4 Ω y 2 Ω), \(6\) W (6 Ω) y 18 W (fuente de corriente). Total 120 W.</p>
+    </div>
+  </div>
+
+  <footer class="mod-foot"><button class="btn" type="button" data-done-toggle>Marcar módulo como estudiado</button><nav class="pager" aria-label="Módulos vecinos"></nav></footer>
+</section>
+
+<!-- ======================================================== 2.7 -->
+<section class="module" id="m27" data-module data-title="2.7 Análisis de nodos" hidden>
+  <header class="mod-head">
+    <span class="mod-code">Módulo 2.7 · Cap. 3</span>
+    <h2>Análisis de nodos</h2>
+    <p class="lead">Elige una tierra, asigna un potencial a cada nodo y escribe una LCK por nodo. La LVK se cumple sola.</p>
+    <div class="chips"><span class="chip">tensión de nodo</span><span class="chip">matriz de conductancias</span><span class="chip">supernodo</span></div>
+  </header>
+
+  <div class="block prose">
+    <h3>La física detrás <span class="tag">el potencial como incógnita</span></h3>
+    <p>Si asignas un potencial único a cada nodo, cualquier suma de diferencias de potencial alrededor de un lazo da cero automáticamente: el método de nodos lleva la LVK incorporada. Con eso, faltan solo las LCK, una por cada nodo que no sea tierra.</p>
+    <p>Cada corriente se escribe con la ley de Ohm a partir de los potenciales: por una resistencia entre los nodos i y j sale del nodo i la corriente \((V_i - V_j)/R\). El sistema queda \(\mathbf{G}\,\mathbf{V} = \mathbf{I}\), con conductancias en la diagonal y el negativo de la conductancia compartida fuera de ella.</p>
+    <p>Las fuentes de tensión son el caso especial. Si una fuente va de un nodo a tierra, fija ese potencial. Si va entre dos nodos de no referencia, su corriente es desconocida. Ahí se encierran ambos nodos en una superficie (supernodo, la misma idea del módulo 2.3), se escribe una sola LCK para toda la superficie y se agrega \(V_1 - V_2 = \varepsilon\).</p>
+    <div class="note"><p>¿Mallas o nodos? Cuenta ecuaciones. Mallas necesita una por malla; nodos, una por nodo menos uno. Elige el que dé menos, y prefiere nodos si hay muchas fuentes de corriente.</p></div>
+  </div>
+
+  <div class="block">
+    <h3>Ecuaciones que usarás</h3>
+    <div class="law"><dl>
+      <dt>LCK en el nodo i, corrientes saliendo</dt><dd>$$\sum_j \frac{V_i - V_j}{R_{ij}} = I_{s,\text{entrando}}$$</dd>
+      <dt>Supernodo entre 1 y 2 con fuente \(\varepsilon\) (+ en 1)</dt><dd>$$\text{LCK de la superficie que encierra 1 y 2}, \qquad V_1 - V_2 = \varepsilon$$</dd>
+    </dl></div>
+  </div>
+
+  <div class="block example">
+    <h3>Ejemplo resuelto</h3>
+    <div class="statement"><p>Encuentra \(V_1\), \(V_2\) y la corriente en \(R_c\), con su sentido.</p></div>
+    <figure class="circuit" data-circuit="nodos-ej"></figure>
+    <ol class="steps">
+      <li><div><span class="phase">Planteamiento, nodo 1</span>
+        <p>Corrientes saliendo del nodo 1: hacia la fuente por \(R_a\), a tierra por \(R_b\) y hacia el nodo 2 por \(R_c\). No hay fuentes de corriente en el nodo.</p>
+        $$\frac{V_1 - 20}{4} + \frac{V_1}{4} + \frac{V_1 - V_2}{2} = 0$$
+      </div></li>
+      <li><div><span class="phase">Planteamiento, nodo 2</span>
+        $$\frac{V_2 - V_1}{2} + \frac{V_2}{4} = 3$$
+      </div></li>
+      <li><div><span class="phase">Álgebra</span>
+        <p>De la primera, \(V_1 = 5 + V_2/2\). En la segunda: \(-\tfrac{5}{2} - \tfrac{V_2}{4} + \tfrac{3V_2}{4} = 3\), así que \(V_2 = 11\) V y \(V_1 = 10{,}5\) V.</p>
+        $$I_{R_c,\,1\to2} = \frac{10{,}5 - 11}{2} = -0{,}25\ \mathrm{A}$$
+        <p>El signo negativo dice que la corriente va de 2 hacia 1. No hay que corregir nada, solo interpretarlo.</p>
+      </div></li>
+      <li><div><span class="phase">Chequeo de energía</span>
+        <p>Fuente de tensión: \(20\cdot 2{,}375 = 47{,}5\) W. Fuente de corriente: \(3\cdot 11 = 33\) W. Resistencias: \(22{,}56 + 27{,}56 + 0{,}125 + 30{,}25 = 80{,}5\) W.</p>
+      </div></li>
+    </ol>
+    <div class="result">V₁ = 10,5 V · V₂ = 11 V · por R_c circulan 0,25 A del nodo 2 al nodo 1 · 80,5 W entregados = 80,5 W disipados</div>
+  </div>
+
+  <div class="block">
+    <h3>Laboratorio <span class="tag">la matriz de conductancias</span></h3>
+    <figure class="circuit" data-circuit="nodos-sim"></figure>
+    <div class="lab" data-sim="nodos">
+      <div class="lab-side"><span class="lab-title">Solver de dos nodos</span><div class="sim-controls"></div></div>
+      <div class="lab-main">
+        <div class="sim-eq" aria-live="polite"></div>
+        <dl class="sim-readouts"></dl>
+        <p class="lab-hint">Las filas de LCK siempre suman cero: es la conservación de la carga verificada numéricamente.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="certamen">
+    <p>En el circuito, la fuente de 8 V está conectada entre los nodos 1 y 2, ninguno de los cuales es tierra.</p>
+    <figure class="circuit" data-circuit="nodos-prop"></figure>
+    <ol class="items" type="a">
+      <li>Plantea el supernodo y la ecuación de restricción. Encuentra \(V_1\) y \(V_2\). (3 pts)</li>
+      <li>Calcula la corriente que circula por la fuente de 8 V e indica su sentido. (1 pt)</li>
+      <li>Calcula la potencia de cada fuente, indicando si entrega o absorbe. (1 pt)</li>
+      <li>Verifica el balance de potencia. (1 pt)</li>
+    </ol>
+    <details><summary>Pista</summary><p>La superficie que encierra los nodos 1 y 2 corta cuatro ramas: la fuente de 2 A, la de 4 Ω del nodo 1, la de 8 Ω y la de 4 Ω que va a la fuente de 12 V.</p></details>
+    <div class="gate">
+      <label for="g27">Tu planteamiento</label>
+      <textarea id="g27" placeholder="V1/4 + V2/8 + (V2 − 12)/4 = 2 ; V1 − V2 = 8 ..."></textarea>
+      <label><input type="checkbox" id="g27c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta</h4>
+      <p>a) Supernodo: \(\dfrac{V_1}{4} + \dfrac{V_2}{8} + \dfrac{V_2 - 12}{4} = 2\) y \(V_1 - V_2 = 8\). Reemplazando \(V_1 = V_2 + 8\): \(0{,}625\,V_2 = 3\), así que \(V_2 = 4{,}8\) V y \(V_1 = 12{,}8\) V.</p>
+      <p>b) LCK solo en el nodo 1: llegan 2 A y salen \(12{,}8/4 = 3{,}2\) A a tierra, así que por la fuente llegan 1,2 A desde el nodo 2. La corriente cruza la fuente de − a +.</p>
+      <p>c) Fuente de 8 V: entrega \(8\cdot 1{,}2 = 9{,}6\) W. Fuente de 12 V: su corriente es \((12 - 4{,}8)/4 = 1{,}8\) A saliendo por el +, entrega 21,6 W. Fuente de 2 A: entrega \(2\cdot 12{,}8 = 25{,}6\) W.</p>
+      <p>d) Entregada: 56,8 W. Resistencias: \(40{,}96 + 2{,}88 + 12{,}96 = 56{,}8\) W.</p>
+    </div>
+  </div>
+
+  <footer class="mod-foot"><button class="btn" type="button" data-done-toggle>Marcar módulo como estudiado</button><nav class="pager" aria-label="Módulos vecinos"></nav></footer>
+</section>
+
+<!-- ======================================================== 2.8 -->
+<section class="module" id="m28" data-module data-title="2.8 Thévenin y Norton" hidden>
+  <header class="mod-head">
+    <span class="mod-code">Módulo 2.8 · Cap. 3</span>
+    <h2>Superposición, Thévenin, Norton y máxima potencia</h2>
+    <p class="lead">Una red lineal, vista desde dos terminales, se comporta como una fuente con una resistencia en serie.</p>
+    <div class="chips"><span class="chip">linealidad</span><span class="chip">fuentes apagadas</span><span class="chip">R_L = R_th</span></div>
+  </header>
+
+  <div class="block prose">
+    <h3>La física detrás <span class="tag">linealidad</span></h3>
+    <p>En un medio óhmico \(\vec J = \sigma\vec E\) es lineal, y las ecuaciones de campo electrostático también lo son. Si duplicas todas las fuentes, se duplican todos los campos y todas las corrientes. Si tienes dos fuentes, la respuesta es la suma de las respuestas a cada una por separado: superposición.</p>
+    <p>Consecuencia directa: vista desde los terminales a–b, la relación entre tensión y corriente de cualquier red lineal es una recta, \(V = V_{th} - R_{th}I\). Una recta queda definida por dos puntos: la tensión en circuito abierto (\(V_{th}\)) y la corriente en cortocircuito (\(I_N\)), con \(R_{th} = V_{th}/I_N\).</p>
+    <p>Apagar una fuente significa dejar su valor en cero: una fuente de tensión apagada es un cortocircuito y una de corriente apagada es un circuito abierto. Las fuentes dependientes nunca se apagan.</p>
+    <div class="note"><p>Máxima transferencia: \(P_L = V_{th}^2R_L/(R_{th} + R_L)^2\). Derivando e igualando a cero sale \(R_L = R_{th}\) y \(P_{\max} = V_{th}^2/(4R_{th})\). La eficiencia del equivalente es 50 %, pero la de la red real puede ser otra.</p></div>
+  </div>
+
+  <div class="block">
+    <h3>Ecuaciones que usarás</h3>
+    <div class="law"><dl>
+      <dt>Equivalentes</dt><dd>$$V_{th} = V_{ab}\big|_{\text{abierto}}, \quad I_N = I_{ab}\big|_{\text{corto}}, \quad R_{th} = \frac{V_{th}}{I_N} = R_{ab}\big|_{\text{fuentes indep. apagadas}}$$</dd>
+      <dt>Máxima transferencia de potencia</dt><dd>$$R_L = R_{th}, \qquad P_{\max} = \frac{V_{th}^2}{4R_{th}}$$</dd>
+    </dl></div>
+  </div>
+
+  <div class="block example">
+    <h3>Ejemplo resuelto</h3>
+    <div class="statement"><p>Encuentra el equivalente de Thévenin entre a y b, el de Norton, y la potencia que recibe una carga de 2 Ω. ¿Qué carga recibe la máxima potencia?</p></div>
+    <figure class="circuit" data-circuit="thev-ej"></figure>
+    <ol class="steps">
+      <li><div><span class="phase">Planteamiento de \(V_{th}\)</span>
+        <p>Con a–b abierto, por \(R_3\) no circula corriente y no cae tensión. \(V_{ab}\) es la tensión en \(R_2\), un divisor de tensión:</p>
+        $$V_{th} = 24\,\frac{3}{6 + 3} = 8\ \mathrm{V}$$
+      </div></li>
+      <li><div><span class="phase">Planteamiento de \(R_{th}\)</span>
+        <p>Apago la fuente (cortocircuito). Desde a–b veo \(R_3\) en serie con \(R_1 \parallel R_2\):</p>
+        $$R_{th} = 2 + \frac{6\cdot 3}{6 + 3} = 4\ \Omega, \qquad I_N = \frac{8}{4} = 2\ \mathrm{A}$$
+      </div></li>
+      <li><div><span class="phase">Carga de 2 Ω</span>
+        $$I = \frac{8}{4 + 2} = 1{,}33\ \mathrm{A}, \qquad P = 1{,}33^2\cdot 2 = 3{,}56\ \mathrm{W}$$
+        <p>La máxima potencia es con \(R_L = 4\ \Omega\): \(P_{\max} = 64/16 = 4\) W.</p>
+      </div></li>
+    </ol>
+    <div class="result">V_th = 8 V · R_th = 4 Ω · I_N = 2 A · P(2 Ω) = 3,56 W · P_max = 4 W con R_L = 4 Ω</div>
+  </div>
+
+  <div class="block">
+    <h3>Laboratorio <span class="tag">barrido de carga</span></h3>
+    <figure class="circuit" data-circuit="thev-sim"></figure>
+    <div class="lab" data-sim="thevenin">
+      <div class="lab-side"><span class="lab-title">Thévenin y carga variable</span><div class="sim-controls"></div></div>
+      <div class="lab-main">
+        <canvas aria-label="Potencia en la carga en función de R_L"></canvas>
+        <dl class="sim-readouts"></dl>
+        <p class="lab-hint">Cambia R₃ y observa cómo se corre el máximo: R₃ no afecta V_th, solo R_th.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="certamen">
+    <p>Para la red de la figura, vista desde los terminales a–b:</p>
+    <figure class="circuit" data-circuit="thev-prop"></figure>
+    <ol class="items" type="a">
+      <li>Calcula \(V_{th}\) por el método que prefieras, justificando. (2 pts)</li>
+      <li>Calcula \(R_{th}\) e \(I_N\). (1 pt)</li>
+      <li>Determina la carga que recibe la máxima potencia y el valor de esa potencia. (1 pt)</li>
+      <li>Con esa carga conectada, calcula la potencia total entregada por las dos fuentes reales. ¿La eficiencia es 50 %? Explica la diferencia. (2 pts)</li>
+    </ol>
+    <details><summary>Pista</summary><p>Para \(V_{th}\) basta una LCK en el nodo de arriba. Para \(R_{th}\), la fuente de corriente apagada es un circuito abierto.</p></details>
+    <div class="gate">
+      <label for="g28">Tu planteamiento</label>
+      <textarea id="g28" placeholder="(V_a − 12)/4 + V_a/12 = 2 ..."></textarea>
+      <label><input type="checkbox" id="g28c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta</h4>
+      <p>a) \(\dfrac{V_a - 12}{4} + \dfrac{V_a}{12} = 2 \Rightarrow V_a\cdot\dfrac{1}{3} = 5 \Rightarrow V_{th} = 15\) V.</p>
+      <p>b) Con 12 V en corto y 2 A abierta: \(R_{th} = 4 \parallel 12 = 3\ \Omega\). \(I_N = 5\) A.</p>
+      <p>c) \(R_L = 3\ \Omega\), \(P_{\max} = 225/12 = 18{,}75\) W.</p>
+      <p>d) Con la carga, \(V_a = 7{,}5\) V. La fuente de 12 V entrega \(12\cdot(12 - 7{,}5)/4 = 13{,}5\) W y la de 2 A entrega \(2\cdot 7{,}5 = 15\) W: total 28,5 W. La carga recibe 65,8 %. El 50 % vale para el equivalente; la disipación interna de la red real (4,69 W en 12 Ω y 5,06 W en 4 Ω) no tiene por qué coincidir con la de \(R_{th}\).</p>
+    </div>
+  </div>
+
+  <footer class="mod-foot"><button class="btn" type="button" data-done-toggle>Marcar módulo como estudiado</button><nav class="pager" aria-label="Módulos vecinos"></nav></footer>
+</section>
+
+<!-- ======================================================== 2.9 -->
+<section class="module" id="m29" data-module data-title="2.9 Circuito RC" hidden>
+  <header class="mod-head">
+    <span class="mod-code">Módulo 2.9 · Cap. 4 y Cap. 8</span>
+    <h2>Capacitores y transitorio RC</h2>
+    <p class="lead">El flash de una cámara carga un condensador durante segundos y lo descarga en milisegundos. La constante de tiempo explica ambas cosas.</p>
+    <div class="chips"><span class="chip">τ = RC</span><span class="chip">energía en el campo E</span><span class="chip">corriente de desplazamiento</span></div>
+  </header>
+
+  <div class="block prose">
+    <h3>La física detrás <span class="tag">la carga construye el campo</span></h3>
+    <p>Un capacitor guarda carga \(+Q\) y \(-Q\) en dos conductores. Entre ellos aparece un campo y una diferencia de potencial proporcional a la carga: \(Q = Cv_C\). La capacitancia depende solo de la geometría y del dieléctrico (Cap. 4).</p>
+    <p>Al cerrar el interruptor con el capacitor descargado, \(v_C = 0\) y toda la tensión de la fuente cae en \(R\): la corriente arranca en \(V/R\). Cada carga que llega a la placa aumenta \(v_C\), queda menos tensión para \(R\) y la corriente baja. Ese frenado proporcional da una exponencial. La LVK con \(i = dq/dt\):</p>
+    $$V = R\frac{dq}{dt} + \frac{q}{C} \;\Longrightarrow\; v_C(t) = V\left(1 - e^{-t/RC}\right)$$
+    <p>La tensión del capacitor no puede saltar, porque eso exigiría corriente infinita. Esa es la condición inicial que usas en todos los ejercicios. En régimen permanente DC el capacitor no deja pasar corriente y se comporta como circuito abierto.</p>
+    <div class="note"><p>Energía: el capacitor guarda \(\tfrac12 CV^2\) en el campo eléctrico, con densidad \(\tfrac12\varepsilon E^2\). La fuente entrega \(QV = CV^2\) durante la carga, así que la resistencia disipa la otra mitad, sea cual sea el valor de R.</p></div>
+  </div>
+
+  <div class="block">
+    <h3>Ecuaciones que usarás</h3>
+    <div class="law"><dl>
+      <dt>Respuesta de primer orden (cualquier variable)</dt><dd>$$x(t) = x(\infty) + \left[x(0^+) - x(\infty)\right]e^{-t/\tau}, \qquad \tau = R_{th}C$$</dd>
+      <dt>Capacitor</dt><dd>$$i_C = C\frac{dv_C}{dt}, \qquad v_C(0^+) = v_C(0^-), \qquad W = \tfrac12 C v_C^2$$</dd>
+    </dl></div>
+  </div>
+
+  <div class="block example">
+    <h3>Ejemplo resuelto</h3>
+    <div class="statement"><p>Con el capacitor descargado se cierra el interruptor en \(t = 0\). Calcula \(\tau\), \(v_C\) e \(i\) en \(t = 2\) s, la energía final almacenada y la energía disipada en R durante la carga completa.</p></div>
+    <figure class="circuit" data-circuit="rc-ej"></figure>
+    <ol class="steps">
+      <li><div><span class="phase">Planteamiento</span>
+        <p>Tres datos y listo: \(v_C(0^+) = 0\) porque no puede saltar; \(v_C(\infty) = 12\) V porque el capacitor queda abierto y en R no cae nada; \(\tau = RC\).</p>
+      </div></li>
+      <li><div><span class="phase">Álgebra</span>
+        $$\tau = 10^4\cdot 10^{-4} = 1\ \mathrm{s}, \qquad v_C(2) = 12(1 - e^{-2}) = 10{,}38\ \mathrm{V}$$
+        $$i(2) = \frac{12}{10^4}e^{-2} = 0{,}162\ \mathrm{mA}, \qquad W_C = \tfrac12\cdot 10^{-4}\cdot 144 = 7{,}2\ \mathrm{mJ}$$
+      </div></li>
+      <li><div><span class="phase">Energía</span>
+        <p>La fuente entrega \(CV^2 = 14{,}4\) mJ. La mitad queda en el campo y la otra mitad, 7,2 mJ, se disipa en R.</p>
+      </div></li>
+    </ol>
+    <div class="result">τ = 1 s · v_C(2 s) = 10,38 V · i(2 s) = 0,162 mA · W_C = 7,2 mJ · W_R = 7,2 mJ</div>
+  </div>
+
+  <div class="block">
+    <h3>Laboratorio</h3>
+    <div class="lab" data-sim="rc">
+      <div class="lab-side"><span class="lab-title">Carga y descarga RC</span><div class="sim-controls"></div></div>
+      <div class="lab-main">
+        <canvas aria-label="Tensión del capacitor en función del tiempo"></canvas>
+        <dl class="sim-readouts"></dl>
+        <p class="lab-hint">En t = τ el capacitor llega al 63,2 % y en t = 5τ al 99,3 %. Esas dos cifras se usan para estimar respuestas sin calculadora.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="certamen">
+    <p>El capacitor de 50 µF está descargado y el interruptor se cierra en \(t = 0\).</p>
+    <figure class="circuit" data-circuit="rc-prop"></figure>
+    <ol class="items" type="a">
+      <li>Determina \(v_C(0^+)\), \(v_C(\infty)\) y la constante de tiempo. (2 pts)</li>
+      <li>Escribe \(v_C(t)\) y evalúala en \(t = 0{,}2\) s. (1 pt)</li>
+      <li>Calcula la corriente por \(R_1\) en \(t = 0^+\) y en \(t \to \infty\). (2 pts)</li>
+      <li>Calcula la energía almacenada en régimen permanente. (1 pt)</li>
+    </ol>
+    <details><summary>Pista</summary><p>Para \(\tau\), mira la resistencia que ve el capacitor con la fuente apagada.</p></details>
+    <div class="gate">
+      <label for="g29">Tu planteamiento</label>
+      <textarea id="g29" placeholder="v_C(∞) = 18·3/9 ; R_th = 6k ∥ 3k ..."></textarea>
+      <label><input type="checkbox" id="g29c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta</h4>
+      <p>a) \(v_C(0^+) = 0\). En régimen permanente C está abierto y queda un divisor: \(v_C(\infty) = 18\cdot 3/9 = 6\) V. Con la fuente en corto, C ve \(6\,\mathrm{k} \parallel 3\,\mathrm{k} = 2\) kΩ: \(\tau = 2000\cdot 50\times10^{-6} = 0{,}1\) s.</p>
+      <p>b) \(v_C(t) = 6(1 - e^{-10t})\) V; \(v_C(0{,}2) = 6(1 - e^{-2}) = 5{,}19\) V.</p>
+      <p>c) En \(0^+\) el capacitor es un corto: \(i_{R_1} = 18/6\,\mathrm{k} = 3\) mA (y por \(R_2\) no circula nada). En \(\infty\): \(18/9\,\mathrm{k} = 2\) mA.</p>
+      <p>d) \(W = \tfrac12\cdot 50\times10^{-6}\cdot 36 = 0{,}9\) mJ.</p>
+    </div>
+  </div>
+
+  <footer class="mod-foot"><button class="btn" type="button" data-done-toggle>Marcar módulo como estudiado</button><nav class="pager" aria-label="Módulos vecinos"></nav></footer>
+</section>
+
+<!-- ======================================================== 2.10 -->
+<section class="module mag" id="m210" data-module data-title="2.10 Circuito RL" hidden>
+  <header class="mod-head">
+    <span class="mod-code mag">Módulo 2.10 · Cap. 7</span>
+    <h2>Inductancia y transitorio RL</h2>
+    <p class="lead">El sistema de encendido de un auto corta la corriente de una bobina y obtiene miles de volts. Faraday explica por qué.</p>
+    <div class="chips"><span class="chip">ley de Faraday</span><span class="chip">τ = L/R</span><span class="chip">energía en el campo B</span></div>
+  </header>
+
+  <div class="block prose">
+    <h3>La física detrás <span class="tag">el flujo no quiere cambiar</span></h3>
+    <p>Una corriente en una bobina crea un campo magnético y un flujo enlazado \(\lambda = Li\). La inductancia, igual que la capacitancia, depende de la geometría y del material (Cap. 7). Si la corriente cambia, cambia el flujo y por la ley de Faraday aparece una fem inducida que se opone al cambio (Lenz):</p>
+    $$v_L = \frac{d\lambda}{dt} = L\frac{di}{dt}$$
+    <p>Aquí el campo eléctrico inducido no es conservativo: \(\oint \vec E\cdot d\vec l = -d\Phi/dt \neq 0\). La LVK se sigue usando porque el efecto queda concentrado en la bobina y se modela como una caída \(L\,di/dt\) en sus terminales.</p>
+    <p>Consecuencia práctica: la corriente en un inductor no puede saltar, porque eso exigiría tensión infinita. Al cerrar el interruptor la corriente arranca en cero y crece con \(\tau = L/R\). En régimen permanente DC, \(di/dt = 0\) y el inductor es un cortocircuito.</p>
+    <div class="note mag"><p>Energía: el inductor guarda \(\tfrac12 Li^2\) en el campo magnético, con densidad \(B^2/(2\mu)\). Si abres el circuito de golpe, esa energía busca salir: el \(di/dt\) enorme produce la chispa en el interruptor o en la bujía.</p></div>
+  </div>
+
+  <div class="block">
+    <h3>Ecuaciones que usarás</h3>
+    <div class="law"><dl>
+      <dt>Inductor</dt><dd>$$v_L = L\frac{di_L}{dt}, \qquad i_L(0^+) = i_L(0^-), \qquad W = \tfrac12 L i_L^2$$</dd>
+      <dt>Respuesta de primer orden</dt><dd>$$i_L(t) = i_L(\infty) + \left[i_L(0^+) - i_L(\infty)\right]e^{-t/\tau}, \qquad \tau = \frac{L}{R_{th}}$$</dd>
+    </dl></div>
+  </div>
+
+  <div class="block example">
+    <h3>Ejemplo resuelto</h3>
+    <div class="statement"><p>Se cierra el interruptor en \(t = 0\) con el inductor sin corriente. Calcula \(\tau\), la corriente final, \(i(\tau)\), \(v_L(0^+)\) y la energía final almacenada.</p></div>
+    <figure class="circuit" data-circuit="rl-ej"></figure>
+    <ol class="steps">
+      <li><div><span class="phase">Planteamiento</span>
+        <p>\(i(0^+) = 0\) porque no puede saltar. Entonces en \(0^+\) no cae nada en R y toda la fuente queda en L: \(v_L(0^+) = 12\) V. En régimen permanente L es un corto: \(i(\infty) = V/R\).</p>
+      </div></li>
+      <li><div><span class="phase">Álgebra</span>
+        $$\tau = \frac{2}{4} = 0{,}5\ \mathrm{s}, \qquad i(\infty) = 3\ \mathrm{A}, \qquad i(\tau) = 3(1 - e^{-1}) = 1{,}90\ \mathrm{A}$$
+        $$W = \tfrac12\cdot 2\cdot 3^2 = 9\ \mathrm{J}$$
+      </div></li>
+    </ol>
+    <div class="result">τ = 0,5 s · i(∞) = 3 A · i(τ) = 1,90 A · v_L(0⁺) = 12 V · W_L = 9 J</div>
+  </div>
+
+  <div class="block">
+    <h3>Laboratorio</h3>
+    <div class="lab mag" data-sim="rl">
+      <div class="lab-side"><span class="lab-title">Energización RL</span><div class="sim-controls"></div></div>
+      <div class="lab-main">
+        <canvas aria-label="Corriente en el inductor en función del tiempo"></canvas>
+        <dl class="sim-readouts"></dl>
+        <p class="lab-hint">Aumenta R: la corriente final baja y el transitorio se acorta, porque τ = L/R. En el RC pasa lo contrario: más R alarga τ.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="certamen">
+    <p>El interruptor se cierra en \(t = 0\) y el inductor no tiene corriente inicial.</p>
+    <figure class="circuit" data-circuit="rl-prop"></figure>
+    <ol class="items" type="a">
+      <li>Calcula la corriente por \(R_1\), por \(R_2\) y la tensión en L en \(t = 0^+\). (2 pts)</li>
+      <li>Calcula las mismas corrientes en \(t \to \infty\). (1 pt)</li>
+      <li>Determina la constante de tiempo y escribe \(i_L(t)\). Evalúala en \(t = 0{,}1\) s. (2 pts)</li>
+      <li>Calcula la energía almacenada en el campo magnético en régimen permanente. (1 pt)</li>
+    </ol>
+    <details><summary>Pista</summary><p>En \(0^+\) el inductor se comporta como circuito abierto; en \(\infty\), como cortocircuito, y deja a \(R_2\) en corto.</p></details>
+    <div class="gate">
+      <label for="g210">Tu planteamiento</label>
+      <textarea id="g210" placeholder="0⁺: i = 36/(4+12) ; ∞: i = 36/4 ..."></textarea>
+      <label><input type="checkbox" id="g210c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta</h4>
+      <p>a) \(i_L(0^+) = 0\): L abierto. \(i_{R_1} = i_{R_2} = 36/16 = 2{,}25\) A y \(v_L = v_{R_2} = 2{,}25\cdot 12 = 27\) V.</p>
+      <p>b) L en corto: \(i_{R_1} = 36/4 = 9\) A, \(i_{R_2} = 0\), \(i_L = 9\) A.</p>
+      <p>c) Con la fuente en corto, L ve \(4 \parallel 12 = 3\ \Omega\): \(\tau = 0{,}5/3 = 0{,}167\) s. \(i_L(t) = 9(1 - e^{-6t})\) A; \(i_L(0{,}1) = 4{,}06\) A.</p>
+      <p>d) \(W = \tfrac12\cdot 0{,}5\cdot 81 = 20{,}25\) J.</p>
+    </div>
+  </div>
+
+  <footer class="mod-foot"><button class="btn" type="button" data-done-toggle>Marcar módulo como estudiado</button><nav class="pager" aria-label="Módulos vecinos"></nav></footer>
+</section>
+
+<!-- ======================================================== 2.11 -->
+<section class="module" id="m211" data-module data-title="2.11 Resistencia no uniforme" hidden>
+  <header class="mod-head">
+    <span class="mod-code">Módulo 2.11 · Cap. 3</span>
+    <h2>Resistencia en geometrías no uniformes</h2>
+    <p class="lead">Cuando la sección cambia a lo largo del camino de la corriente, R = L/(σA) deja de servir y hay que integrar.</p>
+    <div class="chips"><span class="chip">coaxial</span><span class="chip">esferas concéntricas</span><span class="chip">dR = dl/(σA)</span></div>
+  </header>
+
+  <div class="block prose">
+    <h3>La física detrás <span class="tag">J, E y V en ese orden</span></h3>
+    <p>El procedimiento que pide el Cap. 3 tiene cuatro pasos y conviene hacerlos siempre en el mismo orden. Supones una corriente total \(I\). Por continuidad, esa misma \(I\) atraviesa cada superficie perpendicular al flujo, así que \(J = I/A(r)\). Con la ley de Ohm, \(E = J/\sigma\). Integras \(E\) entre los electrodos para obtener \(V\), y finalmente \(R = V/I\), donde \(I\) se cancela.</p>
+    <p>En un coaxial con material resistivo entre los conductores, la corriente sale radial del conductor interno. Atraviesa cilindros de área \(2\pi r L\), que crecen con \(r\). Cerca del conductor interno la corriente se apretuja en un área pequeña, por lo que \(J\) y \(E\) son mayores ahí:</p>
+    $$J = \frac{I}{2\pi r L}, \quad E = \frac{I}{2\pi\sigma r L}, \quad V = \int_a^b E\,dr = \frac{I}{2\pi\sigma L}\ln\frac{b}{a}$$
+    <div class="note"><p>El mismo esquema, cambiando conductividad por permitividad, da la capacitancia del módulo 2.12. Por eso \(RC = \varepsilon/\sigma\) para cualquier geometría con el mismo material.</p></div>
+  </div>
+
+  <div class="block">
+    <h3>Ecuaciones que usarás</h3>
+    <div class="law"><dl>
+      <dt>Coaxial, corriente radial</dt><dd>$$R = \frac{\ln(b/a)}{2\pi\sigma L}$$</dd>
+      <dt>Esferas concéntricas</dt><dd>$$R = \frac{1}{4\pi\sigma}\left(\frac{1}{a} - \frac{1}{b}\right)$$</dd>
+      <dt>Procedimiento general</dt><dd>$$I \;\to\; J = \frac{I}{A} \;\to\; E = \frac{J}{\sigma} \;\to\; V = \int E\,dl \;\to\; R = \frac{V}{I}$$</dd>
+    </dl></div>
+  </div>
+
+  <div class="block example">
+    <h3>Ejemplo resuelto</h3>
+    <div class="statement"><p>Un cable coaxial de 1 m tiene conductor interno de radio 1 mm, externo de radio 4 mm, y entre ellos un aislante imperfecto con \(\sigma = 10^{-4}\) S/m. Calcula la resistencia de fuga, la corriente de fuga con 100 V y el campo en ambos bordes.</p></div>
+    <ol class="steps">
+      <li><div><span class="phase">Planteamiento</span>
+        <p>La corriente de fuga es radial. Aplico la cadena \(I \to J \to E \to V\) con área \(2\pi r L\).</p>
+      </div></li>
+      <li><div><span class="phase">Álgebra</span>
+        $$R = \frac{\ln 4}{2\pi\cdot 10^{-4}\cdot 1} = 2206\ \Omega, \qquad I = \frac{100}{2206} = 45{,}3\ \mathrm{mA}$$
+        $$E(r) = \frac{V}{r\ln(b/a)} \;\Rightarrow\; E(a) = 72{,}1\ \mathrm{kV/m}, \quad E(b) = 18{,}0\ \mathrm{kV/m}$$
+      </div></li>
+      <li><div><span class="phase">Interpretación</span>
+        <p>El campo es cuatro veces mayor en el borde interno (la razón \(b/a\)). Si el aislante se perfora, lo hace cerca del conductor central.</p>
+      </div></li>
+    </ol>
+    <div class="result">R = 2,21 kΩ · I = 45,3 mA · E(a) = 72,1 kV/m · E(b) = 18,0 kV/m</div>
+  </div>
+
+  <div class="block">
+    <h3>Laboratorio</h3>
+    <div class="lab" data-sim="coax">
+      <div class="lab-side"><span class="lab-title">Fuga radial en un coaxial</span><div class="sim-controls"></div></div>
+      <div class="lab-main">
+        <div class="lab-split"><canvas aria-label="Corte transversal del coaxial con líneas de corriente radiales"></canvas><canvas aria-label="Campo eléctrico en función del radio"></canvas></div>
+        <dl class="sim-readouts"></dl>
+        <p class="lab-hint">R crece con el logaritmo de b/a: duplicar b no duplica R. Para el largo pasa lo contrario que en un cable: más largo, menos resistencia, porque la corriente tiene más área para salir.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="certamen">
+    <p>Dos cascarones esféricos conductores concéntricos, de radios \(a = 2\) cm y \(b = 6\) cm, tienen el espacio entre ellos lleno con un material de \(\sigma = 0{,}01\) S/m. Se aplican 100 V entre ellos.</p>
+    <ol class="items" type="a">
+      <li>Deduce la expresión de R siguiendo la cadena \(I \to J \to E \to V\). (2 pts)</li>
+      <li>Calcula R y la corriente. (1 pt)</li>
+      <li>Calcula \(J\) y \(E\) en \(r = 3\) cm. (2 pts)</li>
+      <li>Calcula la potencia disipada en el material. (1 pt)</li>
+    </ol>
+    <details><summary>Pista</summary><p>La superficie que atraviesa la corriente a radio \(r\) es una esfera completa.</p></details>
+    <div class="gate">
+      <label for="g211">Tu planteamiento</label>
+      <textarea id="g211" placeholder="J = I/(4πr²) ; E = ... ; V = ∫ ..."></textarea>
+      <label><input type="checkbox" id="g211c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta</h4>
+      <p>a) \(J = I/(4\pi r^2)\), \(E = I/(4\pi\sigma r^2)\), \(V = \int_a^b E\,dr = \dfrac{I}{4\pi\sigma}\left(\dfrac1a - \dfrac1b\right)\), así que \(R = \dfrac{1}{4\pi\sigma}\left(\dfrac1a - \dfrac1b\right)\).</p>
+      <p>b) \(R = (50 - 16{,}67)/(4\pi\cdot 0{,}01) = 265{,}3\ \Omega\); \(I = 100/265{,}3 = 0{,}377\) A.</p>
+      <p>c) \(J(3\ \mathrm{cm}) = 0{,}377/(4\pi\cdot 9\times10^{-4}) = 33{,}3\) A/m²; \(E = J/\sigma = 3333\) V/m.</p>
+      <p>d) \(P = V^2/R = 37{,}7\) W.</p>
+    </div>
+  </div>
+
+  <footer class="mod-foot"><button class="btn" type="button" data-done-toggle>Marcar módulo como estudiado</button><nav class="pager" aria-label="Módulos vecinos"></nav></footer>
+</section>
+
+<!-- ======================================================== 2.12 -->
+<section class="module" id="m212" data-module data-title="2.12 Capacitancia y dieléctricos" hidden>
+  <header class="mod-head">
+    <span class="mod-code">Módulo 2.12 · Cap. 4</span>
+    <h2>Capacitancia y dieléctricos</h2>
+    <p class="lead">Un dieléctrico se polariza, reduce el campo para la misma carga y aumenta la capacitancia. Las capas se combinan en serie o en paralelo según cómo las cruce el campo.</p>
+    <div class="chips"><span class="chip">polarización</span><span class="chip">continuidad de D</span><span class="chip">capas en serie y en paralelo</span></div>
+  </header>
+
+  <div class="block prose">
+    <h3>La física detrás <span class="tag">D, E y la carga ligada</span></h3>
+    <p>Las moléculas del dieléctrico se orientan con el campo y dejan carga ligada en sus superficies, opuesta a la de las placas. Esa carga ligada debilita el campo adentro. Para describirlo sin seguir la carga ligada se usa \(\vec D = \varepsilon_0\varepsilon_r\vec E\), que depende solo de la carga libre: \(\oint \vec D\cdot d\vec S = Q_{libre}\).</p>
+    <p>Lámina paralela a las placas: el campo cruza ambas capas una tras otra. En la interfaz no hay carga libre, así que \(D\) es continuo y \(E_{aire} = \varepsilon_r E_{diel}\). Las tensiones de cada capa se suman: son capacitores en serie.</p>
+    <p>Lámina que ocupa parte del área, de placa a placa: ambas regiones ven la misma tensión y el mismo \(E = V/d\), pero el dieléctrico necesita \(\varepsilon_r\) veces más carga libre. Son capacitores en paralelo.</p>
+    <div class="note"><p>Pregunta de certamen frecuente: en la configuración en serie, ¿dónde es mayor el campo? En el aire. Por eso los capacitores con una capa de aire delgada fallan por ruptura del aire, aunque el dieléctrico aguante.</p></div>
+  </div>
+
+  <div class="block">
+    <h3>Ecuaciones que usarás</h3>
+    <div class="law"><dl>
+      <dt>Placas paralelas</dt><dd>$$C = \frac{\varepsilon_0\varepsilon_r A}{d}, \qquad W = \tfrac12 CV^2 = \int \tfrac12\varepsilon E^2\,dv$$</dd>
+      <dt>Capas en serie (lámina de espesor t)</dt><dd>$$C = \frac{\varepsilon_0 A}{t/\varepsilon_r + (d - t)}$$</dd>
+      <dt>Capas en paralelo (fracciones de área)</dt><dd>$$C = \frac{\varepsilon_0}{d}\left(\varepsilon_{r1}A_1 + \varepsilon_{r2}A_2\right)$$</dd>
+      <dt>Carga ligada en la superficie del dieléctrico</dt><dd>$$\rho_{s,b} = P = (\varepsilon_r - 1)\varepsilon_0 E$$</dd>
+    </dl></div>
+  </div>
+
+  <div class="block example">
+    <h3>Ejemplo resuelto</h3>
+    <div class="statement"><p>Placas de 0,01 m² separadas 2 mm. Una lámina de \(\varepsilon_r = 4\) y 1 mm de espesor está apoyada en la placa inferior; el resto es aire. Se aplican 12 V. Calcula C y el campo en cada región.</p></div>
+    <ol class="steps">
+      <li><div><span class="phase">Planteamiento</span>
+        <p>El campo cruza aire y dieléctrico en serie. Uso la continuidad de \(D\) y la suma de tensiones: \(E_{aire}(d - t) + E_{diel}\,t = V\) con \(E_{aire} = 4E_{diel}\).</p>
+      </div></li>
+      <li><div><span class="phase">Álgebra</span>
+        $$C = \frac{8{,}854\times10^{-12}\cdot 0{,}01}{0{,}25\times10^{-3} + 1\times10^{-3}} = 70{,}8\ \mathrm{pF}$$
+        $$4E_{diel}\cdot 10^{-3} + E_{diel}\cdot 10^{-3} = 12 \;\Rightarrow\; E_{diel} = 2400\ \mathrm{V/m}, \quad E_{aire} = 9600\ \mathrm{V/m}$$
+      </div></li>
+      <li><div><span class="phase">Interpretación</span>
+        <p>De los 12 V, 9,6 V caen en el milímetro de aire y 2,4 V en el dieléctrico. Sin lámina, C sería 44,3 pF: la lámina aumenta C en un factor 1,6.</p>
+      </div></li>
+    </ol>
+    <div class="result">C = 70,8 pF · E_aire = 9,6 kV/m · E_diel = 2,4 kV/m</div>
+  </div>
+
+  <div class="block">
+    <h3>Laboratorio</h3>
+    <div class="lab" data-sim="slab">
+      <div class="lab-side"><span class="lab-title">Condensador con lámina</span><div class="sim-controls"></div></div>
+      <div class="lab-main">
+        <canvas aria-label="Corte del condensador con líneas de campo en aire y dieléctrico"></canvas>
+        <dl class="sim-readouts"></dl>
+        <p class="lab-hint">Placas de 0,01 m² separadas 2 mm. La densidad de líneas es proporcional a E: en el dieléctrico hay εr veces menos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="certamen">
+    <p>Un condensador de placas paralelas de 0,02 m² y separación 1 mm tiene la mitad de su área ocupada por un dieléctrico de \(\varepsilon_r = 5\) que va de placa a placa. La otra mitad es aire. Se conecta a 100 V.</p>
+    <ol class="items" type="a">
+      <li>Identifica si las regiones están en serie o en paralelo y justifica con el comportamiento de E. (1 pt)</li>
+      <li>Calcula la capacitancia y la energía almacenada. (2 pts)</li>
+      <li>Calcula el campo en cada región y la densidad de carga libre en la placa, en cada región. (2 pts)</li>
+      <li>Calcula la densidad de carga ligada en la superficie del dieléctrico. (1 pt)</li>
+    </ol>
+    <details><summary>Pista</summary><p>Ambas regiones conectan directamente las dos placas: ¿qué tienen en común?</p></details>
+    <div class="gate">
+      <label for="g212">Tu planteamiento</label>
+      <textarea id="g212" placeholder="Paralelo: C = ε0/d (εr·A1 + A2) ..."></textarea>
+      <label><input type="checkbox" id="g212c"> Resolví el ejercicio completo en papel y quiero comparar.</label>
+      <button class="btn primary" type="button">Ver pauta</button>
+    </div>
+    <div class="pauta" hidden>
+      <h4>Pauta</h4>
+      <p>a) Paralelo. Ambas regiones van de placa a placa, así que tienen la misma tensión y el mismo \(E = V/d\).</p>
+      <p>b) \(C = \dfrac{8{,}854\times10^{-12}}{10^{-3}}(5\cdot 0{,}01 + 0{,}01) = 531\) pF; \(W = \tfrac12 CV^2 = 2{,}66\ \mu\)J.</p>
+      <p>c) \(E = 100/10^{-3} = 10^{5}\) V/m en ambas. \(\rho_s = \varepsilon_0\varepsilon_r E\): 4,43 µC/m² frente al dieléctrico y 0,885 µC/m² frente al aire.</p>
+      <p>d) \(\rho_{s,b} = (5 - 1)\varepsilon_0\cdot 10^{5} = 3{,}54\) µC/m², de signo opuesto a la placa vecina.</p>
+    </div>
+  </div>
+
+  <footer class="mod-foot"><button class="btn" type="button" data-done-toggle>Marcar módulo como estudiado</button><nav class="pager" aria-label="Módulos vecinos"></nav></footer>
+</section>
+
+  </main>
+</div>
+
+<script src="js/physics.js"></script>
+<script src="js/plot.js"></script>
+<script src="js/schematic.js"></script>
+<script src="js/circuits.js"></script>
+<script src="js/sims.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
